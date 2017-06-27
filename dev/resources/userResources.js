@@ -2,12 +2,12 @@ import Request from 'superagent';
 
 class UserResources {
 
-	getAllUsers() {
-		const ALL_USERS_URL = "http://localhost:8088/services/users/all";
-		
-		Request.get(ALL_USERS_URL).then((response) => {
-			console.log(response.body);
-		});
+	updateCurrentUserData(newCurrentUserData) {
+		const UPDATE_CURRENT_USER_URL = "http://localhost:8088/services/users/updateUser";
+		Request.put(UPDATE_CURRENT_USER_URL)
+			.send(newCurrentUserData)
+			.end();
 	}
+
 }
 export let userResources = new UserResources();
