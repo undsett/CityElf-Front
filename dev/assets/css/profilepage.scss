@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+* {
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.Site-content {
+  flex: 1;
+}
+.navbar-inverse {
+  background-color: #f2f2f2;
+  border: none;
+}
+.navbar-inverse .navbar-brand {
+  color: #1485CC;
+  font-size: 20px;
+}
+.navbar-inverse .navbar-brand:hover {
+  color: #1485CC;
+}
+.navbar-inverse .navbar-brand:active {
+  color: #1485CC;
+}
+.navbar-inverse .navbar-brand:focus{
+  color: #1485CC;
+}
+.navbar-inverse .navbar-brand:visited{
+  color: #1485CC;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #4F4F4F;
+  font-size: 16px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #4F4F4F;
+  border-bottom: 2px solid #1485CC;
+}
+.navbar-inverse .navbar-nav > li >.language-choise:hover{
+  border: none;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus{
+  color: #4F4F4F
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+  color:#1485CC;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #000000;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: transparent;
+}
+
+.navbar-inverse .navbar-collapse {
+  border: none;
+}
+.navbar-inverse .navbar-nav > .open > a:hover {
+  background-color: transparent;
+}
+.navbar-inverse .navbar-nav>.open>a{
+  background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>.open>a:focus {
+  background-color: transparent;
+}
+
+.map-block-static{
+  background-image: url("../img/map.png");
+  background-size: cover;
+  height: 180px;
+  padding: 10%;
+.services-chose{
+  margin-left: 26%;
+  input[type=checkbox]{
+    margin: 3px -17px;
+  }
+}
+
+  label{
+    font: 14px 'Ubuntu', sans-serif;
+    color: #8492A6;
+
+  }
+  .container-search-userpage {
+    .dropdown-menu>li>a{
+      font: 14px 'Ubuntu', sans-serif;
+      color: #8492A6;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container-search-userpage:last-child{
+      display: block;
+    }
+    .form-control:focus{
+      border: none;
+      box-shadow: none;
+      outline: none;
+    }
+    .input-group{
+      max-width: 40%;
+      margin-right:10px ;
+    }
+    #pac-input{
+      height: 35px;
+      padding: 10px;
+    }
+    #dropdown-adress{
+      height: 33px;
+      outline: none;
+      box-shadow: none;
+      border: none;
+    }
+    .dropdown-menu{
+      margin: 0;
+    }
+    #shut-note-for-adress{
+      h4{
+        font: 16px 'Ubuntu', sans-serif;
+        color: #8492A6;
+        font-weight: bold;
+      }
+      p{
+        font: 14px 'Ubuntu', sans-serif;
+        color: #8492A6;
+      }
+    }
+    .check-shut-note, .user-dropdown-adress {
+      #shut-note {
+        height: 35px;
+        width: 216px;
+        font: 12px 'Ubuntu', sans-serif;
+        background-color: #1485CC;
+        display: inline;
+        color: #F2F2F2;
+      }
+      #for-small-screen-note{
+        display: none;
+      }
+      .btn-default:active:hover {
+        background-color: #fffffF;
+        color: #000000;
+      }
+      .btn-default:hover {
+        background-color: #fffffF;
+        color: #000000;
+      }
+      .btn-default:focus {
+        background-color: #fffffF;
+        color: #000000;
+      }
+      .btn-default:active {
+        background-color: #fffffF;
+        color: #000000;
+      }
+    }
+
+  }
+}
+.user-notifacations {
+    .tab-pane{
+      height:50vh;
+      overflow: auto;
+    }
+  .nav-tabs a{
+    color: rgba(132, 146, 166, 0.5);
+  }
+  .nav-tabs>li{
+    margin-bottom: -3px;
+  }
+  .nav-tabs>li>a{
+    border: none;
+  }
+  a:focus{
+    color:#8492A6;
+  }
+  a:hover{
+    color:#8492A6;
+  }
+  .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active:hover {
+    border-bottom: 1px solid #8492A6;
+    color:#8492A6;
+  }
+  .nav-tabs > li.active > a {
+    border: none;
+    font: 14px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  .nav > li > a:focus, .nav > li > a:hover {
+    background-color: transparent;
+    border: none;
+  }
+  .nav > li > a {
+    padding: 12px 52px;
+
+  }
+  .icon-water {
+    width: 10px;
+    height: 15px;
+    background: #b3b3b3;
+    border-radius: 2%;
+  }
+
+  .icon-lamp {
+    width: 10px;
+    height: 15px;
+    background: #ffb366;
+    border-radius: 2%;
+  }
+
+  .icon-gas {
+    width: 10px;
+    height: 15px;
+    background: #cca300;
+    border-radius: 2%;
+  }
+  .table > tbody > tr > th {
+    border: none;
+  }
+
+  .table-hover > tbody > tr:hover {
+    background-color: transparent;
+  }
+
+  .table > tbody > tr > th {
+    color: #8492A6;
+    font: 14px 'Ubuntu', sans-serif;
+
+  }
+}
+
+.user-profile {
+  overflow: hidden;
+  h3 {
+    font-style: normal;
+    font-size: 14px;
+    margin-top: 20px;
+    color: #8492A6;
+    font-family:'Ubuntu', sans-serif;
+    font-weight: bold;
+  }
+  h2 {
+    font-style: normal;
+    font-size: 14px;
+    color: #8492A6;
+    font-family:'Ubuntu', sans-serif;
+    font-weight: bold;
+  }
+  p{
+    font:14px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  #add-additional-adress{
+    color:#8492A6;
+  }
+  #settings-profile, #exit-profile {
+    margin-top: 20px;
+    width:261px;
+  }
+  #settings-profile:hover {
+    border: 1px solid #1485CC;
+    background-color: transparent;
+  }
+  #exit-profile:hover{
+    border: 1px solid #1485CC;
+    background-color: transparent;
+  }
+  #settings-profile:active{
+    background-color: transparent;
+  }
+  #exit-profile:active{
+    background-color: transparent;
+  }
+  #settings-profile:focus{
+    background-color: transparent;
+  }
+  #exit-profile:focus{
+    background-color: transparent;
+  }
+}
+
+#settings-change-info {
+  .modal-header .close{
+    margin: 15px -8px;
+  }
+  label{
+    font:14px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  .label-default{
+    background-color: #CDDC39;
+  }
+  .modal-content{
+    width: 83%;
+  }
+  .modal-body{
+    margin: 0 20px
+  }
+  .modal-header{
+    border-bottom: none;
+    padding: 0;
+    margin: 0 33px;
+  }
+  h4{
+    margin-top: 20px;
+    font:16px 'Ubuntu', sans-serif;
+    color:#8492A6;
+    font-weight: bold;
+  }
+  h3{
+    font:14px 'Ubuntu', sans-serif;
+    color:#8492A6;
+    font-weight: bold;
+  }
+  a{
+    font:12px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  p{
+    font:12px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  .list-group-item {
+    border: 0;
+    font:14px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  .btn{
+    width: 138px;
+    font:14px 'Ubuntu', sans-serif;
+    color:#4F4F4F;
+  }
+
+  .btn-default:hover{
+    background-color: transparent;
+    border: 1px solid #1485CC;
+  }
+  #settings-type-notification{
+    border-top: 1px solid #8492A6;
+    padding-top: 10px;
+  }
+
+  .material-switch > input[type="checkbox"] {
+    display: none;
+  }
+  .material-switch > label {
+    cursor: pointer;
+    height: 0;
+    position: relative;
+    width: 40px;
+  }
+  .material-switch > label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+  }
+  .material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+  }
+  .material-switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+  }
+  .material-switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 20px;
+  }
+}
+
+#payment-method{
+  .modal-header{
+    border-bottom: none;
+    padding: 0;
+    margin: 0 33px;
+  }
+  .modal-body{
+    margin: 0 20px
+  }
+  h4{
+  margin-top: 20px;
+  font:16px 'Ubuntu', sans-serif;
+  color:#8492A6;
+  font-weight: bold;
+  }
+  h3{
+    font:14px 'Ubuntu', sans-serif;
+    color:#8492A6;
+    font-weight: bold;
+  }
+  a{
+    font:12px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  p{
+    font:12px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  .radio-inline{
+    font:14px 'Ubuntu', sans-serif;
+    color:#8492A6;
+  }
+  #card-month{
+    width:5%;
+    margin: 0;
+  }
+  #card-year{
+    width:5%;
+    margin: 0;
+  }
+  #cvv-code{
+    width:10%;
+    margin: 0;
+  }
+  #header-of-quantity-adresses{
+    border-top: 1px solid #8492A6;
+    padding-top: 10px;
+  }
+}
+
+
+footer {
+  height: 59px;
+  background-color: #4F4F4F;
+  z-index: 990;
+
+  h2 {
+    margin: 0;
+    font: 14px 'Ubuntu', sans-serif;
+    text-align: center;
+    color: #fffffF;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .user-notifacations {
+    .nav > li > a{
+      padding: 12px 26px ;
+    }
+  }
+}
+@media screen and (max-width:1000px){
+  body{
+    overflow: auto;
+  }
+  .user-notifacations{
+    .tab-pane {
+      height: 100%;
+    }
+  }
+}
+@media screen and (max-width: 700px){
+.container-search-userpage{
+  margin-top:10px;
+}
+  .input-group-btn{
+    width: 0;
+  }
+  .user-profile{
+    margin-bottom: 20px;
+}
+}
+@media screen and (max-width: 450px){
+  #shut-note{
+    display: none;
+  }
+  #for-small-screen-note{
+    display: block;
+  }
+  .input-group-btn{
+    width: 0;
+  }
+  .user-notifacations {
+    .nav > li > a{
+      padding: 12px 15px;
+    }
+  }
+  .map-block-static{
+    padding: 17%;
+    height: 198px;
+  }
+  .map-block-static .container-search-userpage .input-group{
+    max-width: 77%;
+  }
+  .map-block-static .container-search-userpage .check-shut-note #shut-note{
+    height: 33px;
+    width: 166px;
+    font: 12px 'Ubuntu', sans-serif;
+    background-color: #1485CC;
+    display: inline;
+    color: #F2F2F2;
+    margin: 10px 0;
+  }
+  .map-block-static .services-chose{
+    margin: 0;
+  }
+}
+@media screen and (max-width: 450px){
+  .map-block-static {
+
+  }
+  .container-search-userpage{
+    flex-wrap: wrap;
+  }
+}
+.change-settings-input{
+  width: 50%;
+  margin: 15px 0;
+}
+.interview:hover{
+  background-color: transparent;
+  border: 1px solid #1485CC;
+}
