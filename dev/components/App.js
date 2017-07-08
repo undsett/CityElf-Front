@@ -1,8 +1,6 @@
 import React from 'react';
-
-import MainPage from './mainPage/MainPage';
-
-
+import NavigationBar from './NavigationBar';
+import Footer from './Footer';
 
 class App extends React.Component {    
     constructor() {
@@ -12,14 +10,12 @@ class App extends React.Component {
 
     render() { 
         return (
-            <div>
-               
-                <MainPage/>  
-                  
-               
-            </div>
-       
-        )
+        	<div>
+        		<NavigationBar/>
+        		{this.props.children}
+        		<Footer/>
+        	</div>
+        )  
     }
 }
 export default App;
