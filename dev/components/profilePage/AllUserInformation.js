@@ -122,10 +122,7 @@ export default class AllUserInformation extends React.Component {
 
                                         </tr>
                                         <tr>
-                                            <th className="
-
-
-                                            reason">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            <th className="reason">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                                 Aspernatur aut consectetur cumque eveniet excepturi
                                                 explicabo fuga labore neque nulla possimus quas,
                                                 quos repellat rerum sapiente tempore tenetur vel velit voluptatibus!

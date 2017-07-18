@@ -44,7 +44,7 @@ export default class NavigationBar extends React.Component{
                                     <li><Link to="/" id="profile-link">Главная</Link></li>
                                     <li><a href="#link-about-us">О нас</a></li>
                                     <li><a href="#android">Мобильный доступ</a></li>
-                                    <li onClick={this.open}><a id="modalpopuplogin">Вход</a></li>
+                                    <li onClick={this.open}><a href="#" id="modalpopuplogin">Вход</a></li>
                                     <li><Link to="/profile">Профиль</Link></li>
                                 </ul>
                                 <ul className="nav navbar-nav navbar-right">

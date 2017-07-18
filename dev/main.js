@@ -23,7 +23,7 @@ import '../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js';
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(hashHistory, store);
 
-
+console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
