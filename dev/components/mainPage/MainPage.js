@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleMap from './GoogleMap';
+import GoogleMapReact from './GoogleMapReact';
 import AboutUs from './AboutUs';
 import MobileApp from './MobileApp';
 import WriteUsModal from "./WriteUsModal";
@@ -9,7 +9,7 @@ export default class MainPage extends React.Component{
 	render() {
         return (
 			<div>
-				<GoogleMap />
+				<GoogleMapReact />
 				<AboutUs />
 				<MobileApp />
 				<WriteUsModal/>

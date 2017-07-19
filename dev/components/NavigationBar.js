@@ -62,7 +62,8 @@ export default class NavigationBar extends React.Component{
                         </div>
                     </div>
                 </nav>
-                <Modal id="modal-login-form" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" 
+
+                <Modal id="modal-login-form"  bsSize="large" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog"
                 aria-labelledby="myLargeModalLabel" aria-hidden="true" show={this.state.showModal} onHide={this.close}>                   
                     <Modal.Body>
                         <div className="container-fluid">
