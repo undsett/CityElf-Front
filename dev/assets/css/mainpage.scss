@@ -219,7 +219,14 @@ footer {
     padding-left: 3%;
   }
 }
-#writeusmodal{
+#modal-write-us{
+  h2{
+    font: 18px 'Ubuntu', sans-serif;
+    color:#1485CC;
+  }
+  .modal-body{
+    padding:18px;
+  }
   input{
     margin-top: 20px;
   }
@@ -239,6 +246,9 @@ footer {
     background-color:#1485CC;
     color:#F2F2F2;
     font: 14px 'Ubuntu', sans-serif;
+    margin-top: 20px;
+  }
+  .send-info-about-us{
     margin-top: 20px;
   }
 }
@@ -347,4 +357,27 @@ footer {
       margin-left: 30px;
     }
   }
+}
+.mainpagemap input {
+  border-radius: 7px !important;
+  left: 30% !important;
+  top:60% !important;
+}
+.checkaddress{
+  position: absolute;
+  top: 64%;
+  left: calc(30% + 400px);
+  width: 139px;
+  height: 35px;
+  background-color:#1485CC;
+  color:#F2F2F2;
+  font: 14px 'Ubuntu', sans-serif;
+  margin-left: 10px;
+  z-index: 1;
+}
+
+.container-search {
+
+  position: relative;
+
 }
