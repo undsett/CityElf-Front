@@ -47,17 +47,6 @@ export default class NavigationBar extends React.Component{
                                     <li onClick={this.open}><a href="#" id="modalpopuplogin">Вход</a></li>
                                     <li><Link to="/profile">Профиль</Link></li>
                                 </ul>
-                                <ul className="nav navbar-nav navbar-right">
-                                    <li className="dropdown">
-                                        <a href="#" className="dropdown-toggle language-choise" data-toggle="dropdown">
-                                            <img src={require("../assets/img/translation.png")} alt="Глобус"/><b
-                                                className="caret"></b></a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="#">Русский</a></li>
-                                            <li><a href="#">English</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
