@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import {userResources} from '../../resources/userResources.js';
+// import {userResources} from '../../resources/userResources.js';
 
 export default class RegistrationFormGroup extends React.Component{
     constructor(props) {
@@ -58,7 +58,8 @@ export default class RegistrationFormGroup extends React.Component{
 
     submitForm(e) {
         e.preventDefault();
-        userResources.userRegistration(this.state.email, this.state.phone, this.state.password);
+        // userResources.userRegistration(this.state.email, this.state.phone, this.state.password);
+        this.props.userSignupRequest(this.state.email, this.state.phone, this.state.password);
     }
 
     render() {
@@ -113,4 +114,8 @@ export default class RegistrationFormGroup extends React.Component{
             </form>
         )
     } 
+}
+
+RegistrationFormGroup.propTypes = {
+    userSignupRequest: React.PropTypes.func.isRequired
 }

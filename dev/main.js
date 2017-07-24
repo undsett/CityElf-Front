@@ -40,7 +40,6 @@ ReactDOM.render(
 );  
 
 
-console.log("Hello");
 
 
 

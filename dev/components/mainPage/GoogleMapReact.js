@@ -51,6 +51,7 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
             inputPlaceholder="Введите свой адрес или выберите на карте"
             inputClassname="pac-input"
             inputStyle={INPUT_STYLE}
+            value = "sdfsdf"
         />
         {props.markers.map((marker, index) => (
             <Marker position={marker.position} key={index}  />
