@@ -54,7 +54,7 @@ export default class ImgMapStatic extends React.Component{
                                 <Modal.Title><h4 className="modal-title">Спасибо Вам!</h4></Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <p>Ваш запрос принят и обрабатывается. После обработки он появится в списке адресов для
+                                <p className="hanling-request">Ваш запрос принят и обрабатывается. После обработки он появится в списке адресов для
                                     отслеживания отключений</p>
                             </Modal.Body>
                             <Modal.Footer>

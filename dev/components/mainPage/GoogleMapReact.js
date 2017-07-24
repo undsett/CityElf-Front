@@ -11,20 +11,21 @@ import {
 } from "../../../node_modules/react-google-maps/lib";
 
 import SearchBox from "../../../node_modules/react-google-maps/lib/places/SearchBox";
+import CheckAdress from "./CheckAdress";
 
 const INPUT_STYLE = {
     boxSizing: `border-box`,
     MozBoxSizing: `border-box`,
-    border: `1px solid transparent`,
+    border: `1px solid #1485CC`,
     marginTop: `27px`,
     padding: `0 12px`,
-    borderRadius: `1px`,
+    borderRadius: `5px`,
     boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
     fontSize: `14px`,
     outline: `none`,
     textOverflow: `ellipses`,
-    width: `400px`,
-    height: `35px`,
+    width: `420px`,
+    height: `40px`,
     zindex:'0',
     position:'absolute',
     top:'32%',
@@ -46,7 +47,7 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
         <SearchBox
             ref={props.onSearchBoxMounted}
             bounds={props.bounds}
-            controlPosition={google.maps.ControlPosition.CENTER}
+            controlPosition={google.maps.ControlPosition.TOP_RIGHT}
             onPlacesChanged={props.onPlacesChanged}
             inputPlaceholder="Введите свой адрес или выберите на карте"
             inputClassname="pac-input"
@@ -96,7 +97,7 @@ export default class GoogleMapReact extends React.Component {
 
     handlePlacesChanged() {
         const places = this._searchBox.getPlaces();
-
+        console.log(places[0]["formatted_address"]);
         const bounds = new google.maps.LatLngBounds();
 
         places.map(place => {
@@ -122,7 +123,7 @@ export default class GoogleMapReact extends React.Component {
     render() {
         return (
             <div className="container-search">
-                <button className="checkaddress btn btn-default"> Проверить</button>
+            <CheckAdress/>
                 <SearchBoxExampleGoogleMap
                     containerElement={
                         <div className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />
