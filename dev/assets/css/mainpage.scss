@@ -2,6 +2,14 @@
 
 *{
   box-sizing: border-box;
+
+}
+body{
+  margin: 0;
+  font: 14px 'Ubuntu', sans-serif;
+}
+.all-content{
+  min-width: 570px;
 }
 #top-menu-main{
   .navbar-inverse {
@@ -84,16 +92,14 @@
     height: 35px;
     background-color:#1485CC;
     color:#F2F2F2;
-    font: 14px 'Ubuntu', sans-serif;
     margin-left: 10px;
-
   }
 }
 #link-about-us{
   .cd-slider{
     h2{
         color:#1485CC;
-      font: 24px 'Ubuntu', sans-serif;
+      font:24px 'Ubuntu', sans-serif;
     }
   }
 }
@@ -150,7 +156,6 @@ footer {
 
   h2 {
     margin: 0;
-    font: 14px 'Ubuntu', sans-serif;
     text-align: center;
     color: #fffffF;
     padding: 20px;
@@ -186,7 +191,6 @@ footer {
     font-size: 80%;
   }
   p{
-    font: 14px 'Ubuntu', sans-serif;
     color:#ffffff;
   }
   .sign-in-btn{
@@ -235,7 +239,7 @@ footer {
   }
   h2,p{
 
-    font: 14px'Ubuntu', sans-serif;
+
   }
   .close{
     padding: 3% 5%;
@@ -245,7 +249,6 @@ footer {
     height: 35px;
     background-color:#1485CC;
     color:#F2F2F2;
-    font: 14px 'Ubuntu', sans-serif;
     margin-top: 20px;
   }
   .send-info-about-us{
@@ -283,12 +286,12 @@ footer {
 
   .table > tbody > tr > th {
     color: #8492A6;
-    font: 14px 'Ubuntu', sans-serif;
+
 
   }
   p{
     color: #8492A6;
-    font: 14px 'Ubuntu', sans-serif;
+
   }
   h2{
     color: #8492A6;
@@ -303,7 +306,7 @@ footer {
   }
   li {
     list-style-type:none;
-    font: 14px 'Ubuntu', sans-serif;
+
     color: #8492A6;
   }
   li:before {
@@ -312,7 +315,7 @@ footer {
   .login-modal{
     background-color:#1485CC;
     color:#F2F2F2;
-    font: 14px 'Ubuntu', sans-serif;
+
     margin-top: 20px;
     margin-right: 20px;
   }
@@ -338,6 +341,16 @@ footer {
   }
 }
 @media only screen and (max-width: 800px) {
+  #link-about-us {
+.cd-slider h2 {
+  margin-bottom: -0.6em;
+}
+    .send-info-about-us {
+      width: 120px;
+      height: 30px;
+      font: 12px 'Ubuntu', sans-serif;
+    }
+  }
   .container-search-main {
     #pac-input {
       width: 200px;
@@ -348,6 +361,19 @@ footer {
   }
 }
 @media only screen and (max-width: 520px) {
+  #link-about-us{
+    .send-info-about-us{
+      width: 120px;
+      height: 30px;
+    }
+    .cd-slider{
+      h2{
+        color:#1485CC;
+        font:18px 'Ubuntu', sans-serif;
+      }
+    }
+  }
+
   .container-search-main{
     #pac-input {
       width: 200px;
@@ -358,20 +384,13 @@ footer {
     }
   }
 }
-.mainpagemap input {
-  border-radius: 7px !important;
-  left: 30% !important;
-  top:60% !important;
-}
+
 .checkaddress{
   position: absolute;
   top: 64%;
   left: calc(30% + 400px);
-  width: 139px;
-  height: 35px;
-  background-color:#1485CC;
-  color:#F2F2F2;
-  font: 14px 'Ubuntu', sans-serif;
+
+
   margin-left: 10px;
   z-index: 1;
 }
@@ -380,4 +399,15 @@ footer {
 
   position: relative;
 
+}
+#check-adress-main{
+  position: absolute;
+  z-index: 10;
+  top: 4%;
+  left: 67%;
+  width: 139px;
+  height: 35px;
+  background-color:#1485CC;
+  color:#F2F2F2;
+  border-color:#1485CC;
 }

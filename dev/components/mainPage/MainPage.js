@@ -8,12 +8,11 @@ import CheckAdress from "./CheckAdress";
 export default class MainPage extends React.Component{
 	render() {
         return (
-			<div>
+			<div className="all-content">
 				<GoogleMapReact />
 				<AboutUs />
 				<MobileApp />
 				<WriteUsModal/>
-				<CheckAdress />
 			</div>
         )	
     }

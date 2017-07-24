@@ -1,12 +1,30 @@
 import React from 'react';
-
+import {Modal} from 'react-bootstrap';
 export default class CheckAdress extends React.Component{
+    constructor() {
+        super();
+
+        this.state = {
+            showModal: false
+        }
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+    }
+
+    close() {
+        this.setState({ showModal: false });
+    }
+
+    open() {
+        this.setState({ showModal: true });
+    }
     render() {
         return (
-            <div className="modal fade" tabIndex="-1" role="dialog" id="checkyouradress">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-body">
+            <div>
+                <button onClick={this.open} id="check-adress-main">ПРОВЕРИТЬ</button>
+                <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
+                    <div className="modal-dialog" role="document">
+                        <Modal.Body>
                             <h4>Уведомления</h4>
                             <table className='table table-borderless table-condensed table-hover'>
                                 <tbody>
@@ -40,14 +58,16 @@ export default class CheckAdress extends React.Component{
                                     уведомлений(push или sms)
                                 </li>
                             </ul>
+                        </Modal.Body>
+                        <Modal.Footer>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="submit" className="login-modal  btn btn-default form-btn-checkadress">Войти</button>
                                 <button type="submit" className=" login-modal btn btn-default form-btn-checkadress"> Регистрация
                                 </button>
                             </div>
-                        </div>
+                        </Modal.Footer>
                     </div>
-                </div>
+                </Modal>
             </div>
         )
     }
