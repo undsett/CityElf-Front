@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-// import {userResources} from '../../resources/userResources.js';
 
 export default class RegistrationFormGroup extends React.Component{
     constructor(props) {
@@ -8,12 +7,12 @@ export default class RegistrationFormGroup extends React.Component{
         
         this.state = {
             email: '',
-            phone: '',
             password: '',
             formErrors: {email: '', password: ''},
             emailValid: false,
             passwordValid: false,
-            formValid: false
+            formValid: false,
+            errorUserExist: ''
         }
         this.changeValue = this.changeValue.bind(this);
         this.submitForm = this.submitForm.bind(this);
@@ -35,7 +34,7 @@ export default class RegistrationFormGroup extends React.Component{
         switch(fieldName) {
             case 'email':
                 emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.email = emailValid ? '' : 'Введите корректный Email';
+                fieldValidationErrors.email = emailValid ? '' : 'Введите корректный email';
                 break;
             case 'password':
                 passwordValid = value.length >= 6;
@@ -58,8 +57,22 @@ export default class RegistrationFormGroup extends React.Component{
 
     submitForm(e) {
         e.preventDefault();
-        // userResources.userRegistration(this.state.email, this.state.phone, this.state.password);
-        this.props.userSignupRequest(this.state.email, this.state.phone, this.state.password);
+        this.setState({
+            errorUserExist: ''
+        })
+        this.props.userSignupRequest(this.state.email, this.state.password).then(
+            (response) => {
+                if(JSON.parse(response.text).code == 11) {
+                    console.log("Зарегился новый юзер, надо сохранить его данные в редакс и сделать редирект на профиль");
+                    this.props.closeModal();
+                    this.context.router.push('/profile');                    
+                } else if(JSON.parse(response.text).code == 12){
+                    this.setState({
+                        errorUserExist: JSON.parse(response.text).message
+                    })
+                }
+            }        
+        );
     }
 
     render() {
@@ -69,7 +82,7 @@ export default class RegistrationFormGroup extends React.Component{
                 <h2>
                     Регистрация
                 </h2>
-                <div className={classnames("form-group", { 'has-error': formErrors.email })}>
+                <div className={classnames("form-group", { 'has-error': formErrors.email || this.state.errorUserExist })}>
                     <input 
                         type="email"
                         name="email"
@@ -79,16 +92,7 @@ export default class RegistrationFormGroup extends React.Component{
                         placeholder="Email*"
                     />
                     {formErrors.email && <span className="help-block">{formErrors.email}</span>}
-                </div>    
-                <div className="form-group">    
-                    <input 
-                        type="text"
-                        name="phone"
-                        value={this.state.phone}
-                        onChange={this.changeValue}  
-                        className="form-control" 
-                        placeholder="Телефон"
-                    />
+                    {this.state.errorUserExist && <span className="help-block">Этот email уже используется</span>}
                 </div>    
                 <div className={classnames("form-group", { 'has-error': formErrors.password })}>    
                     <input 
@@ -119,3 +123,8 @@ export default class RegistrationFormGroup extends React.Component{
 RegistrationFormGroup.propTypes = {
     userSignupRequest: React.PropTypes.func.isRequired
 }
+
+RegistrationFormGroup.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
+

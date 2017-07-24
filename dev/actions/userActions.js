@@ -1,14 +1,16 @@
 import Request from 'superagent';
 
-export function userSignupRequest(email, phone, password) {
+export function userSignupRequest(email, password) {
     return dispatch => {
         return Request
             .post('http://localhost:8088/services/registration/register')
-            .send('fireBaseID=WEB')
+            .send('firebaseid=WEB')
             .send('email=' + email)
             .send('password=' + password)
-            .end((error, response)=> {
-                console.log(response.text);
-            })      
+           
+            // .end((error, response)=> {
+            //     console.log(response);
+            //     console.log(JSON.parse(response.text).code);
+            // })      
     }
 }

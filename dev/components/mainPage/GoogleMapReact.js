@@ -73,7 +73,8 @@ export default class GoogleMapReact extends React.Component {
             lat: 46.4598895,
             lng: 30.5717043,
         },
-        markers: []
+        markers: [],
+        address: ''
     };
 
     handleMapMounted = this.handleMapMounted.bind(this);
@@ -99,6 +100,10 @@ export default class GoogleMapReact extends React.Component {
     handlePlacesChanged() {
         const places = this._searchBox.getPlaces();
         console.log(places[0]["formatted_address"]);
+
+        this.setState({
+            address: places[0]["formatted_address"]
+        })
         const bounds = new google.maps.LatLngBounds();
 
         places.map(place => {
@@ -124,7 +129,7 @@ export default class GoogleMapReact extends React.Component {
     render() {
         return (
             <div className="container-search">
-            <CheckAdress/>
+            <CheckAdress address={this.state.address} />
                 <SearchBoxExampleGoogleMap
                     containerElement={
                         <div className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />

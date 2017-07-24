@@ -19,7 +19,8 @@ class UserResources {
             .send('email=' + email)
             .send('password=' + password)
             .end((error, response)=> {
-                console.log(response.text);
+                console.log(response);
+                console.log(JSON.parse(response.text).status.code);
             })
 
 	}

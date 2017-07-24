@@ -35,7 +35,7 @@ export default class LoginFormGroup extends React.Component{
         switch(fieldName) {
             case 'email':
                 emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.email = emailValid ? '' : 'Введите корректный Email';
+                fieldValidationErrors.email = emailValid ? '' : 'Введите корректный email';
                 break;
             case 'password':
                 passwordValid = value.length >= 6;

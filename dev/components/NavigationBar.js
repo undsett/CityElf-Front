@@ -68,7 +68,7 @@ export default class NavigationBar extends React.Component{
                                         praesentium quasi repellendus rerum similique voluptatum!</p>
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-login-form">
-                                    <RegistrationFormGroup userSignupRequest = {this.props.userSignupRequest} />
+                                    <RegistrationFormGroup userSignupRequest = {this.props.userSignupRequest} closeModal = {this.close} />
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-for-register-user">
                                     <SignInFormGroup/>

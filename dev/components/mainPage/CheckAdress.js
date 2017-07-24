@@ -1,5 +1,8 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap';
+
+import Request from 'superagent';
+
 export default class CheckAdress extends React.Component{
     constructor() {
         super();
@@ -16,9 +19,16 @@ export default class CheckAdress extends React.Component{
     }
 
     open() {
+        Request
+            .get('http://localhost:8088/services/allforecasts/get')
+            .query({ address: 'Академика Королёва, 116' })
+            .end((error, response)=> {
+                console.log(error, response);
+            })
         this.setState({ showModal: true });
     }
     render() {
+        console.log(this.props.address);
         return (
             <div>
                 <button onClick={this.open} id="check-adress-main">ПРОВЕРИТЬ</button>
@@ -50,12 +60,12 @@ export default class CheckAdress extends React.Component{
                                 <li>Получение всех уведомлений</li>
                                 <li>Доступна вкладка "Объявления". Вы будете в курсе всех событий,которые происходят у Вас в доме.
                                 </li>
-                                <li>Доступна вкладка "Опросы". Вы сможете учавствовать в опосах, которые будут относиться к Вашему
+                                <li>Доступна вкладка "Опросы". Вы сможете учавствовать в опросах, которые будут относиться к Вашему
                                     дому
                                 </li>
                                 <li>Вы сможете сообщать об отключении света, газа и воды остальным жильцам Вашего дома</li>
                                 <li>Вам будут доступны настройки профиля,добавление дополнительных адресов, настройки
-                                    уведомлений(push или sms)
+                                    уведомлений (push или sms)
                                 </li>
                             </ul>
                         </Modal.Body>
