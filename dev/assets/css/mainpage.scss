@@ -93,7 +93,6 @@ body{
     background-color:#1485CC;
     color:#F2F2F2;
     margin-left: 10px;
-
   }
 }
 #link-about-us{
@@ -296,12 +295,12 @@ footer {
   }
   h2{
     color: #8492A6;
-
+    font: 14px 'Ubuntu', sans-serif;
     font-weight: 700;
   }
   h3{
     color: #8492A6;
-
+    font: 14px 'Ubuntu', sans-serif;
     border-top: 1px solid  #8492A6 ;
     padding-top: 10px;
   }
@@ -390,10 +389,7 @@ footer {
   position: absolute;
   top: 64%;
   left: calc(30% + 400px);
-  width: 139px;
-  height: 35px;
-  background-color:#1485CC;
-  color:#F2F2F2;
+
 
   margin-left: 10px;
   z-index: 1;
@@ -403,4 +399,15 @@ footer {
 
   position: relative;
 
+}
+#check-adress-main{
+  position: absolute;
+  z-index: 10;
+  top: 4%;
+  left: 67%;
+  width: 139px;
+  height: 35px;
+  background-color:#1485CC;
+  color:#F2F2F2;
+  border-color:#1485CC;
 }

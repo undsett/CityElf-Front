@@ -11,6 +11,7 @@ import {
 } from "../../../node_modules/react-google-maps/lib";
 
 import SearchBox from "../../../node_modules/react-google-maps/lib/places/SearchBox";
+import CheckAdress from "./CheckAdress";
 
 const INPUT_STYLE = {
     boxSizing: `border-box`,
@@ -122,6 +123,7 @@ export default class GoogleMapReact extends React.Component {
     render() {
         return (
             <div className="container-search">
+            <CheckAdress/>
                 <SearchBoxExampleGoogleMap
                     containerElement={
                         <div className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />

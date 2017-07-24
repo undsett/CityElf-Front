@@ -13,7 +13,6 @@ export default class MainPage extends React.Component{
 				<AboutUs />
 				<MobileApp />
 				<WriteUsModal/>
-				<CheckAdress />
 			</div>
         )	
     }
