@@ -1,12 +1,40 @@
 import React from 'react';
+import {Modal} from 'react-bootstrap';
+
+import Request from 'superagent';
 
 export default class CheckAdress extends React.Component{
+    constructor() {
+        super();
+
+        this.state = {
+            showModal: false
+        }
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+    }
+
+    close() {
+        this.setState({ showModal: false });
+    }
+
+    open() {
+        Request
+            .get('http://localhost:8088/services/allforecasts/get')
+            .query({ address: 'Академика Королёва, 116' })
+            .end((error, response)=> {
+                console.log(error, response);
+            })
+        this.setState({ showModal: true });
+    }
     render() {
+        console.log(this.props.address);
         return (
-            <div className="modal fade" tabIndex="-1" role="dialog" id="checkyouradress">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-body">
+            <div>
+                <button onClick={this.open} id="check-adress-main">ПРОВЕРИТЬ</button>
+                <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
+                    <div className="modal-dialog" role="document">
+                        <Modal.Body>
                             <h4>Уведомления</h4>
                             <table className='table table-borderless table-condensed table-hover'>
                                 <tbody>
@@ -32,22 +60,24 @@ export default class CheckAdress extends React.Component{
                                 <li>Получение всех уведомлений</li>
                                 <li>Доступна вкладка "Объявления". Вы будете в курсе всех событий,которые происходят у Вас в доме.
                                 </li>
-                                <li>Доступна вкладка "Опросы". Вы сможете учавствовать в опосах, которые будут относиться к Вашему
+                                <li>Доступна вкладка "Опросы". Вы сможете учавствовать в опросах, которые будут относиться к Вашему
                                     дому
                                 </li>
                                 <li>Вы сможете сообщать об отключении света, газа и воды остальным жильцам Вашего дома</li>
                                 <li>Вам будут доступны настройки профиля,добавление дополнительных адресов, настройки
-                                    уведомлений(push или sms)
+                                    уведомлений (push или sms)
                                 </li>
                             </ul>
+                        </Modal.Body>
+                        <Modal.Footer>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="submit" className="login-modal  btn btn-default form-btn-checkadress">Войти</button>
                                 <button type="submit" className=" login-modal btn btn-default form-btn-checkadress"> Регистрация
                                 </button>
                             </div>
-                        </div>
+                        </Modal.Footer>
                     </div>
-                </div>
+                </Modal>
             </div>
         )
     }

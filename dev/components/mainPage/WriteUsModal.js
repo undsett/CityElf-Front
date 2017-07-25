@@ -1,7 +1,25 @@
 import React from 'react';
 
 export default class WriteUsModal extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            showModal: false
+        }
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+    }
+
+    close() {
+        this.setState({ showModal: false });
+    }
+
+    open() {
+        this.setState({ showModal: true });
+    }
     render() {
+
         return (
             <div className="modal fade" tabIndex="-1" role="dialog" id="writeusmodal">
                 <div className="modal-dialog" role="document">
