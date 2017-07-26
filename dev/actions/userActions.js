@@ -6,11 +6,14 @@ export function userSignupRequest(email, password) {
             .post('http://localhost:8088/services/registration/register')
             .send('firebaseid=WEB')
             .send('email=' + email)
-            .send('password=' + password)
-           
-            // .end((error, response)=> {
-            //     console.log(response);
-            //     console.log(JSON.parse(response.text).code);
-            // })      
+            .send('password=' + password)   
     }
+}
+
+export function getAllForecastsRequest(address) {
+    return dispatch => {
+        return Request
+            .get('http://localhost:8088/services/allforecasts/get')
+            .query({ address: address })
+    }    
 }

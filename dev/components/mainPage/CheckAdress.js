@@ -10,29 +10,29 @@ export default class CheckAdress extends React.Component{
         this.state = {
             showModal: false
         }
-        this.open = this.open.bind(this);
-        this.close = this.close.bind(this);
+        this.getForecastsInModal = this.getForecastsInModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
-    close() {
+    closeModal() {
         this.setState({ showModal: false });
     }
 
-    open() {
-        Request
-            .get('http://localhost:8088/services/allforecasts/get')
-            .query({ address: 'Академика Королёва, 116' })
-            .end((error, response)=> {
-                console.log(error, response);
-            })
-        this.setState({ showModal: true });
+    getForecastsInModal() {
+        this.props.getAllForecastsRequest(this.props.address).then(
+            (response) => {
+                console.log(response.text);
+                console.log(JSON.parse(response.text));
+                this.setState({ showModal: true });
+            }            
+        );       
     }
+
     render() {
-        console.log(this.props.address);
         return (
             <div>
-                <button onClick={this.open} id="check-adress-main">ПРОВЕРИТЬ</button>
-                <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
+                <button onClick={this.getForecastsInModal} id="check-adress-main">ПРОВЕРИТЬ</button>
+                <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.closeModal}>
                     <div className="modal-dialog" role="document">
                         <Modal.Body>
                             <h4>Уведомления</h4>
@@ -82,3 +82,8 @@ export default class CheckAdress extends React.Component{
         )
     }
 }
+
+CheckAdress.propTypes = {
+    getAllForecastsRequest: React.PropTypes.func.isRequired
+}
+

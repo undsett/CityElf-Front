@@ -63,7 +63,6 @@ export default class RegistrationFormGroup extends React.Component{
         this.props.userSignupRequest(this.state.email, this.state.password).then(
             (response) => {
                 if(JSON.parse(response.text).code == 11) {
-                    console.log("Зарегился новый юзер, надо сохранить его данные в редакс и сделать редирект на профиль");
                     this.props.closeModal();
                     this.context.router.push('/profile');                    
                 } else if(JSON.parse(response.text).code == 12){
