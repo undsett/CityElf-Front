@@ -29,7 +29,8 @@ const INPUT_STYLE = {
     zindex:'0',
     position:'absolute',
     top:'32%',
-    left:'33%'
+    left:'33%',
+    marginLeft:'20px'
 };
 
 
@@ -39,21 +40,23 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
         zoom={10}
         center={props.center}
         onBoundsChanged={props.onBoundsChanged}
+        onClick={props.onMapClick}
         defaultOptions={{
             scrollwheel: false,
+
         }}
 
     >
         <SearchBox
             ref={props.onSearchBoxMounted}
             bounds={props.bounds}
-            controlPosition={google.maps.ControlPosition.TOP_RIGHT}
+            controlPosition={google.maps.ControlPosition.LEFT_TOP}
             onPlacesChanged={props.onPlacesChanged}
             inputPlaceholder="Введите свой адрес или выберите на карте"
             inputClassname="pac-input"
             inputStyle={INPUT_STYLE}
-            value = "sdfsdf"
         />
+
         {props.markers.map((marker, index) => (
             <Marker position={marker.position} key={index}  />
         ))}
@@ -81,21 +84,62 @@ export default class GoogleMapReact extends React.Component {
     handleBoundsChanged = this.handleBoundsChanged.bind(this);
     handleSearchBoxMounted = this.handleSearchBoxMounted.bind(this);
     handlePlacesChanged = this.handlePlacesChanged.bind(this);
+    handleMapClick = this.handleMapClick.bind(this);
 
     handleMapMounted(map) {
         this._map = map;
     }
-
+    handleSearchBoxMounted(searchBox) {
+        this._searchBox = searchBox
+    }
     handleBoundsChanged() {
         this.setState({
             bounds: this._map.getBounds(),
             center: this._map.getCenter()
         });
     }
+    handleMapClick(event, searchBox) {
+        searchBox = this._searchBox;
+        let geocoder = new google.maps.Geocoder;
+        this.state.markers.length = 0;
+        let nextMarkers = [
+            ...this.state.markers,
+            {
+                position: event.latLng,
+                defaultAnimation: 2,
+                key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
+            },
+        ];
 
-    handleSearchBoxMounted(searchBox) {
-        this._searchBox = searchBox
+        geocodeMe(nextMarkers[0].position);
+        
+        function geocodeMe(markers) {
+            let returnval;
+            geocoder.geocode({'location': markers}, function(results, status) {
+                if (status === 'OK') {
+                    if (results[1]) {
+                        callback(results[1].formatted_address);
+                    } else {
+                        console.log('No results found');
+                    }
+                } else {
+                    console.log('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+        this.setState({
+            markers: nextMarkers,
+        });
+        
+        function callback(addr) {
+            searchBox._inputElement.placeholder = addr;
+            console.log(searchBox._inputElement.placeholder);
+            // console.log(addr);
+            // this._searchBox._inputElement.placeholder = addr;
+        }
     }
+
+
 
     handlePlacesChanged() {
         const places = this._searchBox.getPlaces();
@@ -139,6 +183,7 @@ export default class GoogleMapReact extends React.Component {
                     }
                     center={this.state.center}
                     onMapMounted={this.handleMapMounted}
+                    onMapClick={this.handleMapClick}
                     onBoundsChanged={this.handleBoundsChanged}
                     onSearchBoxMounted={this.handleSearchBoxMounted}
                     bounds = {this.state.bounds}

@@ -31,7 +31,7 @@ export default class CheckAdress extends React.Component{
         console.log(this.props.address);
         return (
             <div>
-                <button onClick={this.open} id="check-adress-main">ПРОВЕРИТЬ</button>
+                <button onClick={this.open} id="check-adress-main">ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ</button>
                 <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
                     <div className="modal-dialog" role="document">
                         <Modal.Body>
