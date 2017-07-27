@@ -92,12 +92,20 @@ body {
   background-color: transparent;
 }
 
-#shut-note-for-adress {
+#shut-note-for-adress,#request-in-progress {
   .hanling-request {
     color: #8492A6;
   }
   .modal-title {
     color: #8492A6;
+  }
+  .btn{
+    font:14px 'Ubuntu', sans-serif;
+    height: 33px;
+    width: 50px;
+    background-color: #1485CC;
+    display: inline;
+    color: #F2F2F2;
   }
 }
 
@@ -252,6 +260,24 @@ body {
 }
 
 .user-profile {
+  li {
+    list-style-type: none;
+    font: 14px 'Ubuntu', sans-serif;
+    color: #8492A6;
+  }
+  li:first-child{
+    color: #8492A6;
+    font-weight: 600;
+  }
+  li:nth-child(n+2)::before{
+    content: "\2013";
+    margin-right:5px ;
+  }
+
+  ul{
+    margin-top:15px;
+    padding: 0;
+  }
   overflow: hidden;
   h3 {
     font-style: normal;
@@ -276,8 +302,11 @@ body {
     color: #8492A6;
   }
   #settings-profile, #exit-profile {
-    margin-top: 20px;
+    margin-bottom: 20px;
     width: 261px;
+  }
+  #settings-profile{
+    margin-top: 20px;
   }
   #settings-profile:hover {
     border: 1px solid #1485CC;
@@ -303,6 +332,7 @@ body {
 
 
 #settings-change-info {
+
   .choose-language{
     margin-bottom: 20px;
   }
@@ -364,9 +394,13 @@ body {
     margin-bottom: 9px;
   }
   .btn{
-    width: 138px;
     font:14px 'Ubuntu', sans-serif;
-    color:#4F4F4F;
+    height: 33px;
+    width: 166px;
+    background-color: #1485CC;
+    display: inline;
+    color: #F2F2F2;
+    margin: 10px 0;
   }
 
   .btn-default:hover{
@@ -446,14 +480,26 @@ body {
 }
 
 
-#payment-method {
+#payment-method,#administrator-role {
+  .btn{
+    height: 33px;
+    width: 166px;
+    font: 12px 'Ubuntu', sans-serif;
+    background-color: #1485CC;
+    color: #F2F2F2;
+    margin: 10px 0;
+  }
+  .modal-dialog{
+    margin-top: 0;
+  }
   .modal-header {
     border-bottom: none;
     padding: 0;
     margin: 0 33px;
   }
   .modal-body {
-    margin: 0 20px
+    margin: 0 20px;
+
   }
   h4 {
     margin-top: 20px;

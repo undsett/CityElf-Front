@@ -17,15 +17,14 @@ const INPUT_STYLE = {
     boxSizing: `border-box`,
     MozBoxSizing: `border-box`,
     border: `1px solid #1485CC`,
-    marginTop: `27px`,
     padding: `0 12px`,
     borderRadius: `5px`,
     boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
     fontSize: `14px`,
     outline: `none`,
     textOverflow: `ellipses`,
-    width: `420px`,
-    height: `40px`,
+    width: `350px`,
+    height: `30px`,
     zindex:'0',
     position:'absolute',
     top:'32%',
@@ -134,8 +133,6 @@ export default class GoogleMapReact extends React.Component {
         function callback(addr) {
             searchBox._inputElement.placeholder = addr;
             console.log(searchBox._inputElement.placeholder);
-            // console.log(addr);
-            // this._searchBox._inputElement.placeholder = addr;
         }
     }
 

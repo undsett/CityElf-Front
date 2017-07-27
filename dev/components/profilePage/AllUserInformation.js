@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonSettings from "./ButtonSettings";
 import {Modal} from 'react-bootstrap';
+import AdministratorRoleLink from "./AdministratorRoleLink";
 
 export default class AllUserInformation extends React.Component {
     constructor() {
@@ -590,6 +591,13 @@ export default class AllUserInformation extends React.Component {
                             <p id="user-adress">ул.Дерибасовская 14</p>
                             <h3>Дополнительный адрес <span id="additional-adress">(доступно: 0 из 10)</span></h3>
                             <a onClick={this.open} id="add-additional-adress">Добавить адрес</a>
+                            <ul>
+                                <li>Если Вы глава ОСМД, то можете получить дополнительные функции:</li>
+                                <li> Добавлять объявления для жильцов вашего дома</li>
+                                <li> Добавлять опросы и следить за результатами.</li>
+                                <li>Чтобы получить эти функции, кликните по ссылке ниже</li>
+                            </ul>
+                            <AdministratorRoleLink/>
                             < ButtonSettings />
                             <div>
                                 <button id="exit-profile" type="submit" className="btn btn-default">Выход</button>
