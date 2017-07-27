@@ -8,7 +8,11 @@ export default class CheckAdress extends React.Component{
         super();
 
         this.state = {
-            showModal: false
+            showModal: false,
+            address: '',
+            electricity: {},
+            water: '',
+            gas: ''
         }
         this.getForecastsInModal = this.getForecastsInModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -21,40 +25,121 @@ export default class CheckAdress extends React.Component{
     getForecastsInModal() {
         this.props.getAllForecastsRequest(this.props.address).then(
             (response) => {
-                console.log(response.text);
-                console.log(JSON.parse(response.text));
-                this.setState({ showModal: true });
+                let forecast = JSON.parse(response.text);
+                console.log(forecast);
+                if (forecast.Electricity) {
+                    let electricity = forecast.Electricity
+                    let start = new Date();
+                    start.setTime(Date.parse(electricity.start));
+                    let estimatedStop = new Date();
+                    estimatedStop.setTime(Date.parse(electricity.estimatedStop));
+                    electricity = {
+                        ...electricity,
+                        start: start.toLocaleString(),
+                        estimatedStop: estimatedStop.toLocaleString()
+                    };
+                    this.setState({ 
+                        showModal: true,
+                        address: electricity.address.address,
+                        electricity: electricity,
+                    });
+                }
+                if (forecast.Water) {
+                    let water = forecast.Water
+                    let start = new Date();
+                    start.setTime(Date.parse(water.start));
+                    let estimatedStop = new Date();
+                    estimatedStop.setTime(Date.parse(water.estimatedStop));
+                    water = {
+                        ...water,
+                        start: start.toLocaleString(),
+                        estimatedStop: estimatedStop.toLocaleString()
+                    };
+                    this.setState({ 
+                        showModal: true,
+                        address: water.address.address,
+                        water: water,
+                    });
+                }
+                if (forecast.Gas) {
+                    let gas = forecast.Gas
+                    let start = new Date();
+                    start.setTime(Date.parse(gas.start));
+                    let estimatedStop = new Date();
+                    estimatedStop.setTime(Date.parse(gas.estimatedStop));
+                    gas = {
+                        ...gas,
+                        start: start.toLocaleString(),
+                        estimatedStop: estimatedStop.toLocaleString()
+                    };
+                    this.setState({ 
+                        showModal: true,
+                        address: gas.address.address,
+                        gas: gas,
+                    });
+                }
+                           
             }            
         );       
     }
 
     render() {
+        const electricityBlock = (
+            <table className='table table-borderless table-condensed table-hover'>
+                <tbody>
+                    <tr>
+                        <th>Отключение электричества <img className="icon-lamp" src={require("../../assets/img/lamp.png")} alt="Иконка для света"/></th>
+                    </tr>
+                    <tr>
+                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.electricity.start}</th>
+                    </tr>
+                    <tr>
+                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.electricity.estimatedStop}</th>
+                    </tr>
+                </tbody>
+            </table>            
+        );
+        const waterBlock = (
+            <table className='table table-borderless table-condensed table-hover'>
+                <tbody>
+                    <tr>
+                        <th>Отключение воды <img className="icon-water" src={require("../../assets/img/water.png")} alt="Иконка для воды"/></th>
+                    </tr>
+                    <tr>
+                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.water.start}</th>
+                    </tr>
+                    <tr>
+                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.water.estimatedStop}</th>
+                    </tr>
+                </tbody>
+            </table>               
+        );
+        const gasBlock = (
+            <table className='table table-borderless table-condensed table-hover'>
+                <tbody>
+                    <tr>
+                        <th>Отключение газа <img className="icon-gas" src={require("../../assets/img/gas.png")} alt="Иконка для света"/></th>
+                    </tr>
+                    <tr>
+                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.gas.start}</th>
+                    </tr>
+                    <tr>
+                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.gas.estimatedStop}</th>
+                    </tr>
+                </tbody>
+            </table>    
+        );
         return (
             <div>
                 <button onClick={this.getForecastsInModal} id="check-adress-main">ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ</button>
                 <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.closeModal}>
                     <div className="modal-dialog" role="document">
                         <Modal.Body>
-                            <h4>Уведомления</h4>
-                            <table className='table table-borderless table-condensed table-hover'>
-                                <tbody>
-                                <tr>
-                                    <th>Отключение света <img className="icon-lamp" src={require("../../assets/img/lamp.png")} alt="Иконка для света"/></th>
-                                    <th>Сегодня</th>
-                                </tr>
-                                <tr>
-                                    <th> 2 часа <span className="glyphicon glyphicon-time" aria-hidden="true"></span></th>
-                                </tr>
-                                <tr>
-                                    <th className="reason">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Aspernatur aut consectetur cumque eveniet excepturi
-                                        explicabo fuga labore neque nulla possimus quas,
-                                        quos repellat rerum sapiente tempore tenetur vel velit voluptatibus!
-                                    </th>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <h2>Вы не авторизованы. Сейчас вам доступно только 1 уведомление</h2>
+                            <h4>Уведомления по адресу: {this.state.address}</h4>                        
+                            { this.state.electricity ? electricityBlock : ""}
+                            { this.state.water ? waterBlock : ""}
+                            { this.state.gas ? gasBlock : ""}
+                            <h2>Вы не авторизованы.</h2>                           
                             <h3>Возможности авторизованных пользователей:</h3>
                             <ul>
                                 <li>Получение всех уведомлений</li>
