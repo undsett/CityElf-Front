@@ -12,7 +12,9 @@ export default class CheckAdress extends React.Component{
             address: '',
             electricity: {},
             water: '',
-            gas: ''
+            gas: '',
+            responseError: '',
+            isLoading: false
         }
         this.getForecastsInModal = this.getForecastsInModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -23,11 +25,25 @@ export default class CheckAdress extends React.Component{
     }
 
     getForecastsInModal() {
+        this.setState({
+            address: '',
+            electricity: {},
+            water: '',
+            gas: '',
+            responseError: '',
+            isLoading: true
+        })
         this.props.getAllForecastsRequest(this.props.address).then(
             (response) => {
                 let forecast = JSON.parse(response.text);
                 console.log(forecast);
-                if (forecast.Electricity) {
+                if (Object.keys(forecast).length == 0) {
+                    this.setState({
+                        showModal: true,
+                        responseError: "Уведомления не найдены"
+                    })
+                } 
+                if ("Electricity" in forecast) {
                     let electricity = forecast.Electricity
                     let start = new Date();
                     start.setTime(Date.parse(electricity.start));
@@ -44,7 +60,7 @@ export default class CheckAdress extends React.Component{
                         electricity: electricity,
                     });
                 }
-                if (forecast.Water) {
+                if ("Water" in forecast) {
                     let water = forecast.Water
                     let start = new Date();
                     start.setTime(Date.parse(water.start));
@@ -61,7 +77,7 @@ export default class CheckAdress extends React.Component{
                         water: water,
                     });
                 }
-                if (forecast.Gas) {
+                if ("Gas" in forecast) {
                     let gas = forecast.Gas
                     let start = new Date();
                     start.setTime(Date.parse(gas.start));
@@ -78,67 +94,87 @@ export default class CheckAdress extends React.Component{
                         gas: gas,
                     });
                 }
-                           
-            }            
+                this.setState({
+                    isLoading: false
+                })           
+            },   
+            (error) => {
+                console.dir(error);
+                if (error.status == 400) {
+                   this.setState({
+                        showModal: true,
+                        responseError: "Введите корректный адрес",
+                        isLoading: false
+                    }) 
+                } else {
+                    console.log("Ошибка сервера");
+                    this.setState({
+                        showModal: true,
+                        responseError: "Ошибка сервера",
+                        isLoading: false
+                    }) 
+                }
+                
+            }         
         );       
     }
 
     render() {
-        const electricityBlock = (
-            <table className='table table-borderless table-condensed table-hover'>
-                <tbody>
-                    <tr>
-                        <th>Отключение электричества <img className="icon-lamp" src={require("../../assets/img/lamp.png")} alt="Иконка для света"/></th>
-                    </tr>
-                    <tr>
-                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.electricity.start}</th>
-                    </tr>
-                    <tr>
-                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.electricity.estimatedStop}</th>
-                    </tr>
-                </tbody>
-            </table>            
+        const electricityBlock = (            
+            <tbody>
+                <tr>
+                    <th>Отключение электричества <img className="icon-lamp" src={require("../../assets/img/lamp.png")} alt="Иконка для света"/></th>
+                </tr>
+                <tr>
+                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.electricity.start}</th>
+                </tr>
+                <tr>
+                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.electricity.estimatedStop}</th>
+                </tr>
+            </tbody>                      
         );
-        const waterBlock = (
-            <table className='table table-borderless table-condensed table-hover'>
-                <tbody>
-                    <tr>
-                        <th>Отключение воды <img className="icon-water" src={require("../../assets/img/water.png")} alt="Иконка для воды"/></th>
-                    </tr>
-                    <tr>
-                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.water.start}</th>
-                    </tr>
-                    <tr>
-                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.water.estimatedStop}</th>
-                    </tr>
-                </tbody>
-            </table>               
+        const waterBlock = (           
+            <tbody>
+                <tr>
+                    <th>Отключение воды <img className="icon-water" src={require("../../assets/img/water.png")} alt="Иконка для воды"/></th>
+                </tr>
+                <tr>
+                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.water.start}</th>
+                </tr>
+                <tr>
+                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.water.estimatedStop}</th>
+                </tr>
+            </tbody>                       
         );
-        const gasBlock = (
-            <table className='table table-borderless table-condensed table-hover'>
-                <tbody>
-                    <tr>
-                        <th>Отключение газа <img className="icon-gas" src={require("../../assets/img/gas.png")} alt="Иконка для света"/></th>
-                    </tr>
-                    <tr>
-                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.gas.start}</th>
-                    </tr>
-                    <tr>
-                        <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.gas.estimatedStop}</th>
-                    </tr>
-                </tbody>
-            </table>    
+        const gasBlock = (           
+            <tbody>
+                <tr>
+                    <th>Отключение газа <img className="icon-gas" src={require("../../assets/img/gas.png")} alt="Иконка для света"/></th>
+                </tr>
+                <tr>
+                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.gas.start}</th>
+                </tr>
+                <tr>
+                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.gas.estimatedStop}</th>
+                </tr>
+            </tbody>                
         );
+        const forecastBlock = (
+            <div>
+                <h4>Уведомления по адресу: {this.state.address}</h4>                        
+                <table className='table table-borderless table-condensed table-hover'>{ this.state.electricity ? electricityBlock : ""}</table> 
+                <table className='table table-borderless table-condensed table-hover'>{ this.state.water ? waterBlock : ""}</table> 
+                <table className='table table-borderless table-condensed table-hover'>{ this.state.gas ? gasBlock : ""}</table>
+            </div> 
+        );
+
         return (
             <div>
-                <button onClick={this.getForecastsInModal} id="check-adress-main">ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ</button>
+                <button onClick={this.getForecastsInModal} disabled={this.state.isLoading} id="check-adress-main">ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ</button>
                 <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.closeModal}>
                     <div className="modal-dialog" role="document">
                         <Modal.Body>
-                            <h4>Уведомления по адресу: {this.state.address}</h4>                        
-                            { this.state.electricity ? electricityBlock : ""}
-                            { this.state.water ? waterBlock : ""}
-                            { this.state.gas ? gasBlock : ""}
+                            { this.state.responseError ? <h4>{this.state.responseError}</h4> : forecastBlock }
                             <h2>Вы не авторизованы.</h2>                           
                             <h3>Возможности авторизованных пользователей:</h3>
                             <ul>

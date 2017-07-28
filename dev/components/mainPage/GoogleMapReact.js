@@ -130,9 +130,14 @@ export default class GoogleMapReact extends React.Component {
             markers: nextMarkers,
         });
         
+        const that = this;
+
         function callback(addr) {
             searchBox._inputElement.placeholder = addr;
             console.log(searchBox._inputElement.placeholder);
+            that.setState({
+                address: searchBox._inputElement.placeholder
+            })
         }
     }
 
@@ -140,8 +145,6 @@ export default class GoogleMapReact extends React.Component {
 
     handlePlacesChanged() {
         const places = this._searchBox.getPlaces();
-        console.log(places[0]["formatted_address"]);
-
         this.setState({
             address: places[0]["formatted_address"]
         })
@@ -168,6 +171,7 @@ export default class GoogleMapReact extends React.Component {
 
     }
     render() {
+        console.log(this.state.address);
         return (
             <div className="container-search">
                 <CheckAdress address={this.state.address} getAllForecastsRequest={this.props.getAllForecastsRequest} />
