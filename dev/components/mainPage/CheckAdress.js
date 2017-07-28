@@ -115,7 +115,7 @@ export default class CheckAdress extends React.Component{
                     }) 
                 }                
             }         
-        )                     
+        )             
     }
 
     render() {
@@ -131,7 +131,6 @@ export default class CheckAdress extends React.Component{
                     <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.electricity.estimatedStop}</th>
                 </tr>
             </tbody>                      
-<<<<<<< HEAD
         );
         const waterBlock = (           
             <tbody>
@@ -170,48 +169,12 @@ export default class CheckAdress extends React.Component{
 
         return (
             <div>
-                <button onClick={this.getForecastsInModal} disabled={this.state.isLoading} id="check-adress-main">{this.state.isLoading ? <span><img className="spinner" src="https://cassettotributario.it/civitanovamarche/assets/images/spinner.gif"/>ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ</span> : "ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ"}</button>
-=======
-        );
-        const waterBlock = (           
-            <tbody>
-                <tr>
-                    <th>Отключение воды <img className="icon-water" src={require("../../assets/img/water.png")} alt="Иконка для воды"/></th>
-                </tr>
-                <tr>
-                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.water.start}</th>
-                </tr>
-                <tr>
-                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.water.estimatedStop}</th>
-                </tr>
-            </tbody>                       
-        );
-        const gasBlock = (           
-            <tbody>
-                <tr>
-                    <th>Отключение газа <img className="icon-gas" src={require("../../assets/img/gas.png")} alt="Иконка для света"/></th>
-                </tr>
-                <tr>
-                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Отключение: {this.state.gas.start}</th>
-                </tr>
-                <tr>
-                    <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.gas.estimatedStop}</th>
-                </tr>
-            </tbody>                
-        );
-        const forecastBlock = (
-            <div>
-                <h4>Уведомления по адресу: {this.state.address}</h4>                        
-                <table className='table table-borderless table-condensed table-hover'>{ this.state.electricity ? electricityBlock : ""}</table> 
-                <table className='table table-borderless table-condensed table-hover'>{ this.state.water ? waterBlock : ""}</table> 
-                <table className='table table-borderless table-condensed table-hover'>{ this.state.gas ? gasBlock : ""}</table>
-            </div> 
-        );
-
-        return (
-            <div>
-                <button onClick={this.getForecastsInModal} disabled={this.state.isLoading} id="check-adress-main">ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ</button>
->>>>>>> 1ee81e7327f4baf5ceab813c6e680ba7e35cc16d
+                <button 
+                    onClick={this.getForecastsInModal} 
+                    disabled={this.state.isLoading} 
+                    id="check-adress-main"
+                >{this.state.isLoading ? <span><img className="spinner" src={require("../../assets/img/spinner.gif")}/>ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ</span> : "ПРОВЕРИТЬ ОТКЛЮЧЕНИЯ"}
+                </button>
                 <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.closeModal}>
                     <div className="modal-dialog" role="document">
                         <Modal.Body>
