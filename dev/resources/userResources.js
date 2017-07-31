@@ -13,17 +13,17 @@ class UserResources {
     //         })
     // }
     
-	checkLoginPassword(email, password) {
-		Request
-            .post('http://localhost:8088/services/registration/login')
-            .send('email=' + email)
-            .send('password=' + password)
-            .end((error, response)=> {
-                console.log(response);
-                console.log(JSON.parse(response.text).status.code);
-            })
+	// checkLoginPassword(email, password) {
+	// 	Request
+ //            .post('http://localhost:8088/services/registration/login')
+ //            .send('email=' + email)
+ //            .send('password=' + password)
+ //            .end((error, response)=> {
+ //                console.log(response);
+ //                console.log(JSON.parse(response.text).status.code);
+ //            })
 
-	}
+	// }
 
     // updateCurrentUserData(newCurrentUserData) {
     //     const UPDATE_CURRENT_USER_URL = "http://localhost:8088/services/users/updateUser";

@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import SignInFormGroup from './mainPage/SignInFormGroup';
 import RegistrationFormGroup from './mainPage/RegistrationFormGroup';
+import { userSignupRequest } from '../actions/userActions';
+import { checkLoginPasswordRequest } from '../actions/userActions';
+import { setCurrentUser } from '../actions/userActions';
 
-export default class NavigationBar extends React.Component{
+class NavigationBar extends React.Component{
     constructor() {
         super();
         
@@ -25,6 +29,21 @@ export default class NavigationBar extends React.Component{
     }
 
     render() {
+        const { isAuthenticated } = this.props.authorization;
+        const userLinks = (
+            <ul className="nav navbar-nav navbar-left">
+                <li><Link to="/" id="profile-link">Главная</Link></li>
+                <li><Link to="/profile">Профиль</Link></li>
+            </ul>
+        );
+        const guestLinks = (
+            <ul className="nav navbar-nav navbar-left">
+                <li><Link to="/" id="profile-link">Главная</Link></li>
+                <li><a href="#link-about-us">О нас</a></li>
+                <li><a href="#android">Мобильный доступ</a></li>
+                <li onClick={this.open}><a href="#" id="modalpopuplogin">Вход</a></li>
+            </ul>
+        );
         return (
             <div>
                 <nav id="top-menu-main">  
@@ -40,13 +59,7 @@ export default class NavigationBar extends React.Component{
                                 <Link to="/" className="navbar-brand">CityElf</Link>
                             </div>
                             <div className="collapse navbar-collapse" id="b-menu-1">
-                                <ul className="nav navbar-nav navbar-left">
-                                    <li><Link to="/" id="profile-link">Главная</Link></li>
-                                    <li><a href="#link-about-us">О нас</a></li>
-                                    <li><a href="#android">Мобильный доступ</a></li>
-                                    <li onClick={this.open}><a href="#" id="modalpopuplogin">Вход</a></li>
-                                    <li><Link to="/profile">Профиль</Link></li>
-                                </ul>
+                                { isAuthenticated ? userLinks : guestLinks }
                             </div>
                         </div>
                     </div>
@@ -68,10 +81,17 @@ export default class NavigationBar extends React.Component{
                                         praesentium quasi repellendus rerum similique voluptatum!</p>
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-login-form">
-                                    <RegistrationFormGroup userSignupRequest = {this.props.userSignupRequest} closeModal = {this.close} />
+                                    <RegistrationFormGroup 
+                                        userSignupRequest = {this.props.userSignupRequest} 
+                                        closeModal = {this.close} 
+                                    />
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-for-register-user">
-                                    <SignInFormGroup/>
+                                    <SignInFormGroup 
+                                        checkLoginPasswordRequest = {this.props.checkLoginPasswordRequest} 
+                                        setCurrentUser = {this.props.setCurrentUser} 
+                                        closeModal = {this.close}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -83,5 +103,16 @@ export default class NavigationBar extends React.Component{
 } 
 
 NavigationBar.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
+    userSignupRequest: React.PropTypes.func.isRequired,
+    checkLoginPasswordRequest: React.PropTypes.func.isRequired,
+    setCurrentUser: React.PropTypes.func.isRequired,
+    authorization: React.PropTypes.object.isRequired
 }
+
+function mapStateToProps(state) {
+    return {
+        authorization: state.authorization
+    }
+}
+
+export default connect(mapStateToProps, { userSignupRequest, checkLoginPasswordRequest, setCurrentUser })(NavigationBar);

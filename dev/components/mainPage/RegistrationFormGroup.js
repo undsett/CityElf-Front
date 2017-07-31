@@ -62,12 +62,13 @@ export default class RegistrationFormGroup extends React.Component{
         })
         this.props.userSignupRequest(this.state.email, this.state.password).then(
             (response) => {
-                if(JSON.parse(response.text).code == 11) {
+                const responseData = JSON.parse(response.text);
+                if(responseData.code == 11) {
                     this.props.closeModal();
                     this.context.router.push('/profile');                    
-                } else if(JSON.parse(response.text).code == 12){
+                } else if(responseData.code == 12){
                     this.setState({
-                        errorUserExist: JSON.parse(response.text).message
+                        errorUserExist: responseData.message
                     })
                 }
             }        

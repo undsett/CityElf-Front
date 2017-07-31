@@ -167,7 +167,7 @@ export default class AboutUs extends React.Component{
                                                                  placeholder="Email"/>
                                 </div>
                             </div>
-                            <input type="text" className="form-control" placeholder="Текст сообщения"/>
+                            <input type="text" className="form-control" placeholder="Тема сообщения"/>
                             <textarea className="form-control" id="exampleTextarea" rows="3"
                                       placeholder="Текст сообщения"/>
                             <button type="submit" className="btn btn-default form-btn-contactus">Отправить</button>
