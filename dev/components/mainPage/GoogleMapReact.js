@@ -33,16 +33,15 @@ const INPUT_STYLE = {
 };
 
 
+
 const SearchBoxExampleGoogleMap = withGoogleMap(props => (
     <GoogleMap
         ref={props.onMapMounted}
         zoom={10}
         center={props.center}
         onBoundsChanged={props.onBoundsChanged}
-        onClick={props.onMapClick}
         defaultOptions={{
             scrollwheel: false,
-
         }}
 
     >
@@ -54,8 +53,8 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
             inputPlaceholder="Введите свой адрес или выберите на карте"
             inputClassname="pac-input"
             inputStyle={INPUT_STYLE}
+            value = "sdfsdf"
         />
-
         {props.markers.map((marker, index) => (
             <Marker position={marker.position} key={index}  />
         ))}
@@ -83,71 +82,30 @@ export default class GoogleMapReact extends React.Component {
     handleBoundsChanged = this.handleBoundsChanged.bind(this);
     handleSearchBoxMounted = this.handleSearchBoxMounted.bind(this);
     handlePlacesChanged = this.handlePlacesChanged.bind(this);
-    handleMapClick = this.handleMapClick.bind(this);
 
     handleMapMounted(map) {
         this._map = map;
     }
-    handleSearchBoxMounted(searchBox) {
-        this._searchBox = searchBox
-    }
+
     handleBoundsChanged() {
         this.setState({
             bounds: this._map.getBounds(),
             center: this._map.getCenter()
         });
     }
-    handleMapClick(event, searchBox) {
-        searchBox = this._searchBox;
-        let geocoder = new google.maps.Geocoder;
-        this.state.markers.length = 0;
-        let nextMarkers = [
-            ...this.state.markers,
-            {
-                position: event.latLng,
-                defaultAnimation: 2,
-                key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
-            },
-        ];
 
-        geocodeMe(nextMarkers[0].position);
-        
-        function geocodeMe(markers) {
-            let returnval;
-            geocoder.geocode({'location': markers}, function(results, status) {
-                if (status === 'OK') {
-                    if (results[1]) {
-                        callback(results[1].formatted_address);
-                    } else {
-                        console.log('No results found');
-                    }
-                } else {
-                    console.log('Geocoder failed due to: ' + status);
-                }
-            });
-        }
-        this.setState({
-            markers: nextMarkers,
-        });
-        
-        const that = this;
-
-        function callback(addr) {
-            searchBox._inputElement.placeholder = addr;
-            console.log(searchBox._inputElement.placeholder);
-            that.setState({
-                address: searchBox._inputElement.placeholder
-            })
-        }
+    handleSearchBoxMounted(searchBox) {
+        this._searchBox = searchBox
     }
-
-
 
     handlePlacesChanged() {
         const places = this._searchBox.getPlaces();
+        console.log(places[0]["formatted_address"]);
+
         this.setState({
             address: places[0]["formatted_address"]
         })
+        console.log(this.state.address);
         const bounds = new google.maps.LatLngBounds();
 
         places.map(place => {
@@ -183,7 +141,6 @@ export default class GoogleMapReact extends React.Component {
                     }
                     center={this.state.center}
                     onMapMounted={this.handleMapMounted}
-                    onMapClick={this.handleMapClick}
                     onBoundsChanged={this.handleBoundsChanged}
                     onSearchBoxMounted={this.handleSearchBoxMounted}
                     bounds = {this.state.bounds}
@@ -194,8 +151,4 @@ export default class GoogleMapReact extends React.Component {
             </div>
         );
     }
-}
-
-GoogleMapReact.propTypes = {
-    getAllForecastsRequest: React.PropTypes.func.isRequired
 }

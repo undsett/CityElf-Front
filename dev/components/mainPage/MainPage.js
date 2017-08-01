@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import GoogleMapReact from './GoogleMapReact';
 import AboutUs from './AboutUs';
 import MobileApp from './MobileApp';
-import WriteUsModal from "./WriteUsModal";
 import CheckAdress from "./CheckAdress";
 import { getAllForecastsRequest } from "../../actions/userActions";
 
@@ -15,7 +14,6 @@ class MainPage extends React.Component{
 				<GoogleMapReact getAllForecastsRequest={this.props.getAllForecastsRequest} />
 				<AboutUs />
 				<MobileApp />
-				<WriteUsModal/>
 			</div>
         )	
     }
