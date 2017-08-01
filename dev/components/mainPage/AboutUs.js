@@ -2,6 +2,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import $ from 'jquery';
+import SendUsLetter from "./SendUsLetter";
 export default class AboutUs extends React.Component{
     componentDidMount() {
 
@@ -170,7 +171,7 @@ export default class AboutUs extends React.Component{
                             <input type="text" className="form-control" placeholder="Текст сообщения"/>
                             <textarea className="form-control" id="exampleTextarea" rows="3"
                                       placeholder="Текст сообщения"/>
-                            <button type="submit" className="btn btn-default form-btn-contactus">Отправить</button>
+                           <SendUsLetter closeModal={this.close} />
                         </div>
                     </Modal.Body>
                 </Modal>
