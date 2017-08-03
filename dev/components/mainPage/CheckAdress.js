@@ -99,15 +99,13 @@ export default class CheckAdress extends React.Component{
                 })           
             },   
             (error) => {
-                console.dir(error);
                 if (error.status == 400) {
                    this.setState({
                         showModal: true,
-                        responseError: "Введите корректный адрес",
+                        responseError: "Уведомления не найдены",
                         isLoading: false
                     }) 
                 } else {
-                    console.log("Ошибка сервера");
                     this.setState({
                         showModal: true,
                         responseError: "Ошибка сервера",
