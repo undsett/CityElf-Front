@@ -33,3 +33,17 @@ export function setCurrentUser(userData) {
         payload: userData
     }      
 }
+
+export function feedBackRequest(userName, email, theme, message) {
+    const feedbackData = {
+        customer: userName,
+        email: email,
+        theme: theme,
+        message: message
+    }
+    return dispatch => {
+        return Request
+            .post('http://localhost:8088/services/feedback/sendmail')
+            .send(feedbackData)
+    }    
+}

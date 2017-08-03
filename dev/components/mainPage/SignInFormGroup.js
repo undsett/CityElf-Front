@@ -76,7 +76,7 @@ export default class SignInFormGroup extends React.Component{
     }
 
     render() {
-        const {formErrors} = this.state;
+        const {formErrors, errorLoginPassword} = this.state;
         return(
             <form onSubmit={this.submitForm}>
                 <h2>
@@ -92,7 +92,7 @@ export default class SignInFormGroup extends React.Component{
                         placeholder="Email"
                     />
                     {formErrors.email && <span className="help-block">{formErrors.email}</span>}
-                    {this.state.errorLoginPassword && <span className="help-block">Email или пароль неверный</span>}
+                    {errorLoginPassword && <span className="help-block">Email или пароль неверный</span>}
                 </div>    
                 <div className={classnames("form-group", { 'has-error': formErrors.password })}>    
                     <input 

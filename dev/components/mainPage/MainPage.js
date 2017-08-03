@@ -6,13 +6,14 @@ import AboutUs from './AboutUs';
 import MobileApp from './MobileApp';
 import CheckAdress from "./CheckAdress";
 import { getAllForecastsRequest } from "../../actions/userActions";
+import { feedBackRequest } from '../../actions/userActions';
 
 class MainPage extends React.Component{
 	render() {
         return (
 			<div className="all-content">
 				<GoogleMapReact getAllForecastsRequest={this.props.getAllForecastsRequest} />
-				<AboutUs />
+				<AboutUs feedBackRequest={this.props.feedBackRequest} />
 				<MobileApp />
 			</div>
         )	
@@ -20,7 +21,8 @@ class MainPage extends React.Component{
 }
 
 MainPage.propTypes = {
-    getAllForecastsRequest: React.PropTypes.func.isRequired
+    getAllForecastsRequest: React.PropTypes.func.isRequired,
+    feedBackRequest: React.PropTypes.func.isRequired
 }
 
-export default connect(null, { getAllForecastsRequest })(MainPage);
+export default connect(null, { getAllForecastsRequest, feedBackRequest })(MainPage);

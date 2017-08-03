@@ -152,3 +152,7 @@ export default class GoogleMapReact extends React.Component {
         );
     }
 }
+
+GoogleMapReact.propTypes = {
+    getAllForecastsRequest: React.PropTypes.func.isRequired
+}

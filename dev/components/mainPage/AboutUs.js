@@ -1,9 +1,18 @@
-
 import React from 'react';
-import { Modal } from 'react-bootstrap';
 import $ from 'jquery';
-import SendUsLetter from "./SendUsLetter";
+import FeedbackForm from "./FeedbackForm";
+
 export default class AboutUs extends React.Component{
+    constructor() {
+        super();
+
+        this.state = {
+            showModal: false
+        }
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+    }
+
     componentDidMount() {
 
         var sliderContainer = $('.cd-slider-wrapper')
@@ -83,15 +92,7 @@ export default class AboutUs extends React.Component{
             }
         });
     }
-    constructor() {
-        super();
-
-        this.state = {
-            showModal: false
-        }
-        this.open = this.open.bind(this);
-        this.close = this.close.bind(this);
-    }
+    
 
     close() {
         this.setState({ showModal: false });
@@ -154,30 +155,14 @@ export default class AboutUs extends React.Component{
 
                     </ul>
                 </div>
-
-                <Modal id="modal-write-us"  className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog"
-                       aria-labelledby="myLargeModalLabel" aria-hidden="true" show={this.state.showModal} onHide={this.close}>
-                    <Modal.Body>
-                        <h2>Обратная связь</h2>
-                        <div className="form-group modal-contact">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <input type="text" className="form-control" placeholder=" Ваше имя"/></div>
-
-                                <div className="col-md-6"><input type="email" className="form-control"
-                                                                 placeholder="Email"/>
-                                </div>
-                            </div>
-                            <input type="text" className="form-control" placeholder="Тема сообщения"/>
-                            <textarea className="form-control" id="exampleTextarea" rows="3"
-                                      placeholder="Текст сообщения"/>
-                           <SendUsLetter closeModal={this.close} />
-                        </div>
-                    </Modal.Body>
-                </Modal>
+                <FeedbackForm showModal = {this.state.showModal} closeModal = {this.close} feedBackRequest={this.props.feedBackRequest}/>
             </section>
         )
     }
+}
+
+AboutUs.propTypes = {
+    feedBackRequest: React.PropTypes.func.isRequired
 }
 
 

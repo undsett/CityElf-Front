@@ -9,6 +9,10 @@ body{
   font: 14px 'Ubuntu', sans-serif;
 }
 
+.help-block{
+    font-size: 80%;
+}
+
 #top-menu-main{
   .navbar-inverse {
     background-color: #f2f2f2;
@@ -167,9 +171,6 @@ footer {
   h2{
     font: 18px 'Ubuntu', sans-serif;
     color:#1485CC;
-  }
-  .help-block{
-    font-size: 80%;
   }
   p{
     color:#ffffff;
