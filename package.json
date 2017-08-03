@@ -44,6 +44,7 @@
     "docker-build-run-push": "^3.0.0",
     "google-react-maps": "^1.1.32",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",

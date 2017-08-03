@@ -63,8 +63,9 @@ export default class RegistrationFormGroup extends React.Component{
         this.props.userSignupRequest(this.state.email, this.state.password).then(
             (response) => {
                 const responseData = JSON.parse(response.text);
-                console.log(responseData);
                 if(responseData.status.code == 11) {
+                    localStorage.setItem('currentUser', JSON.stringify(responseData.user));
+                    this.props.setCurrentUser(responseData.user);
                     this.props.closeModal();
                     this.context.router.push('/profile');                    
                 } else if(responseData.status.code == 12){
@@ -122,7 +123,8 @@ export default class RegistrationFormGroup extends React.Component{
 }
 
 RegistrationFormGroup.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
+    userSignupRequest: React.PropTypes.func.isRequired,
+    setCurrentUser: React.PropTypes.func.isRequired
 }
 
 RegistrationFormGroup.contextTypes = {

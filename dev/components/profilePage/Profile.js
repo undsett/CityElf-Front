@@ -8,16 +8,10 @@ class Profile extends React.Component {
     render() { 
         return (
             <div className="Site">
-            <div className="Site-content">
-
-
-               <ImgMapStatic />
-                <AllUserInformation/>
-                <div id="container">
+                <div className="Site-content">
+                    <ImgMapStatic />
+                    <AllUserInformation/>
                 </div>
-                      
-               
-            </div>
             </div>
         )
     }

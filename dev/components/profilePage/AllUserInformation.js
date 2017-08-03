@@ -1,7 +1,10 @@
 import React from 'react';
-import ButtonSettings from "./ButtonSettings";
 import {Modal} from 'react-bootstrap';
+
+import ButtonSettings from "./ButtonSettings";
 import AdministratorRoleLink from "./AdministratorRoleLink";
+import LogoutButton from "./LogoutButton";
+
 
 export default class AllUserInformation extends React.Component {
     constructor() {
@@ -597,10 +600,10 @@ export default class AllUserInformation extends React.Component {
                                 <li> Добавлять опросы и следить за результатами.</li>
                                 <li>Чтобы получить эти функции, кликните по ссылке ниже</li>
                             </ul>
-                            <AdministratorRoleLink/>
-                            < ButtonSettings />
+                            <AdministratorRoleLink />
+                            <ButtonSettings />
                             <div>
-                                <button id="exit-profile" type="submit" className="btn btn-default">Выход</button>
+                                <LogoutButton />
                             </div>
                         </div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap';
+import isEmpty from 'lodash/isEmpty';
 
 import Request from 'superagent';
 
@@ -36,8 +37,7 @@ export default class CheckAdress extends React.Component{
         this.props.getAllForecastsRequest(this.props.address).then(
             (response) => {
                 let forecast = JSON.parse(response.text);
-                console.log(forecast);
-                if (Object.keys(forecast).length == 0) {
+                if (isEmpty(forecast)) {
                     this.setState({
                         showModal: true,
                         responseError: "Уведомления не найдены"

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ImgMapStatic extends React.Component{
+export default class AddAddressModal extends React.Component{
     render() {
         return (
             <div id="shut-note-for-adress" class="modal fade" tabIndex="-1" role="dialog">

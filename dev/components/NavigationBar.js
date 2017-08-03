@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 import SignInFormGroup from './mainPage/SignInFormGroup';
 import RegistrationFormGroup from './mainPage/RegistrationFormGroup';
-import { userSignupRequest } from '../actions/userActions';
-import { checkLoginPasswordRequest } from '../actions/userActions';
-import { setCurrentUser } from '../actions/userActions';
+import { userSignupRequest } from '../actions/authActions';
+import { checkLoginPasswordRequest } from '../actions/authActions';
+import { setCurrentUser } from '../actions/authActions';
 
 class NavigationBar extends React.Component{
     constructor() {
@@ -82,7 +82,8 @@ class NavigationBar extends React.Component{
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-login-form">
                                     <RegistrationFormGroup 
-                                        userSignupRequest = {this.props.userSignupRequest} 
+                                        userSignupRequest = {this.props.userSignupRequest}
+                                        setCurrentUser = {this.props.setCurrentUser} 
                                         closeModal = {this.close} 
                                     />
                                 </div>

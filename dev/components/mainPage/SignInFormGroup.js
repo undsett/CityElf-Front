@@ -66,6 +66,7 @@ export default class SignInFormGroup extends React.Component{
                     })
                 }
                 if(responseData.status.code == 33) {
+                    localStorage.setItem('currentUser', JSON.stringify(responseData.user));
                     this.props.setCurrentUser(responseData.user);
                     this.props.closeModal();
                     this.context.router.push('/profile');

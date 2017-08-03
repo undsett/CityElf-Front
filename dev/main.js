@@ -8,10 +8,11 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import reducer from './reducers'
-import {userResources} from './resources/userResources.js';
 import App from './components/App';
 import MainPage from './components/mainPage/MainPage';
 import Profile from './components/profilePage/Profile';
+import { setCurrentUser } from './actions/userActions';
+
 import './assets/css/mainpage.scss';
 import './assets/css/profilepage.scss';
 import './assets/css/slider.scss';
@@ -23,7 +24,9 @@ import '../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js';
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(hashHistory, store);
 
-console.log(store.getState());
+if (localStorage.currentUser) {
+    store.dispatch(setCurrentUser(localStorage.currentUser));
+}
 
 ReactDOM.render(
     <Provider store={store}>
