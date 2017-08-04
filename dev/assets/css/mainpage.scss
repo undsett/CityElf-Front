@@ -106,16 +106,20 @@ body{
   h2{
     color:#1485CC;
     font: 24px 'Ubuntu', sans-serif;
+    margin-bottom: 30px;
   }
   p{
     font: 16px 'Ubuntu', sans-serif;
   }
-  #container-button-download{
-    padding-top: 15%;
-  }
-  #writeusbtn{
-
-  }
+  li{
+    font: 16px 'Ubuntu', sans-serif;
+    list-style: none;
+    line-height: 30px;
+   }
+  li::before{
+    content: "\2714";
+    margin-right: 10px;
+  };
 }
 #myBtn {
   display: none;
@@ -212,9 +216,6 @@ footer {
   }
   .modal-body{
     padding:18px;
-  }
-  input{
-    margin-top: 20px;
   }
   textarea{
     margin-top: 20px;

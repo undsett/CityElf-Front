@@ -194,8 +194,7 @@ export default class CheckAdress extends React.Component{
                         </Modal.Body>
                         <Modal.Footer>
                             <div className="btn-group" role="group" aria-label="Basic example">
-                                <button type="submit" className="login-modal  btn btn-default form-btn-checkadress">Войти</button>
-                                <button type="submit" className=" login-modal btn btn-default form-btn-checkadress"> Регистрация
+                                <button type="submit" className=" login-modal btn btn-default form-btn-checkadress">Войти / Регистрация
                                 </button>
                             </div>
                         </Modal.Footer>
