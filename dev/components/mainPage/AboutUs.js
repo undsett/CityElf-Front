@@ -112,10 +112,14 @@ export default class AboutUs extends React.Component{
 
                             <div className="cd-half-block content">
                                 <div>
-                                    <h2>О нас</h2>
+                                    <h2>Что такое CityElf</h2>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Repellat fugit ullam voluptatum tenetur ab, non beatae.
+                                        CityElf заботится о ваших планах: домашних и рабочих.
+                                        С ним вы всегда знаете, где, когда и надолго ли лишитесь электричества, воды или газа.
+                                        Плановые ремонтные работы или неожиданная авария – CityElf предупредит вас об отключении!
+                                        Для этого даже не нужно регистрироваться.
+                                        А после регистрации вы получаете ряд преимуществ, включая полезные функции для ОСМД.
+                                        Вы можете пользоваться сайтом, а можете установить мобильное приложение.
                                     </p>
                                 </div>
                             </div>
@@ -126,12 +130,11 @@ export default class AboutUs extends React.Component{
 
                             <div className="cd-half-block content light-bg">
                                 <div>
-                                    <h2>CityElf</h2>
+                                    <h2>О нас</h2>
                                     <p>
-                                        Slide2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugit ullam
-                                        voluptatum tenetur ab, non beatae, impedit dolorem itaque voluptates facilis necessitatibus
-                                        suscipit dolor rerum dolores dignissimos alias facere sunt aliquid.
-                                    </p>
+                                        CityElf – это молодая команда разработчиков. Наша цель – принести пользу Одессе и горожанам.
+                                        Мы стараемся сделать вашу жизнь комфортнее, и для этого создали сервис CityElf.
+                                        Команда регулярно совершенствует веб-сайт и мобильное приложение ради вашего удобства.                                    </p>
                                 </div>
                             </div>
                         </li>
@@ -143,12 +146,12 @@ export default class AboutUs extends React.Component{
                                 <div>
                                     <h2> Свяжитесь с нами </h2>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugit ullam voluptatum
-                                        tenetur
-                                        ab, non beatae, impedit dolorem itaque voluptates facilis necessitatibus
-                                        suscipit dolor rerum dolores dignissimos alias facere sunt aliquid.
+                                        Хотите оставить отзыв о работе сайта или мобильного приложения?
+                                        Появились идеи по улучшению работы сервиса и его развитию?
+                                        Есть предложения о сотрудничестве?
+                                        Пишите нам!
                                     </p>
-                                    <button onClick={this.open} type="submit" className="btn btn-default send-info-about-us" id="writeusbtn">Написать нам</button>
+                                    <button onClick={this.open} type="submit" className="btn btn-default send-info-about-us" id="writeusbtn">Написать команде</button>
                                 </div>
                             </div>
                         </li>
