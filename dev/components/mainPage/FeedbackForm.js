@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'react-bootstrap';
 import classnames from 'classnames';
 
-import SendUsLetter from "./SendUsLetter";
+import SendUsLetterButton from "./SendUsLetterButton";
 
 export default class FeedbackForm extends React.Component {
     constructor() {
@@ -162,11 +162,15 @@ export default class FeedbackForm extends React.Component {
                                 />
                                 {formErrors.message && <span className="help-block">{formErrors.message}</span>}
                             </div>
-                            <SendUsLetter formValid={this.state.formValid} closeModal={this.props.closeModal} serverResponseError={this.state.serverResponseError} />
+                            <SendUsLetterButton formValid={this.state.formValid} closeModal={this.props.closeModal} serverResponseError={this.state.serverResponseError} />
                         </div>
                     </form>    
                 </Modal.Body>
             </Modal>
         )
     }
+}
+
+FeedbackForm.propTypes = {
+    feedBackRequest: React.PropTypes.func.isRequired
 }

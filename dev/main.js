@@ -11,7 +11,7 @@ import reducer from './reducers'
 import App from './components/App';
 import MainPage from './components/mainPage/MainPage';
 import Profile from './components/profilePage/Profile';
-import { setCurrentUser } from './actions/userActions';
+import { setCurrentUser } from './actions/authActions';
 
 import './assets/css/mainpage.scss';
 import './assets/css/profilepage.scss';

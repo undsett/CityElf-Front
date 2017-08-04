@@ -5,31 +5,29 @@ import { connect } from 'react-redux';
 
 import SignInFormGroup from './mainPage/SignInFormGroup';
 import RegistrationFormGroup from './mainPage/RegistrationFormGroup';
-import { userSignupRequest } from '../actions/authActions';
-import { checkLoginPasswordRequest } from '../actions/authActions';
-import { setCurrentUser } from '../actions/authActions';
+import { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal } from '../actions/authActions';
 
 class NavigationBar extends React.Component{
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
         
-        this.state = {
-            showModal: false
-        }
-        this.open = this.open.bind(this);
-        this.close = this.close.bind(this);
-    }
+    //     this.state = {
+    //         showModal: false
+    //     }
+    //     this.open = this.open.bind(this);
+    //     this.close = this.close.bind(this);
+    // }
 
-    close() {
-        this.setState({ showModal: false });
-    }
+    // close() {
+    //     this.setState({ showModal: false });
+    // }
 
-    open() {
-        this.setState({ showModal: true });
-    }
+    // open() {
+    //     this.setState({ showModal: true });
+    // }
 
     render() {
-        const { isAuthenticated } = this.props.authorization;
+        const { isAuthenticated, isShownSignUpModal } = this.props.authorization;
         const userLinks = (
             <ul className="nav navbar-nav navbar-left">
                 <li><Link to="/" id="profile-link">Главная</Link></li>
@@ -41,7 +39,7 @@ class NavigationBar extends React.Component{
                 <li><Link to="/" id="profile-link">Главная</Link></li>
                 <li><a href="#link-about-us">О нас</a></li>
                 <li><a href="#android">Мобильный доступ</a></li>
-                <li onClick={this.open}><a href="#" id="modalpopuplogin">Вход</a></li>
+                <li onClick={this.props.showSignUpModal}><a href="#" id="modalpopuplogin">Вход</a></li>
             </ul>
         );
         return (
@@ -66,7 +64,7 @@ class NavigationBar extends React.Component{
                 </nav>
 
                 <Modal id="modal-login-form"  bsSize="large" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog"
-                aria-labelledby="myLargeModalLabel" aria-hidden="true" show={this.state.showModal} onHide={this.close}>                   
+                aria-labelledby="myLargeModalLabel" aria-hidden="true" show={isShownSignUpModal} onHide={this.props.hideSignUpModal}>                   
                     <Modal.Body>
                         <div className="container-fluid">
                             <div className="row">
@@ -84,14 +82,14 @@ class NavigationBar extends React.Component{
                                     <RegistrationFormGroup 
                                         userSignupRequest = {this.props.userSignupRequest}
                                         setCurrentUser = {this.props.setCurrentUser} 
-                                        closeModal = {this.close} 
+                                        closeModal = {this.props.hideSignUpModal} 
                                     />
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-for-register-user">
                                     <SignInFormGroup 
                                         checkLoginPasswordRequest = {this.props.checkLoginPasswordRequest} 
                                         setCurrentUser = {this.props.setCurrentUser} 
-                                        closeModal = {this.close}
+                                        closeModal = {this.props.hideSignUpModal}
                                     />
                                 </div>
                             </div>
@@ -107,7 +105,9 @@ NavigationBar.propTypes = {
     userSignupRequest: React.PropTypes.func.isRequired,
     checkLoginPasswordRequest: React.PropTypes.func.isRequired,
     setCurrentUser: React.PropTypes.func.isRequired,
-    authorization: React.PropTypes.object.isRequired
+    authorization: React.PropTypes.object.isRequired,
+    showSignUpModal: React.PropTypes.func.isRequired,
+    hideSignUpModal: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
@@ -116,4 +116,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { userSignupRequest, checkLoginPasswordRequest, setCurrentUser })(NavigationBar);
+export default connect(
+    mapStateToProps, 
+    { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal }
+    )(NavigationBar);

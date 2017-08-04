@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import isEmpty from 'lodash/isEmpty';
 
-import Request from 'superagent';
+import LoginRegisterButton from './LoginRegisterButton';
 
 export default class CheckAdress extends React.Component{
     constructor() {
@@ -117,6 +117,28 @@ export default class CheckAdress extends React.Component{
     }
 
     render() {
+        const { isAuthenticated } = this.props.authorization;
+        const authBlock = (
+            <div>
+                <h2>Вы не авторизованы.</h2>                           
+                <h3>Возможности авторизованных пользователей:</h3>
+                <ul>
+                    <li>Получение всех уведомлений</li>
+                    <li>Доступна вкладка "Объявления". Вы будете в курсе всех событий,которые происходят у Вас в доме.
+                    </li>
+                    <li>Доступна вкладка "Опросы". Вы сможете учавствовать в опросах, которые будут относиться к Вашему
+                        дому
+                    </li>
+                    <li>Вы сможете сообщать об отключении света, газа и воды остальным жильцам Вашего дома</li>
+                    <li>Вам будут доступны настройки профиля,добавление дополнительных адресов, настройки
+                        уведомлений (push или sms)
+                    </li>
+                </ul>
+            </div>
+        );
+        const userFooter = (
+            <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.closeModal}>OK</button>
+        );
         const electricityBlock = (            
             <tbody>
                 <tr>
@@ -177,26 +199,10 @@ export default class CheckAdress extends React.Component{
                     <div className="modal-dialog" role="document">
                         <Modal.Body>
                             { this.state.responseError ? <h4>{this.state.responseError}</h4> : forecastBlock }
-                            <h2>Вы не авторизованы.</h2>                           
-                            <h3>Возможности авторизованных пользователей:</h3>
-                            <ul>
-                                <li>Получение всех уведомлений</li>
-                                <li>Доступна вкладка "Объявления". Вы будете в курсе всех событий,которые происходят у Вас в доме.
-                                </li>
-                                <li>Доступна вкладка "Опросы". Вы сможете учавствовать в опросах, которые будут относиться к Вашему
-                                    дому
-                                </li>
-                                <li>Вы сможете сообщать об отключении света, газа и воды остальным жильцам Вашего дома</li>
-                                <li>Вам будут доступны настройки профиля,добавление дополнительных адресов, настройки
-                                    уведомлений (push или sms)
-                                </li>
-                            </ul>
+                            { isAuthenticated ? '' : authBlock }                           
                         </Modal.Body>
                         <Modal.Footer>
-                            <div className="btn-group" role="group" aria-label="Basic example">
-                                <button type="submit" className=" login-modal btn btn-default form-btn-checkadress">Войти / Регистрация
-                                </button>
-                            </div>
+                            { isAuthenticated ? userFooter : <LoginRegisterButton showSignUpModal = {this.props.showSignUpModal} closeModal = {this.closeModal}/> }
                         </Modal.Footer>
                     </div>
                 </Modal>
@@ -206,6 +212,8 @@ export default class CheckAdress extends React.Component{
 }
 
 CheckAdress.propTypes = {
-    getAllForecastsRequest: React.PropTypes.func.isRequired
+    getAllForecastsRequest: React.PropTypes.func.isRequired,
+    authorization: React.PropTypes.object.isRequired,
+    showSignUpModal: React.PropTypes.func.isRequired
 }
 

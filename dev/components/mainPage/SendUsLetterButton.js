@@ -2,7 +2,7 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap';
 
-export default class SendUsLetter extends React.Component {
+export default class SendUsLetterButton extends React.Component {
     constructor() {
         super();
         this.state = {

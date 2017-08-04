@@ -32,3 +32,15 @@ export function logout() {
 		dispatch(setCurrentUser({}));
 	}
 }
+
+export function showSignUpModal() {
+    return {
+        type: 'SHOW_SIGNUP_MODAL'
+    }
+}
+
+export function hideSignUpModal() {
+    return {
+        type: 'HIDE_SIGNUP_MODAL'
+    }
+}

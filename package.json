@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "docker-user": "ryanramage",
   "scripts": {
     "dev": "webpack-dev-server",
-    "prod": "webpack -p",
-    "docker-build": "rm -rf node_modules && npm i --production && docker-build",
-    "docker-run": "docker-run",
-    "docker-push": "docker-push"
+    "prod": "webpack -p"
   },
   "author": "",
   "license": "ISC",
@@ -41,7 +37,6 @@
   "dependencies": {
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
-    "docker-build-run-push": "^3.0.0",
     "google-react-maps": "^1.1.32",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",

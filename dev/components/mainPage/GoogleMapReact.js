@@ -131,7 +131,12 @@ export default class GoogleMapReact extends React.Component {
     render() {
         return (
             <div className="container-search">
-                <CheckAdress address={this.state.address} getAllForecastsRequest={this.props.getAllForecastsRequest} />
+                <CheckAdress 
+                    address={this.state.address} 
+                    getAllForecastsRequest={this.props.getAllForecastsRequest} 
+                    authorization={this.props.authorization} 
+                    showSignUpModal = {this.props.showSignUpModal}
+                />
                 <SearchBoxExampleGoogleMap
                     containerElement={
                         <div className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />
@@ -154,5 +159,7 @@ export default class GoogleMapReact extends React.Component {
 }
 
 GoogleMapReact.propTypes = {
-    getAllForecastsRequest: React.PropTypes.func.isRequired
+    getAllForecastsRequest: React.PropTypes.func.isRequired,
+    authorization: React.PropTypes.object.isRequired,
+    showSignUpModal: React.PropTypes.func.isRequired
 }
