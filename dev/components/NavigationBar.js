@@ -70,13 +70,12 @@ class NavigationBar extends React.Component{
                             <div className="row">
                                 <div className="col-md-5 col-sm-5 img-form-login">
                                     <h1>CityElf</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, at atque blanditiis
-                                        consequuntur distinctio dolorem doloremque error eum excepturi iste laudantium minima
-                                        odio omnis
-                                        praesentium quasi repellendus rerum similique voluptatum!Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. Asperiores, at atque blanditiis consequuntur distinctio
-                                        dolorem doloremque error eum excepturi iste laudantium minima odio omnis
-                                        praesentium quasi repellendus rerum similique voluptatum!</p>
+                                    <p className="post__text"> <span className="our_name">CityElf </span> заботится о ваших планах: домашних и рабочих.
+                                        С ним вы всегда знаете, где, когда и надолго ли лишитесь электричества, воды или газа.
+                                        Плановые ремонтные работы или неожиданная авария – <span className="our_name"> CityElf </span> предупредит вас об отключении!
+                                        Для этого даже не нужно регистрироваться.
+                                        А после регистрации вы получаете ряд преимуществ, включая полезные функции для ОСМД.
+                                        Вы можете пользоваться сайтом, а можете установить мобильное приложение.</p>
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-login-form">
                                     <RegistrationFormGroup 
