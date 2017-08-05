@@ -48,12 +48,12 @@ export default class SliderMain extends React.Component {
                                     <h1 className="post__header">Что такое СityElf?</h1>
                                 </header>
 
-                                <p className="post__text"> <span className="our_name">CityElf </span> заботится о ваших планах: домашних и рабочих.
-                                    С ним вы всегда знаете, где, когда и надолго ли лишитесь электричества, воды или газа.
-                                    Плановые ремонтные работы или неожиданная авария – <span className="our_name"> CityElf </span> предупредит вас об отключении!
-                                    Для этого даже не нужно регистрироваться.
-                                    А после регистрации вы получаете ряд преимуществ, включая полезные функции для ОСМД.
-                                    Вы можете пользоваться сайтом, а можете установить мобильное приложение.</p>
+                                <p className="post__text"> <span className="our_name">CityElf </span> заботится о ваших планах: домашних и рабочих.</p>
+                                    <p className="post__text">   С ним вы всегда знаете, где, когда и надолго ли лишитесь электричества, воды или газа.</p>
+                                    <p className="post__text">   Плановые ремонтные работы или неожиданная авария – <span className="our_name"> CityElf </span> предупредит вас об отключении!</p>
+                                    <p className="post__text">   Для этого даже не нужно регистрироваться.</p>
+                                    <p className="post__text">   А после регистрации вы получаете ряд преимуществ, включая полезные функции для ОСМД.</p>
+                                    <p className="post__text">   Вы можете пользоваться сайтом, а можете установить мобильное приложение.</p>
                             </div>
                             <div className="post__link">
 
@@ -98,10 +98,11 @@ export default class SliderMain extends React.Component {
                                 </header>
 
                                 <p className="post__text">
-                                    Хотите оставить отзыв о работе сайта или мобильного приложения?
-                                    Появились идеи по улучшению работы сервиса и его развитию?
-                                    Есть предложения о сотрудничестве?
-                                    Пишите нам!</p>
+
+                                    Хотите оставить отзыв о работе сайта или мобильного приложения?</p>
+                                <p className="post__text"> Появились идеи по улучшению работы сервиса и его развитию?</p>
+                                <p className="post__text">Есть предложения о сотрудничестве?</p>
+                                <p className="post__text"> Пишите нам!</p>
                                 <button onClick={this.open} type="submit" className="btn btn-default send-info-about-us" id="writeusbtn">Написать команде</button>
 
                             </div>
