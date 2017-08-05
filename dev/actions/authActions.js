@@ -13,7 +13,7 @@ export function userSignupRequest(email, password) {
 export function checkLoginPasswordRequest(email, password) {
     return dispatch => {
         return  Request
-            .post('http://localhost:8088/services/registration/login')
+            .post('/services/registration/login')
             .send('email=' + email)
             .send('password=' + password)
     }

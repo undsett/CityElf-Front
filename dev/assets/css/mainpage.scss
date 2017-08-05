@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500');
-
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 *{
   box-sizing: border-box;
 
@@ -89,13 +90,34 @@ body{
     }
   }
 }
-.android-app{
-  background-color:#E5E9F2;
-  padding:10%;
-  margin-top: -10px;
+.android-app {
+
+  background-image: url(../img/phone-moquap14.png);
+  background-size: cover;
+  background-position: left;
+  padding: 10% 0;
+  margin-top: 110px;
+  li {
+    position: relative;
+    list-style: none;
+    font: 18px 'Ubuntu', sans-serif;
+    line-height: 36px;
+  }
+  li::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/placeholder.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: -40px;
+    animation: animateicon 7s linear 2s infinite alternate;
+  }
   #moquaps-phone {
-    img{
-      width:100%;
+    img {
+      width: 100%;
     }
   }
   .download-app img {
@@ -103,23 +125,21 @@ body{
     height: 75px;
 
   }
-  h2{
-    color:#1485CC;
+  h2 {
+    color: #1485CC;
     font: 24px 'Ubuntu', sans-serif;
+    margin-bottom: 40px;
+  }
+  p {
+    font: 700 18px 'Ubuntu', sans-serif;
     margin-bottom: 30px;
   }
-  p{
-    font: 16px 'Ubuntu', sans-serif;
+  #container-button-download {
+    max-width: 57%;
+    float: right;
+    padding-right: 20px;
+    margin-top: -81px;
   }
-  li{
-    font: 16px 'Ubuntu', sans-serif;
-    list-style: none;
-    line-height: 30px;
-   }
-  li::before{
-    content: "\2714";
-    margin-right: 10px;
-  };
 }
 #myBtn {
   display: none;
@@ -311,9 +331,9 @@ footer {
     margin-right: 20px;
   }
   .login-modal:hover{
-    background-color: transparent;
-    color:#8492A6;
-  }
+    background-color:#1485CC;
+    color:#F2F2F2;
+}
   h4{
     color: #8492A6;
     font: 16px 'Ubuntu', sans-serif;
@@ -337,7 +357,7 @@ footer {
   margin-bottom: -0.6em;
 }
     .send-info-about-us {
-      width: 120px;
+      width: 131px;;
       height: 30px;
       font: 12px 'Ubuntu', sans-serif;
     }
@@ -358,7 +378,6 @@ footer {
   }
 
 }
-
 .container-search {
   position: relative;
 }
@@ -380,4 +399,84 @@ footer {
 }
 .gm-style-mtc{
   display: none;
+}
+.for-small-screen{
+display: none;
+}
+@media screen and (max-width: 900px){
+  .android-app {
+    margin-top: 50px;
+   li{
+     font: 18px 'Ubuntu', sans-serif;
+     line-height: 24px;
+   }
+    h2{
+      font: 20px 'Ubuntu', sans-serif;
+    }
+  }
+}
+@media screen and (max-width: 727px){
+  .android-app {
+    li{
+      font: 14px 'Ubuntu', sans-serif;
+      line-height: 24px;
+    }
+    h2{
+      font: 18px 'Ubuntu', sans-serif;
+
+    }
+    p {
+      font: 700 16px 'Ubuntu', sans-serif;
+    }
+  }
+}
+@media screen and (max-width: 640px){
+  .android-app {
+    li{
+      font: 12px 'Ubuntu', sans-serif;
+      line-height: 28px;
+    }
+    h2{
+      margin-top: 40px;
+      font: 16px 'Ubuntu', sans-serif;
+    }
+    p {
+      font: 700 14px 'Ubuntu', sans-serif;
+    }
+    li::before {
+      content: "";
+      width: 15px;
+      height: 15px;
+      background-image: url("../img/placeholder.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: -20px;
+      animation: animateicon 7s linear 2s infinite alternate;
+    }
+  }
+}
+@media screen and (max-width:600px) {
+  .android-app {
+    background-image: url('../img/phone-moquap(small-screen).png');
+    background-size: cover;
+    background-position: left;
+    padding: 10% 0;
+    h2 {
+      padding-top: 40px;
+    }
+    .download-app {
+      img {
+        width: 150px;
+        height: 55px;
+      }
+    }
+    #container-button-download {
+      max-width: 70%;
+      float: right;
+      padding: 8% -4%;
+      margin-top: -81px;
+    }
+  }
 }
