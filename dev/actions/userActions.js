@@ -3,7 +3,7 @@ import Request from 'superagent';
 export function getAllForecastsRequest(address) {
     return dispatch => {
         return Request
-            .get('http://localhost:8088/services/allforecasts/get')
+            .get('/services/allforecasts/get')
             .query({ address: address })
     }    
 }
@@ -18,7 +18,7 @@ export function feedBackRequest(userName, email, theme, message) {
     }
     return dispatch => {
         return Request
-            .post('http://localhost:8088/services/feedback/sendmail')
+            .post('/services/feedback/sendmail')
             .send(feedbackData)
     }    
 }
