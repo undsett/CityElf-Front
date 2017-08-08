@@ -57,24 +57,26 @@ export default class RegistrationFormGroup extends React.Component{
 
     submitForm(e) {
         e.preventDefault();
-        this.setState({
-            errorUserExist: ''
-        })
-        this.props.userSignupRequest(this.state.email, this.state.password).then(
-            (response) => {
-                const responseData = JSON.parse(response.text);
-                if(responseData.status.code == 11) {
-                    localStorage.setItem('currentUser', JSON.stringify(responseData.user));
-                    this.props.setCurrentUser(responseData.user);
-                    this.props.closeModal();
-                    this.context.router.push('/profile');                    
-                } else if(responseData.status.code == 12){
-                    this.setState({
-                        errorUserExist: responseData.status.message
-                    })
-                }
-            }        
-        );
+        if (this.state.formValid) {
+            this.setState({
+                errorUserExist: ''
+            })
+            this.props.userSignupRequest(this.state.email, this.state.password).then(
+                (response) => {
+                    const responseData = JSON.parse(response.text);
+                    if(responseData.status.code == 11) {
+                        localStorage.setItem('currentUser', JSON.stringify(responseData.user));
+                        this.props.setCurrentUser(responseData.user);
+                        this.props.closeModal();
+                        this.context.router.push('/profile');                    
+                    } else if(responseData.status.code == 12){
+                        this.setState({
+                            errorUserExist: responseData.status.message
+                        })
+                    }
+                }        
+            );
+        }         
     }
 
     render() {
@@ -111,8 +113,7 @@ export default class RegistrationFormGroup extends React.Component{
                     <button 
                         id="sign-up" 
                         className="btn btn-default form-control"
-                        type="submit"
-                        disabled={!this.state.formValid}                        
+                        type="submit"                     
                         >Регистрация
                     </button>
                     <div><strong>*-Обязательные для заполнения поля</strong></div>

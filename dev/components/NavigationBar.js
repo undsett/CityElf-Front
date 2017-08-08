@@ -8,35 +8,17 @@ import RegistrationFormGroup from './mainPage/RegistrationFormGroup';
 import { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal } from '../actions/authActions';
 
 class NavigationBar extends React.Component{
-    // constructor() {
-    //     super();
-        
-    //     this.state = {
-    //         showModal: false
-    //     }
-    //     this.open = this.open.bind(this);
-    //     this.close = this.close.bind(this);
-    // }
-
-    // close() {
-    //     this.setState({ showModal: false });
-    // }
-
-    // open() {
-    //     this.setState({ showModal: true });
-    // }
-
     render() {
         const { isAuthenticated, isShownSignUpModal } = this.props.authorization;
         const userLinks = (
             <ul className="nav navbar-nav navbar-left">
-                <li><Link to="/" id="profile-link">Главная</Link></li>
+                <li><a href="#map" id="profile-link">Главная</a></li>
                 <li><Link to="/profile">Профиль</Link></li>
             </ul>
         );
         const guestLinks = (
             <ul className="nav navbar-nav navbar-left">
-                <li><Link to="/" id="profile-link">Главная</Link></li>
+                <li><a href="#map" id="profile-link">Главная</a></li>
                 <li><a href="#link-about-us">О нас</a></li>
                 <li><a href="#android">Мобильный доступ</a></li>
                 <li onClick={this.props.showSignUpModal}><a href="#" id="modalpopuplogin">Вход</a></li>
@@ -54,7 +36,7 @@ class NavigationBar extends React.Component{
                                     <span className="icon-bar"></span>
                                     <span className="icon-bar"></span>
                                 </button>
-                                <Link to="/" className="navbar-brand">CityElf</Link>
+                                <a href="#map" className="navbar-brand">CityElf</a>
                             </div>
                             <div className="collapse navbar-collapse" id="b-menu-1">
                                 { isAuthenticated ? userLinks : guestLinks }

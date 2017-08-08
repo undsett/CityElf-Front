@@ -57,23 +57,27 @@ export default class SignInFormGroup extends React.Component{
 
     submitForm(e) {
         e.preventDefault();
-        this.props.checkLoginPasswordRequest(this.state.email, this.state.password).then(
-            (response) => {
-                const responseData = JSON.parse(response.text);
-                if(responseData.status.code == 31) {
-                    this.setState({
-                        errorLoginPassword: responseData.status.message
-                    })
-                }
-                if(responseData.status.code == 33) {
-                    localStorage.setItem('currentUser', JSON.stringify(responseData.user));
-                    this.props.setCurrentUser(responseData.user);
-                    this.props.closeModal();
-                    this.context.router.push('/profile');
-                }
-            }   
-        );
-
+        if (this.state.formValid) {
+            this.setState({
+                errorLoginPassword: ''
+            })
+            this.props.checkLoginPasswordRequest(this.state.email, this.state.password).then(
+                (response) => {
+                    const responseData = JSON.parse(response.text);
+                    if(responseData.status.code == 31) {
+                        this.setState({
+                            errorLoginPassword: responseData.status.message
+                        })
+                    }
+                    if(responseData.status.code == 33) {
+                        localStorage.setItem('currentUser', JSON.stringify(responseData.user));
+                        this.props.setCurrentUser(responseData.user);
+                        this.props.closeModal();
+                        this.context.router.push('/profile');
+                    }
+                }   
+            ); 
+        }
     }
 
     render() {
@@ -111,7 +115,6 @@ export default class SignInFormGroup extends React.Component{
                         id="sign-in" 
                         type="submit" 
                         className="btn btn-default sign-in-btn form-control"
-                        disabled={!this.state.formValid}
                         >Войти
                     </button>
                     <div className="checkbox">
