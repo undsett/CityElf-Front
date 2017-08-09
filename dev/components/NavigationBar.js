@@ -16,22 +16,28 @@ class NavigationBar extends React.Component{
             const { isAuthenticated, isShownSignUpModal } = this.props.authorization;
             const userLinks = (
             <Nav>
-                <LinkContainer to="#map" id="profile-link">
-                  <NavItem>Главная</NavItem>
+                <LinkContainer to="/map" id="profile-link">
+                    <NavItem>Главная</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/profile">
-                  <NavItem>Профиль</NavItem>
+                    <NavItem>Профиль</NavItem>
                 </LinkContainer>
             </Nav>
             );
             const guestLinks = (
-                <Nav>
-                    <LinkContainer to="#map" id="profile-link">
-                      <NavItem >Главная</NavItem>
-                    </LinkContainer>
-                    <NavItem href="#/link-about-us">О нас</NavItem>
-                    <NavItem href="#/android">Мобильный доступ</NavItem>
-                    <NavItem onClick={this.props.showSignUpModal} href="#" id="modalpopuplogin">Вход</NavItem>
+                <Nav> 
+                    <li>
+                        <Navbar.Link href="#map" id="profile-link">Главная</Navbar.Link>
+                    </li>                   
+                    <li>
+                        <Navbar.Link href="#link-about-us">О нас</Navbar.Link>
+                    </li>
+                    <li>
+                        <Navbar.Link href="#android">Мобильный доступ</Navbar.Link>
+                    </li>
+                    <li>
+                        <Navbar.Link onClick={this.props.showSignUpModal} id="modalpopuplogin">Вход</Navbar.Link>
+                    </li>
                 </Nav>
             );
             return (
