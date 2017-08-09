@@ -29,7 +29,7 @@ const INPUT_STYLE = {
     position:'absolute',
     top:'32%',
     left:'33%',
-    marginLeft:'20px'
+    marginLeft:'30px'
 };
 
 

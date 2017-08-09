@@ -109,6 +109,7 @@ export default class FeedbackForm extends React.Component {
         return (
             <Modal id="modal-write-us"  className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog"
                    aria-labelledby="myLargeModalLabel" aria-hidden="true" show={this.props.showModal} onHide={this.props.closeModal}>
+                <Modal.Header closeButton></Modal.Header>
                 <Modal.Body>
                     <form onSubmit={this.submitForm}>
                         <h2>Обратная связь</h2>
