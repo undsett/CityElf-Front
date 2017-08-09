@@ -34,9 +34,9 @@ ReactDOM.render(
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={MainPage} />
-                // <Route path="/map" component={MainPage} />
-                // <Route path="/link-about-us" component={MainPage} />
-                // <Route path="/android" component={MainPage} /> 
+                <Route path="/map" component={MainPage} />
+                <Route path="/link-about-us" component={MainPage} />
+                <Route path="/android" component={MainPage} /> 
                 <Route path="/profile" component={Profile} />
                 <Route path="*" component={ErrorPage} />
             </Route>           

@@ -197,7 +197,9 @@ export default class CheckAdress extends React.Component{
                 </button>
                 <Modal id="checkyouradress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.closeModal}>
                     <div className="modal-dialog" role="document">
+
                         <Modal.Body>
+                            <Modal.Header closeButton></Modal.Header>
                             { this.state.responseError ? <h4>{this.state.responseError}</h4> : forecastBlock }
                             { isAuthenticated ? '' : authBlock }                           
                         </Modal.Body>
