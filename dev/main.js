@@ -26,7 +26,8 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(hashHistory, store);
 
 if (localStorage.currentUser) {
-    store.dispatch(setCurrentUser(localStorage.currentUser));
+    const currentUserData = JSON.parse(localStorage.currentUser);
+    store.dispatch(setCurrentUser(currentUserData));
 }
 
 ReactDOM.render(

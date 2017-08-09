@@ -9,10 +9,11 @@ import AllUserInformation from "./AllUserInformation";
 class Profile extends React.Component {    
     render() { 
         const { isAuthenticated} = this.props.authorization;
+        const { userData } = this.props.authorization;
         const profile = (
             <div className="Site-content">               
                 <ImgMapStatic />
-                <AllUserInformation/>
+                <AllUserInformation userData={userData} />
             </div>                
         );
         const notAuth = (
