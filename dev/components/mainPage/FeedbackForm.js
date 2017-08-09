@@ -81,6 +81,7 @@ export default class FeedbackForm extends React.Component {
 
     submitForm(e) {
         e.preventDefault();
+        console.log("1")
         this.props.feedBackRequest(this.state.userName, this.state.email, this.state.theme, this.state.message).then(
             (response) => {
                 this.setState({
@@ -91,6 +92,7 @@ export default class FeedbackForm extends React.Component {
                 })
             },
             (error) => {
+                console.log("2")
                 this.setState({
                     serverResponseError: true,
                     userName: '',
@@ -107,6 +109,7 @@ export default class FeedbackForm extends React.Component {
         return (
             <Modal id="modal-write-us"  className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog"
                    aria-labelledby="myLargeModalLabel" aria-hidden="true" show={this.props.showModal} onHide={this.props.closeModal}>
+                <Modal.Header closeButton></Modal.Header>
                 <Modal.Body>
                     <form onSubmit={this.submitForm}>
                         <h2>Обратная связь</h2>

@@ -35,7 +35,7 @@ ReactDOM.render(
                 <IndexRoute component={MainPage} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/link-about-us" component={MainPage} />
-                <Route path="/android" component={MainPage} /> 
+                <Route path="/android" component={MainPage} />
             </Route>           
         </Router>
     </Provider>,

@@ -7,6 +7,7 @@ import MobileApp from './MobileApp';
 import CheckAdress from "./CheckAdress";
 import { getAllForecastsRequest, feedBackRequest } from '../../actions/userActions';
 import { showSignUpModal } from '../../actions/authActions';
+import ScrollUpButton from "./ScrollUpButton";
 
 class MainPage extends React.Component{
     render() {
@@ -19,6 +20,7 @@ class MainPage extends React.Component{
                 />
                 <AboutUs feedBackRequest={this.props.feedBackRequest} />
                 <MobileApp />
+                <ScrollUpButton/>
             </div>
         )   
     }

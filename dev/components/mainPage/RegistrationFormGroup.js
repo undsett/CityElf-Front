@@ -105,6 +105,19 @@ export default class RegistrationFormGroup extends React.Component{
                         className="form-control" 
                         placeholder="Пароль*"
                     />
+
+                    {formErrors.password && <span className="help-block">{formErrors.password}</span>}
+                </div>
+                <div className={classnames("form-group", { 'has-error': formErrors.password })}>
+                    <input
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.changeValue}
+                        className="form-control"
+                        placeholder="Повторите пароль*"
+                    />
+
                     {formErrors.password && <span className="help-block">{formErrors.password}</span>}
                 </div>
                 <div className="form-group">    

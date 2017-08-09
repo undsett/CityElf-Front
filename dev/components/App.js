@@ -1,7 +1,6 @@
 import React from 'react';
-
-import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import NavigationBar from "./NavigationBar";
 
 class App extends React.Component {    
     render() { 
