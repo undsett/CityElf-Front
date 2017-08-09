@@ -100,12 +100,10 @@ export default class GoogleMapReact extends React.Component {
 
     handlePlacesChanged() {
         const places = this._searchBox.getPlaces();
-        console.log(places[0]["formatted_address"]);
 
         this.setState({
             address: places[0]["formatted_address"]
         })
-        console.log(this.state.address);
         const bounds = new google.maps.LatLngBounds();
 
         places.map(place => {
@@ -130,7 +128,7 @@ export default class GoogleMapReact extends React.Component {
     }
     render() {
         return (
-            <div className="container-search">
+            <div className="container-search" id="map">
                 <CheckAdress 
                     address={this.state.address} 
                     getAllForecastsRequest={this.props.getAllForecastsRequest} 

@@ -81,27 +81,27 @@ export default class FeedbackForm extends React.Component {
 
     submitForm(e) {
         e.preventDefault();
-        console.log("1")
-        this.props.feedBackRequest(this.state.userName, this.state.email, this.state.theme, this.state.message).then(
-            (response) => {
-                this.setState({
-                    userName: '',
-                    email: '',
-                    theme: '',
-                    message: ''
-                })
-            },
-            (error) => {
-                console.log("2")
-                this.setState({
-                    serverResponseError: true,
-                    userName: '',
-                    email: '',
-                    theme: '',
-                    message: ''
-                })
-            }
-        );        
+        if (this.state.formValid) {
+            this.props.feedBackRequest(this.state.userName, this.state.email, this.state.theme, this.state.message).then(
+                (response) => {
+                    this.setState({
+                        userName: '',
+                        email: '',
+                        theme: '',
+                        message: ''
+                    })
+                },
+                (error) => {
+                    this.setState({
+                        serverResponseError: true,
+                        userName: '',
+                        email: '',
+                        theme: '',
+                        message: ''
+                    })
+                }
+            );    
+        }     
     }
 
     render() {

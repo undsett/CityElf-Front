@@ -18,7 +18,9 @@ export default class SendUsLetterButton extends React.Component {
     }
 
     open() {
-        this.setState({showModal: true});
+        if (this.props.formValid) {
+            this.setState({showModal: true});
+        }        
     }
 
     render() {
@@ -51,7 +53,6 @@ export default class SendUsLetterButton extends React.Component {
                     onClick={this.open} 
                     type="submit" 
                     className="btn btn-default form-btn-contactus"
-                    disabled={!this.props.formValid}
                 >Отправить</button>
                 <Modal id="write-us-letter" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
                     {this.props.serverResponseError ? errorBlock : thanksBlock}

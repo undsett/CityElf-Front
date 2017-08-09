@@ -11,6 +11,7 @@ import reducer from './reducers'
 import App from './components/App';
 import MainPage from './components/mainPage/MainPage';
 import Profile from './components/profilePage/Profile';
+import ErrorPage from './components/ErrorPage';
 import { setCurrentUser } from './actions/authActions';
 
 import './assets/css/mainpage.scss';
@@ -33,9 +34,11 @@ ReactDOM.render(
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={MainPage} />
-                <Route path="/profile" component={Profile} />
+                <Route path="/map" component={MainPage} />
                 <Route path="/link-about-us" component={MainPage} />
-                <Route path="/android" component={MainPage} />
+                <Route path="/android" component={MainPage} /> 
+                <Route path="/profile" component={Profile} />
+                <Route path="*" component={ErrorPage} />
             </Route>           
         </Router>
     </Provider>,
