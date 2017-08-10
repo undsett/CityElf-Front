@@ -50,10 +50,8 @@ class NavigationBar extends React.Component{
                             </Navbar.Brand>
                             <Navbar.Toggle />
                         </Navbar.Header>
-                        <Navbar.Collapse>
-                            <Nav>
-                                { isAuthenticated ? userLinks : guestLinks }
-                            </Nav>
+                        <Navbar.Collapse>                            
+                            { isAuthenticated ? userLinks : guestLinks }                            
                         </Navbar.Collapse>
                     </Navbar>
 
