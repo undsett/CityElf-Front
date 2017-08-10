@@ -132,7 +132,10 @@ body{
     margin-top: -81px;
   }
 }
-
+#map{
+  height: 1px;
+  margin-top: -1px;
+}
 
 
 footer {
@@ -162,8 +165,12 @@ outline:none;
     padding: 0;
     height: 100%;
   }
+  .modal-header {
+    padding: 8px;
+  }
   .container-fluid{
     height: 100%;
+    margin-top: -3%;
   }
   .row{
     height: 100%;
@@ -215,7 +222,7 @@ outline:none;
   .modal-header{
     border: none;
     padding: 0;
-
+    margin-bottom: -2%;
     button{
       outline: none;
     }
@@ -251,6 +258,7 @@ outline:none;
   .modal-header {
     border: none;
     padding: 0;
+    margin-bottom: -2%;
     button{
       outline:none;
     }
@@ -390,18 +398,6 @@ outline:none;
   display: none;
 }
 
-//@media screen and (max-width: 900px){
-//  .android-app {
-//    margin-top: 50px;
-//   li{
-//     font: 18px 'Ubuntu', sans-serif;
-//     line-height: 24px;
-//   }
-//    h2{
-//      font: 20px 'Ubuntu', sans-serif;
-//    }
-//  }
-//}
 @media screen and (max-width: 1054px){
   .android-app {
     li{
@@ -417,20 +413,6 @@ outline:none;
     }
   }
 }
-@media screen and (max-width: 640px){
-    li::before {
-      content: "";
-      width: 15px;
-      height: 15px;
-      background-image: url("../img/placeholder.png");
-      background-size: cover;
-      background-repeat: no-repeat;
-      position: absolute;
-      top: 0;
-      left: -20px;
-      animation: animateicon 7s linear 2s infinite alternate;
-    }
-  }
 
 
 
@@ -505,8 +487,19 @@ outline:none;
   }
 
 }
-@media screen and (max-width:760px) {
+@media screen and (max-width:764px) {
   #modal-login-form .form-control{
     width: 99%;
+  }
+  .navbar-inverse .navbar-nav > li > a:hover{
+    border:none;
+  }
+  .navbar-inverse .navbar-nav > li > a{
+    text-align: center;
+  }
+}
+@media screen and (max-width:767px) {
+  #modal-login-form .container-fluid {
+    margin-top: 0;
   }
 }

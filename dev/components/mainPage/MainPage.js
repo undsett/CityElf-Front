@@ -13,7 +13,8 @@ class MainPage extends React.Component{
     render() {
         return (
             <div className="all-content">
-                <GoogleMapReact 
+                <div id="map"></div>
+                <GoogleMapReact
                     getAllForecastsRequest = {this.props.getAllForecastsRequest} 
                     authorization = {this.props.authorization}
                     showSignUpModal = {this.props.showSignUpModal}
