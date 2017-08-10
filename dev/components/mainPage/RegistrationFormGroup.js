@@ -8,9 +8,11 @@ export default class RegistrationFormGroup extends React.Component{
         this.state = {
             email: '',
             password: '',
-            formErrors: {email: '', password: ''},
+            passwordRepeat: '',
+            formErrors: {email: '', password: '', passwordRepeat: ''},
             emailValid: false,
             passwordValid: false,
+            passwordRepeatValid: false,
             formValid: false,
             errorUserExist: ''
         }
@@ -30,6 +32,7 @@ export default class RegistrationFormGroup extends React.Component{
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
+        let passwordRepeatValid = this.state.passwordRepeatValid;
 
         switch(fieldName) {
             case 'email':
@@ -40,18 +43,23 @@ export default class RegistrationFormGroup extends React.Component{
                 passwordValid = value.length >= 6;
                 fieldValidationErrors.password = passwordValid ? '': 'Пароль должен быть не менее 6 символов';
                 break;
+            case 'passwordRepeat':
+                passwordRepeatValid = value.length >= 6 && this.state.password == this.state.passwordRepeat;
+                fieldValidationErrors.passwordRepeat = passwordRepeatValid ? '': this.state.password == this.state.passwordRepeat ? 'Пароль должен быть не менее 6 символов' : 'Пароли не совпадают';
+                break;
             default:
                 break;
         }
         this.setState({formErrors: fieldValidationErrors,
                         emailValid: emailValid,
-                        passwordValid: passwordValid
+                        passwordValid: passwordValid,
+                        passwordRepeatValid: passwordRepeatValid
                       }, this.validateForm);
     }
 
     validateForm() {
         this.setState({
-            formValid: this.state.emailValid && this.state.passwordValid
+            formValid: this.state.emailValid && this.state.passwordValid && this.state.passwordRepeatValid
         });
     }
 
@@ -111,17 +119,17 @@ export default class RegistrationFormGroup extends React.Component{
 
                     {formErrors.password && <span className="help-block">{formErrors.password}</span>}
                 </div>
-                <div className={classnames("form-group", { 'has-error': formErrors.password })}>
+                <div className={classnames("form-group", { 'has-error': formErrors.passwordRepeat })}>
                     <input
                         type="password"
-                        name="password"
-                        value={this.state.password}
+                        name="passwordRepeat"
+                        value={this.state.passwordRepeat}
                         onChange={this.changeValue}
                         className="form-control"
                         placeholder="Повторите пароль*"
                     />
 
-                    {formErrors.password && <span className="help-block">{formErrors.password}</span>}
+                    {formErrors.passwordRepeat && <span className="help-block">{formErrors.passwordRepeat}</span>}
                 </div>
                 <div className="form-group">    
                     <button 

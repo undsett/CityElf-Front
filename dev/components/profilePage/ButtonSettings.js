@@ -1,5 +1,8 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import { showSettingsModal, hideSettingsModal } from '../../actions/userActions';
 
 var Child = React.createClass({
     render: function() {
@@ -135,34 +138,17 @@ var ShowHideAddressAdd = React.createClass({
     }
 });
 
-export default class ButtonSettings extends React.Component{
-
-    constructor() {
-        super();
-
-        this.state = {
-            showModal: false
-        };
-        this.open = this.open.bind(this);
-        this.close = this.close.bind(this);
-    }
-
-    close() {
-        this.setState({ showModal: false });
-    }
-
-    open() {
-        this.setState({ showModal: true });
-    }
+class ButtonSettings extends React.Component{
     render() {
+        const { isShownSettingsModal } = this.props.userReducer;
         return (
             <div>
                 <div>
-                    <button onClick={this.open} id="settings-profile" type="submit" className="btn btn-default">Настройки
+                    <button onClick={this.props.showSettingsModal} id="settings-profile" type="submit" className="btn btn-default">Настройки
                     </button>
                 </div>
                 <div>
-                    <Modal class="modal fade" tabindex="-1" role="dialog" show={this.state.showModal} onHide={this.close}>
+                    <Modal className="modal fade" tabIndex="-1" role="dialog" show={isShownSettingsModal} onHide={this.props.hideSettingsModal}>
                         <div role="document">
                             <Modal.Header>
                                 <Modal.Title className="modal-title-settings">
@@ -201,11 +187,7 @@ export default class ButtonSettings extends React.Component{
                                         <input type="checkbox"/>
                                         <span className="slider round"></span>
                                     </label>
-
                                 </li>
-
-
-
                             </ul>
                             <h3>Язык</h3>
                             <div className="choose-language">
@@ -224,3 +206,17 @@ export default class ButtonSettings extends React.Component{
         )
     }
 }
+
+ButtonSettings.propTypes = {
+    userReducer: React.PropTypes.object.isRequired,
+    showSettingsModal: React.PropTypes.func.isRequired,
+    hideSettingsModal: React.PropTypes.func.isRequired
+}
+
+function mapStateToProps (state) {
+    return {
+        userReducer: state.userReducer
+    }
+}
+
+export default connect(mapStateToProps, { showSettingsModal, hideSettingsModal })(ButtonSettings);
