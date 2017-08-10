@@ -48,10 +48,10 @@ export default class ImgMapStatic extends React.Component{
                     <label className="checkbox-inline"><input type="checkbox" value=""/>Вода</label>
                 </div>
             </div>
-                <Modal id="shut-note-for-adress" class="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
+                <Modal id="shut-note-for-adress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
                     <div className="modal-dialog" role="document">
                             <Modal.Header>
-                                <Modal.Title><h4 className="modal-title">Спасибо Вам!</h4></Modal.Title>
+                                <Modal.Title>Спасибо Вам!</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <p className="hanling-request">Ваш запрос принят и обрабатывается. После обработки он появится в списке адресов для

@@ -10,6 +10,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import SignInFormGroup from './mainPage/SignInFormGroup';
 import RegistrationFormGroup from './mainPage/RegistrationFormGroup';
 import { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal } from '../actions/authActions';
+import { showEnterAddressModal } from '../actions/userActions';
 
 class NavigationBar extends React.Component{
         render() {
@@ -70,6 +71,7 @@ class NavigationBar extends React.Component{
                                             userSignupRequest = {this.props.userSignupRequest}
                                             setCurrentUser = {this.props.setCurrentUser}
                                             closeModal = {this.props.hideSignUpModal}
+                                            showEnterAddressModal = {this.props.showEnterAddressModal}
                                         />
                                     </div>
                                     <div className="col-md-3 col-sm-3 container-for-register-user">
@@ -88,21 +90,22 @@ class NavigationBar extends React.Component{
         }
     }
     NavigationBar.propTypes = {
-      userSignupRequest: React.PropTypes.func.isRequired,
-      checkLoginPasswordRequest: React.PropTypes.func.isRequired,
-      setCurrentUser: React.PropTypes.func.isRequired,
-      authorization: React.PropTypes.object.isRequired,
-      showSignUpModal: React.PropTypes.func.isRequired,
-      hideSignUpModal: React.PropTypes.func.isRequired
+        userSignupRequest: React.PropTypes.func.isRequired,
+        checkLoginPasswordRequest: React.PropTypes.func.isRequired,
+        setCurrentUser: React.PropTypes.func.isRequired,
+        authorization: React.PropTypes.object.isRequired,
+        showSignUpModal: React.PropTypes.func.isRequired,
+        hideSignUpModal: React.PropTypes.func.isRequired,
+        showEnterAddressModal: React.PropTypes.func.isRequired
     };
 
     function mapStateToProps(state) {
-      return {
-      authorization: state.authorization
-      }
+        return {
+            authorization: state.authorization
+        }
     }
 
     export default connect(
-                  mapStateToProps,
-                  { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal }
-                  )(NavigationBar);
+        mapStateToProps,
+        { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal, showEnterAddressModal }
+    )(NavigationBar);

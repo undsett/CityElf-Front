@@ -8,7 +8,6 @@ export function getAllForecastsRequest(address) {
     }    
 }
 
-
 export function feedBackRequest(userName, email, theme, message) {
     const feedbackData = {
         customer: userName,
@@ -21,4 +20,16 @@ export function feedBackRequest(userName, email, theme, message) {
             .post('/services/feedback/sendmail')
             .send(feedbackData)
     }    
+}
+
+export function showEnterAddressModal() {
+    return {
+        type: 'SHOW_ENTERADDRESS_MODAL'
+    }
+}
+
+export function hideEnterAddressModal() {
+    return {
+        type: 'HIDE_ENTERADDRESS_MODAL'
+    }
 }

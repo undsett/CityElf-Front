@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 import authorizationReducer from './authorizationReducer';
+import userReducer from './userReducer';
 
 
 // function editUserData(state = initialUserData, action) {
@@ -16,5 +17,6 @@ import authorizationReducer from './authorizationReducer';
 export default combineReducers({
     routing: routerReducer,
     authorization: authorizationReducer,
+    userReducer
     // editUserData
 })

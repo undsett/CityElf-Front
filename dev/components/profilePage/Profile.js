@@ -4,23 +4,24 @@ import '../../assets/css/profilepage.scss';
 
 import ImgMapStatic from "./ImgMapStatic";
 import AllUserInformation from "./AllUserInformation";
-
+import EnterAddressModal from "./EnterAddressModal";
 
 class Profile extends React.Component {    
     render() { 
         const { isAuthenticated} = this.props.authorization;
         const { userData } = this.props.authorization;
-        const profile = (
-            <div className="Site-content">               
-                <ImgMapStatic />
-                <AllUserInformation userData={userData} />
-            </div>                
-        );
         const notAuth = (
             <div className="Site-content" style={{paddingTop: '50px'}}>
                 Вам необходимо войти или зарегистрироваться для доступа к этой странице
             </div>
         );
+        const profile = (
+            <div className="Site-content">               
+                <ImgMapStatic />
+                <AllUserInformation userData={userData} />
+                <EnterAddressModal/>
+            </div>                
+        );        
         return (
             <div className="Site">                
                 { isAuthenticated ? profile : notAuth }                

@@ -68,7 +68,8 @@ export default class RegistrationFormGroup extends React.Component{
                         localStorage.setItem('currentUser', JSON.stringify(responseData.user));
                         this.props.setCurrentUser(responseData.user);
                         this.props.closeModal();
-                        this.context.router.push('/profile');                    
+                        this.context.router.push('/profile');
+                        this.props.showEnterAddressModal();                   
                     } else if(responseData.status.code == 12){
                         this.setState({
                             errorUserExist: responseData.status.message
@@ -138,7 +139,8 @@ export default class RegistrationFormGroup extends React.Component{
 
 RegistrationFormGroup.propTypes = {
     userSignupRequest: React.PropTypes.func.isRequired,
-    setCurrentUser: React.PropTypes.func.isRequired
+    setCurrentUser: React.PropTypes.func.isRequired,
+    showEnterAddressModal: React.PropTypes.func.isRequired
 }
 
 RegistrationFormGroup.contextTypes = {
