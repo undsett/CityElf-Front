@@ -7,9 +7,7 @@ export default class NotifShutdowns extends React.Component {
                 <table className='table table-borderless table-condensed table-hover'>
                     <tbody>
                     <tr>
-                        <th>Отключение света <img className="icon-lamp"
-                                                  src={require("../../assets/img/lamp.png")}
-                                                  alt="Иконка для света"/></th>
+                        <th>Отключение света <img className="icon-lamp" src={require("../../assets/img/lamp.png")}/></th>
                         <th>Сегодня</th>
                     </tr>
                     <tr>
@@ -29,9 +27,7 @@ export default class NotifShutdowns extends React.Component {
                     </tbody>
                     <tbody>
                     <tr>
-                        <th>Отключение газа <img className="icon-gas"
-                                                 src={require("../../assets/img/gas.png")}
-                                                 alt="Иконка для газа"/></th>
+                        <th>Отключение газа <img className="icon-gas" src={require("../../assets/img/gas.png")}/></th>
                         <th>14.05.2017</th>
                     </tr>
                     <tr>
@@ -51,9 +47,7 @@ export default class NotifShutdowns extends React.Component {
                     </tbody>
                     <tbody>
                     <tr>
-                        <th>Отключение газа <img className="icon-gas"
-                                                 src={require("../../assets/img/gas.png")}
-                                                 alt="Иконка для газа"/></th>
+                        <th>Отключение газа <img className="icon-gas" src={require("../../assets/img/gas.png")}/></th>
                         <th>14.05.2017</th>
                     </tr>
                     <tr>
@@ -72,9 +66,7 @@ export default class NotifShutdowns extends React.Component {
                     </tbody>
                     <tbody>
                     <tr>
-                        <th>Отключение воды <img className="icon-water"
-                                                 src={require("../../assets/img/water.png")}
-                                                 alt="Иконка для воды"/></th>
+                        <th>Отключение воды <img className="icon-water" src={require("../../assets/img/water.png")}/></th>
                         <th>14.05.2017</th>
                     </tr>
                     <tr>
