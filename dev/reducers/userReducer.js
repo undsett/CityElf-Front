@@ -1,5 +1,6 @@
 const initialState = {
-    isShownEnterAddressModal: false
+    isShownEnterAddressModal: false,
+    isShownSettingsModal: false
 };
 
 export default (state = initialState, action) => {
@@ -13,6 +14,18 @@ export default (state = initialState, action) => {
         return state = {
             ...state,
             isShownEnterAddressModal: false
+        }
+    }
+    if (action.type === 'SHOW_SETTINGS_MODAL') {
+        return state = {
+            ...state,
+            isShownSettingsModal: true
+        }
+    }
+    if (action.type === 'HIDE_SETTINGS_MODAL') {
+        return state = {
+            ...state,
+            isShownSettingsModal: false
         }
     }
     return state;

@@ -33,3 +33,15 @@ export function hideEnterAddressModal() {
         type: 'HIDE_ENTERADDRESS_MODAL'
     }
 }
+
+export function showSettingsModal() {
+    return {
+        type: 'SHOW_SETTINGS_MODAL'
+    }
+}
+
+export function hideSettingsModal() {
+    return {
+        type: 'HIDE_SETTINGS_MODAL'
+    }
+}
