@@ -17,6 +17,7 @@ export default class AboutUsForSmallScreen extends React.Component{
         this.setState({ showModal: true });
     }
     render() {
+        console.log("small");
         return (
             <section  className="about-us-smallscreen">
 
@@ -56,7 +57,6 @@ export default class AboutUsForSmallScreen extends React.Component{
 
                 </div>
                 <FeedbackForm showModal = {this.state.showModal} closeModal = {this.close} feedBackRequest={this.props.feedBackRequest}/>
-
             </section>
         )
     }

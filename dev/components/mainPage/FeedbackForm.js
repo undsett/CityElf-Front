@@ -105,6 +105,7 @@ export default class FeedbackForm extends React.Component {
     }
 
     render() {
+        console.log("form");
         const {formErrors} = this.state;
         return (
             <Modal id="modal-write-us"  className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog"
