@@ -128,19 +128,20 @@ export default class GoogleMapReact extends React.Component {
     }
     render() {
         return (
-            <div className="container-search" id="map">
-                <CheckAdress 
+            <div className="container-search" >
+                <CheckAdress
                     address={this.state.address} 
                     getAllForecastsRequest={this.props.getAllForecastsRequest} 
                     authorization={this.props.authorization} 
                     showSignUpModal = {this.props.showSignUpModal}
                 />
+
                 <SearchBoxExampleGoogleMap
                     containerElement={
-                        <div className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />
+                        <div  className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />
                     }
                     mapElement={
-                        <div style={{ height: `100%` }}/>
+                        <div  style={{ height: `100%` }}/>
                     }
                     center={this.state.center}
                     onMapMounted={this.handleMapMounted}
@@ -151,6 +152,7 @@ export default class GoogleMapReact extends React.Component {
                     onPlacesChanged={this.handlePlacesChanged}
                     markers={this.state.markers}
                 />
+
             </div>
         );
     }

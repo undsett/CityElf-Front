@@ -11,25 +11,28 @@ import SignInFormGroup from './mainPage/SignInFormGroup';
 import RegistrationFormGroup from './mainPage/RegistrationFormGroup';
 import { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal } from '../actions/authActions';
 import { showEnterAddressModal } from '../actions/userActions';
+import ScrollUpButton from "./mainPage/ScrollUpButton";
 
 class NavigationBar extends React.Component{
         render() {
             const { isAuthenticated, isShownSignUpModal } = this.props.authorization;
             const userLinks = (
-            <Nav>
+            <div>
+
                 <LinkContainer to="/map" id="profile-link">
                     <NavItem>Главная</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/profile">
                     <NavItem>Профиль</NavItem>
                 </LinkContainer>
-            </Nav>
+            </div>
             );
             const guestLinks = (
-                <Nav> 
+                <Nav>
+
                     <li>
                         <Navbar.Link href="#map" id="profile-link">Главная</Navbar.Link>
-                    </li>                   
+                    </li>
                     <li>
                         <Navbar.Link href="#link-about-us">О нас</Navbar.Link>
                     </li>
@@ -39,10 +42,12 @@ class NavigationBar extends React.Component{
                     <li>
                         <Navbar.Link onClick={this.props.showSignUpModal} id="modalpopuplogin">Вход</Navbar.Link>
                     </li>
+
                 </Nav>
             );
             return (
                 <div>
+
                     <Navbar fixedTop={true} inverse collapseOnSelect>
                         <Navbar.Header>
                             <Navbar.Brand>
@@ -51,9 +56,7 @@ class NavigationBar extends React.Component{
                             <Navbar.Toggle />
                         </Navbar.Header>
                         <Navbar.Collapse>
-                            <Nav>
                                 { isAuthenticated ? userLinks : guestLinks }
-                            </Nav>
                         </Navbar.Collapse>
                     </Navbar>
 
