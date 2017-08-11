@@ -32,7 +32,7 @@ if (localStorage.currentUser) {
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
+        <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={MainPage} />
                 <Route path="/map" component={MainPage} />
