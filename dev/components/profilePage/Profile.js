@@ -11,7 +11,6 @@ class Profile extends React.Component {
     render() { 
         const { isAuthenticated} = this.props.authorization;
         const { userData } = this.props.authorization;
-        
         const profile = (
             <div className="Site-content">               
                 <ImgMapStatic />
@@ -24,7 +23,6 @@ class Profile extends React.Component {
                 { isAuthenticated ? profile : <NotAuthProfile /> }                
             </div>
         );
-       
     }
 }
 
