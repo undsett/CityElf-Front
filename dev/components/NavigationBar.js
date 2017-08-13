@@ -17,15 +17,14 @@ class NavigationBar extends React.Component{
         render() {
             const { isAuthenticated, isShownSignUpModal } = this.props.authorization;
             const userLinks = (
-            <div>
-
+            <Nav>
                 <LinkContainer to="/map" id="profile-link">
                     <NavItem>Главная</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/profile">
                     <NavItem>Профиль</NavItem>
                 </LinkContainer>
-            </div>
+            </Nav>
             );
             const guestLinks = (
                 <Nav>

@@ -185,7 +185,6 @@ export default class CheckAdress extends React.Component{
                 <table className='table table-borderless table-condensed table-hover'>{ this.state.gas ? gasBlock : ""}</table>
             </div> 
         );
-
         return (
             <div>
                 <button 

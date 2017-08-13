@@ -48,7 +48,7 @@ export default class AllUserInformation extends React.Component {
                                 <li>Чтобы получить эти функции, кликните по ссылке ниже</li>
                             </ul>
                             <AdministratorRoleLink />
-                            <ButtonSettings />
+                            <ButtonSettings/>
                             <div>
                                 <LogoutButton />
                             </div>

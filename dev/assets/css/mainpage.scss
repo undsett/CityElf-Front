@@ -150,6 +150,7 @@ footer {
 }
 #modalpopuplogin{
 outline:none;
+cursor:pointer;
 }
 #modal-login-form{
   .modal-header{
@@ -375,9 +376,7 @@ outline:none;
 .container-search {
   position: relative;
 }
-.about-us-smallscreen{
-  display: none;
-}
+
 #check-adress-main{
 
   position: absolute;
@@ -474,14 +473,7 @@ outline:none;
   }
 }
 
-@media screen and (max-width:600px){
-  .about-us-smallscreen{
-    display: block;
-  }
-  #link-about-us{
-    display:none;
-  }
-}
+
 @keyframes animateicon {
   0% {
     transform: rotateY(20deg);

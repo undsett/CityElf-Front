@@ -1,7 +1,8 @@
-import  React from 'react';
+import React from 'react';
 import Slider from 'react-slick';
+
 import FeedbackForm from "./FeedbackForm";
-import  AboutUs from "./AboutUs"
+import AboutUs from "./AboutUs"
 
 
 export default class SliderMain extends React.Component {
@@ -21,6 +22,7 @@ export default class SliderMain extends React.Component {
         this.setState({ showModal: true });
     }
     render () {
+        console.log("slider");
         let settings = {
             dots: true,
             infinite: true,
