@@ -120,7 +120,6 @@ export default class CheckAdress extends React.Component{
         const { isAuthenticated } = this.props.authorization;
         const authBlock = (
             <div>
-                <h2>Вы не авторизованы.</h2>                           
                 <h3>Возможности авторизованных пользователей:</h3>
                 <ul>
                     <li>Получение всех уведомлений</li>
