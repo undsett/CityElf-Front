@@ -59,7 +59,7 @@ export default class CheckAdress extends React.Component{
                         electricity = {
                             ...electricity,
                             start: start.toLocaleString(),
-                            estimatedStop: "дата неизвестна"
+                            estimatedStop: "неизвестно"
                         };
                     }
                     
@@ -85,7 +85,7 @@ export default class CheckAdress extends React.Component{
                         water = {
                             ...water,
                             start: start.toLocaleString(),
-                            estimatedStop: "дата неизвестна"
+                            estimatedStop: "неизвестно"
                         };
                     }
                     
@@ -111,7 +111,7 @@ export default class CheckAdress extends React.Component{
                         gas = {
                             ...gas,
                             start: start.toLocaleString(),
-                            estimatedStop: "дата неизвестна"
+                            estimatedStop: "неизвестно"
                         }; 
                     }                    
                     this.setState({ 
@@ -145,8 +145,7 @@ export default class CheckAdress extends React.Component{
     render() {
         const { isAuthenticated } = this.props.authorization;
         const authBlock = (
-            <div>
-                <h2>Вы не авторизованы.</h2>                           
+            <div>                      
                 <h3>Возможности авторизованных пользователей:</h3>
                 <ul>
                     <li>Получение всех уведомлений</li>
@@ -176,6 +175,9 @@ export default class CheckAdress extends React.Component{
                 <tr>
                     <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.electricity.estimatedStop}</th>
                 </tr>
+                <tr>
+                    <th>{this.state.electricity.peopleReport ? "Об отключении сообщил жилец дома" : ""}</th>
+                </tr>
             </tbody>                      
         );
         const waterBlock = (           
@@ -189,6 +191,9 @@ export default class CheckAdress extends React.Component{
                 <tr>
                     <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.water.estimatedStop}</th>
                 </tr>
+                <tr>
+                    <th>{this.state.water.peopleReport ? "Об отключении сообщил жилец дома" : ""}</th>
+                </tr>
             </tbody>                       
         );
         const gasBlock = (           
@@ -201,6 +206,9 @@ export default class CheckAdress extends React.Component{
                 </tr>
                 <tr>
                     <th><span className="glyphicon glyphicon-time" aria-hidden="true"></span> Планируемое возобновление: {this.state.gas.estimatedStop}</th>
+                </tr>
+                <tr>
+                    <th>{this.state.gas.peopleReport ? "Об отключении сообщил жилец дома" : ""}</th>
                 </tr>
             </tbody>                
         );
