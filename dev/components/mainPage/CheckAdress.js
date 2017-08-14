@@ -11,7 +11,7 @@ export default class CheckAdress extends React.Component{
         this.state = {
             showModal: false,
             address: '',
-            electricity: {},
+            electricity: '',
             water: '',
             gas: '',
             responseError: '',
@@ -28,7 +28,7 @@ export default class CheckAdress extends React.Component{
     getForecastsInModal() {
         this.setState({
             address: '',
-            electricity: {},
+            electricity: '',
             water: '',
             gas: '',
             responseError: '',
@@ -36,7 +36,7 @@ export default class CheckAdress extends React.Component{
         })        
         this.props.getAllForecastsRequest(this.props.address).then(
             (response) => {
-                let forecast = JSON.parse(response.text);
+                let forecast = JSON.parse(response.text);             
                 if (isEmpty(forecast)) {
                     this.setState({
                         showModal: true,
@@ -47,13 +47,22 @@ export default class CheckAdress extends React.Component{
                     let electricity = forecast.Electricity
                     let start = new Date();
                     start.setTime(Date.parse(electricity.start));
-                    let estimatedStop = new Date();
-                    estimatedStop.setTime(Date.parse(electricity.estimatedStop));
-                    electricity = {
-                        ...electricity,
-                        start: start.toLocaleString(),
-                        estimatedStop: estimatedStop.toLocaleString()
-                    };
+                    if (electricity.estimatedStop) {
+                        let estimatedStop = new Date();
+                        estimatedStop.setTime(Date.parse(electricity.estimatedStop));
+                        electricity = {
+                            ...electricity,
+                            start: start.toLocaleString(),
+                            estimatedStop: estimatedStop.toLocaleString()
+                        };  
+                    } else {
+                        electricity = {
+                            ...electricity,
+                            start: start.toLocaleString(),
+                            estimatedStop: "дата неизвестна"
+                        };
+                    }
+                    
                     this.setState({ 
                         showModal: true,
                         address: electricity.address.address,
@@ -64,13 +73,22 @@ export default class CheckAdress extends React.Component{
                     let water = forecast.Water
                     let start = new Date();
                     start.setTime(Date.parse(water.start));
-                    let estimatedStop = new Date();
-                    estimatedStop.setTime(Date.parse(water.estimatedStop));
-                    water = {
-                        ...water,
-                        start: start.toLocaleString(),
-                        estimatedStop: estimatedStop.toLocaleString()
-                    };
+                    if (water.estimatedStop) {
+                        let estimatedStop = new Date();
+                        estimatedStop.setTime(Date.parse(water.estimatedStop));
+                        water = {
+                            ...water,
+                            start: start.toLocaleString(),
+                            estimatedStop: estimatedStop.toLocaleString()
+                        };
+                    } else {
+                        water = {
+                            ...water,
+                            start: start.toLocaleString(),
+                            estimatedStop: "дата неизвестна"
+                        };
+                    }
+                    
                     this.setState({ 
                         showModal: true,
                         address: water.address.address,
@@ -81,13 +99,21 @@ export default class CheckAdress extends React.Component{
                     let gas = forecast.Gas
                     let start = new Date();
                     start.setTime(Date.parse(gas.start));
-                    let estimatedStop = new Date();
-                    estimatedStop.setTime(Date.parse(gas.estimatedStop));
-                    gas = {
-                        ...gas,
-                        start: start.toLocaleString(),
-                        estimatedStop: estimatedStop.toLocaleString()
-                    };
+                    if (gas.estimatedStop) {
+                        let estimatedStop = new Date();
+                        estimatedStop.setTime(Date.parse(gas.estimatedStop));
+                        gas = {
+                            ...gas,
+                            start: start.toLocaleString(),
+                            estimatedStop: estimatedStop.toLocaleString()
+                        }; 
+                    } else {
+                        gas = {
+                            ...gas,
+                            start: start.toLocaleString(),
+                            estimatedStop: "дата неизвестна"
+                        }; 
+                    }                    
                     this.setState({ 
                         showModal: true,
                         address: gas.address.address,
