@@ -31,9 +31,9 @@ export default class AdministratorRoleLink extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         <h3>Выберите адрес</h3>
-                        <input type="text" id="adress-administrator" className=" form-control change-settings-input" placeholder="Введите адрес"/>
+                        <input type="text" id="adress-administrator" className=" form-control change-settings-input" placeholder="Адрес"/>
                         <h3>Введите Ваше имя и фамилию </h3>
-                        <input type="text" id="administrator-name" className=" form-control change-settings-input" placeholder="Введите адрес"/>
+                        <input type="text" id="administrator-name" className=" form-control change-settings-input" placeholder="Имя и Фамилия"/>
                         <h3>Добавьте документ, подтверждающий Вашу должность</h3>
                         <a href="#">Добавить документ</a>
                     </Modal.Body>

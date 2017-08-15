@@ -18,7 +18,7 @@ export default class AllUserInformation extends React.Component {
             <section className="user-notifacations">
                 <div className="container center">
                     <div className="row">
-                        <div id="nofication-block" className="col-md-8 col-sm-7 info-service-panel">
+                        <div id="nofication-block" className="col-md-4 col-sm-12 info-service-panel">
                             <ul className="nav nav-tabs" role="tablist">
                                 <li role="presentation" className="active">
                                     <a href="#notifications" aria-controls="notifications" role="tab" data-toggle="tab">Уведомления</a>
@@ -45,17 +45,19 @@ export default class AllUserInformation extends React.Component {
                             <p id="user-adress">{ userCurrentAddress ? userCurrentAddress : "Введите свой адрес"}</p>
                             <h3>Дополнительный адрес <span id="additional-adress">(доступно 0 из 10):</span></h3>
                             <AddAddressButton/>
-                            <ul>
-                                <li>Если Вы глава ОСМД, то можете получить дополнительные функции:</li>
-                                <li>Добавлять объявления для жильцов вашего дома</li>
-                                <li>Добавлять опросы и следить за результатами.</li>
-                                <li>Чтобы получить эти функции, кликните по ссылке ниже</li>
-                            </ul>
-                            <AdministratorRoleLink />
                             <ButtonSettings/>
                             <div>
                                 <LogoutButton />
                             </div>
+                        </div>
+                        <div className="col-md-3 col-sm-5 user-profile sidebar">
+                            <ul>
+                                <li>Если Вы глава ОСМД, то можете получить дополнительные функции:</li>
+                                <li>Добавлять объявления для жильцов вашего дома;</li>
+                                <li>Добавлять опросы и следить за результатами.</li>
+                                <h4 className="administration-headline">Чтобы получить эти функции, кликните по ссылке ниже.</h4>
+                            </ul>
+                            <AdministratorRoleLink />
                         </div>
                     </div>
                 </div>
