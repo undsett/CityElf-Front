@@ -32,9 +32,11 @@ export default class SliderMain extends React.Component {
             touchMove:true,
             speed:2000,
             cssEase: 'ease-in',
+            autoplaySpeed:6000
         };
         return (
-            <Slider id="link-about-us" className="slider-main-page" ref={c => this.slider = c } {...settings}>
+            <section className="slider-for-large">
+            <Slider  className="slider-main-page" ref={c => this.slider = c } {...settings}>
                 <div className="slider slider1">
                     <article className="post slider1">
                         <div className="container-img-slider">
@@ -58,9 +60,9 @@ export default class SliderMain extends React.Component {
                         </div>
                             <div className="post__content">
                                 <h2 className="post__header">О нас</h2>
-                                <p className="post__text"> <span className="our_name">CityElf </span> – это молодая команда разработчиков. Наша цель – принести пользу Одессе и горожанам.
-                                    Мы стараемся сделать вашу жизнь комфортнее, и для этого создали сервис <span className="our_name">CityElf </span> .
-                                    Команда регулярно совершенствует веб-сайт и мобильное приложение ради вашего удобства.</p>
+                                <p className="post__text"> <span className="our_name">CityElf </span> – это молодая команда разработчиков. Наша цель – принести пользу Одессе и горожанам.</p>
+                                <p className="post__text"> Мы стараемся сделать вашу жизнь комфортнее, и для этого создали сервис <span className="our_name">CityElf </span> .</p>
+                                <p className="post__text">   Команда регулярно совершенствует веб-сайт и мобильное приложение ради вашего удобства.</p>
                             </div>
                     </article>
                 </div>
@@ -83,6 +85,7 @@ export default class SliderMain extends React.Component {
                     <FeedbackForm showModal = {this.state.showModal} closeModal = {this.close} feedBackRequest={this.props.feedBackRequest}/>
                 </div>
             </Slider>
+            </section>
 
         );
     }

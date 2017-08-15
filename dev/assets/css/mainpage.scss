@@ -87,7 +87,7 @@ body{
   background-size: cover;
   background-position: left;
   padding: 10% 0;
-  margin: 90px 0 0;;
+  margin: 2% 0 0;
   li {
     position: relative;
     list-style: none;
@@ -104,7 +104,7 @@ body{
     position: absolute;
     top: 0;
     left: -40px;
-    animation: animateicon 7s linear 2s infinite alternate;
+
   }
   #moquaps-phone {
     img {
@@ -340,7 +340,7 @@ cursor:pointer;
     font-weight: 700;
   }
 }
-#link-about-us{
+.slider-main-page{
   width:100%;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -364,7 +364,7 @@ cursor:pointer;
   }
 
 @media only screen and (max-width: 520px) {
-  #link-about-us{
+  .slider-main-page{
     .send-info-about-us{
       width: 120px;
       height: 30px;
@@ -415,11 +415,7 @@ cursor:pointer;
   }
 }
 
-
-
-
-
-@media screen and (max-width:360px){
+@media screen and (max-width:375px){
   #check-adress-main {
     position: absolute;
     z-index: 10;
@@ -474,14 +470,7 @@ cursor:pointer;
 }
 
 
-@keyframes animateicon {
-  0% {
-    transform: rotateY(20deg);
-  }
-  100% {
-    transform: rotateY(180deg);
-  }
-}
+
 @media screen and (max-width:760px) {
   #modal-login-form .img-form-login{
     padding: 25% 16%;
@@ -502,5 +491,57 @@ cursor:pointer;
 @media screen and (max-width:767px) {
   #modal-login-form .container-fluid {
     margin-top: 0;
+  }
+}
+@media screen and (max-width:1000px) {
+  #android{
+    padding-top: 1%;
+  }
+}
+
+@media screen and (max-width:700px) {
+  #android{
+    padding-top: 2%;
+  }
+}
+.error-page{
+  background-image: url(../img/Houses.jpg);
+  opacity: 0.7;
+  padding: 15%;
+  height: 93vh;
+  background-size: cover;
+  font: 700 50px 'Ubuntu', sans-serif;
+  overflow-y: hidden;
+  text-align:center;
+
+  img{
+    width:100px;
+  }
+  p{
+
+  }
+
+}
+.num-error{
+  font: 150px 'Ubuntu', sans-serif;
+  color:#1485CC;
+  text-align: center;
+  display: inline-block;
+}
+@media screen and (max-width:600px) {
+  .error-page {
+    p {
+      font: 700 20px 'Ubuntu', sans-serif;
+    }
+  }
+}
+@media screen and (max-width:350px) {
+  .error-page {
+    p {
+      font: 700 15px 'Ubuntu', sans-serif;
+    }
+    img{
+      width:50px;
+    }
   }
 }

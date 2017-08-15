@@ -19,7 +19,7 @@ export default class AboutUsForSmallScreen extends React.Component{
     render() {
         console.log("small");
         return (
-            <section  className="about-us-smallscreen">
+            <section id="link-about-us"  className="about-us-smallscreen">
 
                 <div className="post__content">
                     <header>

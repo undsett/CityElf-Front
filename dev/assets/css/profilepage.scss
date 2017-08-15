@@ -102,7 +102,6 @@ body {
     color: #8492A6;
   }
   color: #fff;
-  background-color: #090909;
   .modal-title {
     color: #8492A6;
   }
@@ -644,4 +643,10 @@ footer {
 .interview:hover {
   background-color: transparent;
   border: 1px solid #1485CC;
+}
+.services-chose{
+  label{
+    vertical-align: text-bottom;
+  }
+
 }
