@@ -13,6 +13,7 @@ import LogoutButton from "./LogoutButton";
 export default class AllUserInformation extends React.Component {   
     render() {
         const { userData } = this.props;
+        const userCurrentAddress = userData.addresses.length > 0 ? userData.addresses[0].address : '';
         return (
             <section className="user-notifacations">
                 <div className="container center">
@@ -28,7 +29,10 @@ export default class AllUserInformation extends React.Component {
                                 <li role="presentation"><a href="#interview" aria-controls="interview" role="tab" data-toggle="tab">Опросы</a></li>
                             </ul>
                             <div className="tab-content">
-                                <NotifShutdowns />
+                                <NotifShutdowns 
+                                    userCurrentAddress={userCurrentAddress} 
+                                    getAllForecastsRequest={this.props.getAllForecastsRequest} 
+                                />
                                 <Advertisements />
                                 <Polls />
                             </div>
@@ -38,7 +42,7 @@ export default class AllUserInformation extends React.Component {
                             <h3>Электронная почта:</h3>
                             <p id="user-email">{userData.email}</p>
                             <h3>Текущий адрес:</h3>
-                            <p id="user-adress">{userData.addresses.length > 0 ? userData.addresses[0].address : ''}</p>
+                            <p id="user-adress">{ userCurrentAddress ? userCurrentAddress : "Введите свой адрес"}</p>
                             <h3>Дополнительный адрес <span id="additional-adress">(доступно 0 из 10):</span></h3>
                             <AddAddressButton/>
                             <ul>
@@ -58,6 +62,11 @@ export default class AllUserInformation extends React.Component {
             </section>
         )
     }
+}
+
+AllUserInformation.propTypes = {
+    userData: React.PropTypes.object.isRequired,
+    getAllForecastsRequest: React.PropTypes.func.isRequired
 }
 
 

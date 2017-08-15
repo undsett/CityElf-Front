@@ -19,7 +19,10 @@ body {
 .Site-content {
   flex: 1;
 }
-
+.spinner{
+    height: 20px;
+    margin-left: 10px;
+}
 .navbar-inverse {
   background-color: #f2f2f2;
   border: none;
@@ -194,6 +197,11 @@ body {
 }
 
 .user-notifacations {
+  p {
+    margin-top: 20px;
+    margin-left: 5px;
+    color: #8492A6;
+  }
   .tab-pane {
     height: 50vh;
     overflow: auto;

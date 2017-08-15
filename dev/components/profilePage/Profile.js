@@ -15,9 +15,10 @@ class Profile extends React.Component {
         const profile = (
             <div className="Site-content">
                 <ImgMapStatic />
-                <AllUserInformation
-                    userData={userData}
-                    getAllForecastsRequest={this.props.getAllForecastsRequest}
+
+                <AllUserInformation 
+                    userData={userData} 
+                    getAllForecastsRequest={this.props.getAllForecastsRequest} 
                 />
                 <EnterAddressModal/>
             </div>
@@ -41,4 +42,7 @@ function mapStateToProps(state) {
     }
 }
 
+
 export default connect(mapStateToProps, { getAllForecastsRequest })(Profile);
+
+
