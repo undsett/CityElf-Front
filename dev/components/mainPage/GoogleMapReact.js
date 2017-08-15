@@ -50,7 +50,7 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
             bounds={props.bounds}
             controlPosition={google.maps.ControlPosition.LEFT_TOP}
             onPlacesChanged={props.onPlacesChanged}
-            inputPlaceholder="Введите свой адрес или выберите на карте"
+            inputPlaceholder="Введите свой адрес"
             inputClassname="pac-input"
             inputStyle={INPUT_STYLE}
             value = "sdfsdf"

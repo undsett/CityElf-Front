@@ -42,11 +42,11 @@ export default class ImgMapStatic extends React.Component{
                         </div>
                     </div>
                 </div>
-                <div className="services-chose">
-                    <label className="checkbox-inline"><input type="checkbox" value=""/>Газ</label>
-                    <label className="checkbox-inline"><input type="checkbox" value=""/>Электричество</label>
-                    <label className="checkbox-inline"><input type="checkbox" value=""/>Вода</label>
-                </div>
+                <form className="services-chose">
+                    <label className="radio-inline"><input type="radio" name="optradio"/>Газ</label>
+                    <label className="radio-inline"><input type="radio" name="optradio"/>Электричество</label>
+                    <label className="radio-inline"><input type="radio" name="optradio"/>Вода</label>
+                </form>
             </div>
                 <Modal id="shut-note-for-adress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
                     <div className="modal-dialog" role="document">

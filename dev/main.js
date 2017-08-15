@@ -24,7 +24,6 @@ import '../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(hashHistory, store);
-
 if (localStorage.currentUser) {
     const currentUserData = JSON.parse(localStorage.currentUser);
     store.dispatch(setCurrentUser(currentUserData));

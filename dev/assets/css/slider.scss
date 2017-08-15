@@ -1,4 +1,7 @@
-#link-about-us {
+.slider-for-large{
+  padding: 4% 0 4%;
+}
+.slider-main-page{
     padding-top: 40px;
   .slider{
     position: relative;
@@ -132,28 +135,29 @@
     .post__header{
       font: 18px 'Ubuntu', sans-serif;
     }
-    #link-about-us .post__content {
+    .slider-main-page .post__content {
       width: 100%;
     }
     .slide1{
       line-height: 18px;
     }
     .slider1 .slider-img{
-      width: 50%;
+      width: 100%;
     }
     .container-img-slider{
       width: 33%;
     }
-    #link-about-us .post__text,#link-about-us .post__text_list{
+    .slider-main-page .post__text,.slider-main-page.post__text_list{
       font-weight: 300;
       color: #8492A6;
       font: 14px 'Ubuntu', sans-serif;
       line-height: 28px;
     }
-    #link-about-us .slick-dots {
+
+    .slider-main-page .slick-dots {
       left:-22px;
     }
-    #link-about-us .post__content {
+    .slider-main-page .post__content {
       padding: 0 6% 10%;
     }
 
@@ -253,4 +257,11 @@
   .about-us-smallscreen .post__text, .about-us-smallscreen .post__text_list {
     text-align: center;
   }
+}
+.post__text .contact-us{
+  font-weight: 300;
+  color:#1485CC;
+  font: 16px 'Ubuntu', sans-serif;
+  line-height: 28px;
+  margin-bottom: 10px;
 }

@@ -3,7 +3,8 @@ import React from 'react';
 export default class MobileApp extends React.Component{
     render() {
         return (
-            <section id="android" className="android-app row">
+            <div id="android">
+            <section   className="android-app row">
                 <div id="container-button-download">
                     <h2>МОБИЛЬНОЕ ПРИЛОЖЕНИЕ</h2>
                     <p>
@@ -22,6 +23,7 @@ export default class MobileApp extends React.Component{
                     <a className="download-app" href=""><img src={require("../../assets/img/google-play-badge.png")}/></a>
                 </div>
             </section>
+            </div>
         )
     }
 }
