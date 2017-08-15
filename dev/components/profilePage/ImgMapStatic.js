@@ -25,14 +25,12 @@ export default class ImgMapStatic extends React.Component{
             <div className="map-block-static">
                 <div className="container-search-userpage">
                     <div className="input-group">
-                        <input id="pac-input" type="text" className="form-control controls " placeholder="Введите свой адрес или выберите на карте"/>
+                        <input id="pac-input" type="text" className="form-control controls " placeholder="Выберите нужный адрес из ваших адресов"/>
                             <div className="input-group-btn user-dropdown-adress">
                                 <button type="button" id="dropdown-adress" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="caret"></span>
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#">Adress 1</a></li>
-                                    <li><a href="#">Adress 2</a></li>
-                                    <li><a href="#">Adress 3</a></li>
+                                    <li><a>Абрикосовая, 10</a></li>
                                 </ul>
                             </div>
                     </div>
@@ -51,11 +49,10 @@ export default class ImgMapStatic extends React.Component{
                 <Modal id="shut-note-for-adress" className="modal fade" tabIndex="-1" role="dialog"show={this.state.showModal} onHide={this.close}>
                     <div className="modal-dialog" role="document">
                             <Modal.Header>
-                                <Modal.Title>Спасибо Вам!</Modal.Title>
+                                <Modal.Title> Спасибо за уведомление!</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <p className="hanling-request">Ваш запрос принят и обрабатывается. После обработки он появится в списке адресов для
-                                    отслеживания отключений</p>
+                                <p className="hanling-request">Запрос обрабатывается. Информация скоро появится в списке отключений по выбранному адресу.</p>
                             </Modal.Body>
                             <Modal.Footer>
                                 <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.close} >OK</button>

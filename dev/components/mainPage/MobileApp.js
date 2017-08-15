@@ -20,7 +20,7 @@ export default class MobileApp extends React.Component{
                         <li>Быстрая проверка отключений по любому адресу на карте;</li>
                         <li>  Возможность изменить звук сообщений и временно отключить уведомления.</li>
                     </ul>
-                    <a className="download-app" href=""><img src={require("../../assets/img/google-play-badge.png")}/></a>
+                    <a className="download-app" href="https://play.google.com/store/apps/details?id=com.hillelevo.cityelf"><img src={require("../../assets/img/google-play-badge.png")}/></a>
                 </div>
             </section>
             </div>
