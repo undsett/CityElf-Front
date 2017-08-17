@@ -16,85 +16,105 @@ export default class NotifShutdowns extends React.Component {
     componentWillMount() {
         this.props.getAllForecastsRequest(this.props.userCurrentAddress).then(
             (response) => {
-                let forecast = JSON.parse(response.text);             
-                if (isEmpty(forecast)) {
+                const forecastList = JSON.parse(response.text);
+                if (isEmpty(forecastList)) {
                     this.setState({
+                        showModal: true,
                         responseError: "Уведомления не найдены"
                     })
-                } 
-                if ("Electricity" in forecast) {
-                    let electricity = forecast.Electricity
-                    let start = new Date();
-                    start.setTime(Date.parse(electricity.start));
-                    if (electricity.estimatedStop) {
-                        let estimatedStop = new Date();
-                        estimatedStop.setTime(Date.parse(electricity.estimatedStop));
-                        electricity = {
-                            ...electricity,
-                            start: start.toLocaleString(),
-                            estimatedStop: estimatedStop.toLocaleString()
-                        };  
-                    } else {
-                        electricity = {
-                            ...electricity,
-                            start: start.toLocaleString(),
-                            estimatedStop: "неизвестно"
-                        };
-                    }                    
-                    this.setState({ 
-                        electricity: electricity
-                    });
-                }
-                if ("Water" in forecast) {
-                    let water = forecast.Water
-                    let start = new Date();
-                    start.setTime(Date.parse(water.start));
-                    if (water.estimatedStop) {
-                        let estimatedStop = new Date();
-                        estimatedStop.setTime(Date.parse(water.estimatedStop));
-                        water = {
-                            ...water,
-                            start: start.toLocaleString(),
-                            estimatedStop: estimatedStop.toLocaleString()
-                        };
-                    } else {
-                        water = {
-                            ...water,
-                            start: start.toLocaleString(),
-                            estimatedStop: "неизвестно"
-                        };
+                } else {
+                    for (let forecast of forecastList) {                
+                        if ("Electricity" in forecast) {
+                            let electricity = forecast.Electricity
+                            let start = '';
+                            if (electricity.start) {
+                                start = new Date();
+                                start.setTime(Date.parse(electricity.start));
+                            } else {
+                                start = "неизвестно";
+                            }                   
+                            let estimatedStop = '';
+                            if (electricity.estimatedStop) {
+                                estimatedStop = new Date();
+                                estimatedStop.setTime(Date.parse(electricity.estimatedStop));
+                            } else {
+                                estimatedStop = "неизвестно";
+                            }
+
+                            electricity = {
+                                ...electricity,
+                                start: start.toLocaleString(),
+                                estimatedStop: estimatedStop.toLocaleString()
+                            };  
+                            
+                            this.setState({ 
+                                showModal: true,
+                                address: electricity.address.address,
+                                electricity: electricity,
+                            });
+                        }
+                        if ("Water" in forecast) {
+                            let water = forecast.Water                    
+                            let start = '';
+                            if (water.start) {
+                                start = new Date();
+                                start.setTime(Date.parse(water.start));
+                            } else {
+                                start = "неизвестно";
+                            }           
+                            let estimatedStop = '';
+                            if (water.estimatedStop) {
+                                estimatedStop = new Date();
+                                estimatedStop.setTime(Date.parse(water.estimatedStop));
+                            } else {
+                                estimatedStop = "неизвестно";
+                            }
+
+                            water = {
+                                ...water,
+                                start: start.toLocaleString(),
+                                estimatedStop: estimatedStop.toLocaleString()
+                            };  
+                            
+                            this.setState({ 
+                                showModal: true,
+                                address: water.address.address,
+                                water: water,
+                            });
+                        }
+                        if ("Gas" in forecast) {
+                            let gas = forecast.Gas                    
+                            let start = '';
+                            if (gas.start) {
+                                start = new Date();
+                                start.setTime(Date.parse(gas.start));
+                            } else {
+                                start = "неизвестно";
+                            }                                       
+                            let estimatedStop = '';
+                            if (gas.estimatedStop) {
+                                estimatedStop = new Date();
+                                estimatedStop.setTime(Date.parse(gas.estimatedStop));
+                            } else {
+                                estimatedStop = "неизвестно";
+                            }
+
+                            gas = {
+                                ...gas,
+                                start: start.toLocaleString(),
+                                estimatedStop: estimatedStop.toLocaleString()
+                            };         
+                            this.setState({ 
+                                showModal: true,
+                                address: gas.address.address,
+                                gas: gas,
+                            });
+                        }
                     }
-                    
-                    this.setState({ 
-                        water: water
-                    });
-                }
-                if ("Gas" in forecast) {
-                    let gas = forecast.Gas
-                    let start = new Date();
-                    start.setTime(Date.parse(gas.start));
-                    if (gas.estimatedStop) {
-                        let estimatedStop = new Date();
-                        estimatedStop.setTime(Date.parse(gas.estimatedStop));
-                        gas = {
-                            ...gas,
-                            start: start.toLocaleString(),
-                            estimatedStop: estimatedStop.toLocaleString()
-                        }; 
-                    } else {
-                        gas = {
-                            ...gas,
-                            start: start.toLocaleString(),
-                            estimatedStop: "неизвестно"
-                        }; 
-                    }                    
-                    this.setState({
-                        gas: gas
-                    });
                 }
                 this.setState({
                     isLoading: false
-                })           
+                })               
             },   
             (error) => {
                 if (error.status == 400) {

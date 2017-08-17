@@ -42,7 +42,7 @@ export default class AllUserInformation extends React.Component {
                             <h3>Электронная почта:</h3>
                             <p id="user-email">{userData.email}</p>
                             <h3>Текущий адрес:</h3>
-                            <p id="user-adress">{ userCurrentAddress ? userCurrentAddress : "Введите свой адрес"}</p>
+                            <p id="user-adress">{ userCurrentAddress ? userCurrentAddress : "Введите адрес в настройках"}</p>
                             <h3>Дополнительный адрес <span id="additional-adress">(доступно 0 из 10):</span></h3>
                             <AddAddressButton/>
                             <ButtonSettings/>

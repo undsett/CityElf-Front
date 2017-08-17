@@ -6,7 +6,8 @@ export function userSignupRequest(email, password) {
             .post('/services/registration/register')
             .send('firebaseid=WEB')
             .send('email=' + email)
-            .send('password=' + password)   
+            .send('password=' + password)
+            .send('address=')
     }
 }
 
