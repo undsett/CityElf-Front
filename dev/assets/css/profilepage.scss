@@ -239,22 +239,22 @@ body {
     padding: 10px 30px;
   }
   .icon-water {
-    width: 10px;
-    height: 15px;
+    width: 30px;
+    height: 25px;
     background: #b3b3b3;
     border-radius: 2%;
   }
 
   .icon-lamp {
-    width: 10px;
-    height: 15px;
+    width: 30px;
+    height: 25px;
     background: #ffb366;
     border-radius: 2%;
   }
 
   .icon-gas {
-    width: 10px;
-    height: 15px;
+    width: 30px;
+    height: 25px;
     background: #cca300;
     border-radius: 2%;
   }
@@ -348,7 +348,9 @@ body {
   }
 }
 
-
+.settings-header{
+  border:none;
+}
 #settings-change-info {
 
   .choose-language{
@@ -420,7 +422,6 @@ body {
   }
 
   .btn-default:hover{
-    background-color: transparent;
     border: 1px solid #1485CC;
   }
   #settings-type-notification{
