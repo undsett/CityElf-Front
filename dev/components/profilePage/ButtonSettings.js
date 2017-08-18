@@ -194,11 +194,11 @@ class ButtonSettings extends React.Component{
                 </div>
                 <Modal className="modal fade" tabIndex="-1" role="dialog" show={isShownSettingsModal} onHide={this.closeModal}>
                     <div role="document">
-                        <Modal.Header>
+                        <Modal.Header closeButton className="settings-header">
                             <Modal.Title className="modal-title-settings">
                                 Настройки
                             </Modal.Title>
-                        </Modal.Header>
+                       </Modal.Header>
                     </div>
                     <Modal.Body id="settings-change-info">
                         <form onSubmit={this.submitForm}>

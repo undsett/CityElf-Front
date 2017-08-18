@@ -25,6 +25,7 @@ export default class AddAddressButton extends React.Component{
                 <a onClick={this.open} id="add-additional-adress">Добавить адрес</a>
                 <Modal id="payment-method" className="modal fade" tabIndex="-1" role="dialog"
                        show={this.state.showModal} onHide={this.close}>
+                    <Modal.Header closeButton className="settings-header"></Modal.Header>
                     <Modal.Body>
                         <h4 className="modal-title">Оплата дополнительных адресов</h4>
                         <p>Цена 1 дополнительного адреса - 100 грн </p>
