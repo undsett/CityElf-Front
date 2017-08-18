@@ -3,22 +3,22 @@ import { Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 
-import { showSettingsModal, hideSettingsModal } from '../../actions/userActions';
+import { showSettingsModal, hideSettingsModal, updateUserRequest } from '../../actions/userActions';
 
 class ButtonSettings extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             emailInputShown: false,
-            passwordInputShow: false,
-            currentAddressInputShow: false,
-            addAddressInputShow: false,
+            passwordInputShown: false,
+            currentAddressInputShown: false,
+            addAddressInputShown: false,
             newEmail: "",
             newPassword: "",
             formErrors: {newEmail: '', newPassword: ''},
             newEmailValid: true,
             newPasswordValid: true,
-            formValid: true,
+            formValid: false,
             newCurrentAddress: "",
             addAddress: "",
             notifEmail: this.props.authorization.userData.notification.email,
@@ -28,6 +28,21 @@ class ButtonSettings extends React.Component{
         this.changeValue = this.changeValue.bind(this);
         this.changeNotif = this.changeNotif.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    closeModal() {
+        this.props.hideSettingsModal();
+        this.setState({
+            newEmail: "",
+            newPassword: "",
+            formErrors: {newEmail: '', newPassword: ''},
+            newEmailValid: true,
+            newPasswordValid: true,
+            formValid: false,
+            newCurrentAddress: "",
+            addAddress: ""
+        })
     }
 
     showInput(e) {
@@ -51,11 +66,11 @@ class ButtonSettings extends React.Component{
         let newPasswordValid = this.state.newPasswordValid;
         switch(fieldName) {
             case 'newEmail':
-                newEmailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                newEmailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) || value.length == 0;
                 fieldValidationErrors.newEmail = newEmailValid ? '' : 'Введите корректный email';
                 break;
             case 'newPassword':
-                newPasswordValid = value.length >= 6;
+                newPasswordValid = value.length >= 6 || value.length == 0;
                 fieldValidationErrors.newPassword = newPasswordValid ? '': 'Пароль должен быть не менее 6 символов';
                 break;
             default:
@@ -84,10 +99,32 @@ class ButtonSettings extends React.Component{
     submitForm(e) {
         e.preventDefault();
         if (this.state.formValid) {
-            console.log("форма валидна, запрос на сервер", this.state);
-        } else {
-            console.log("форма не валидна")
-        }
+            let newCurrentAddressId = this.state.newCurrentAddress ? "0" : this.props.authorization.userData.addresses[0].id;
+            this.props.updateUserRequest(
+
+                this.props.authorization.userData.id,
+                this.state.newEmail || this.props.authorization.userData.email,
+                this.state.newPassword,
+                newCurrentAddressId,
+                this.state.newCurrentAddress || this.props.authorization.userData.addresses[0].address,
+                this.state.notifSms,
+                this.state.notifEmail
+            ).then(
+                (response) => {
+                    console.log(response);
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );                      
+            this.closeModal();
+            this.setState({
+                emailInputShown: false,
+                passwordInputShown: false,
+                currentAddressInputShown: false,
+                addAddressInputShown: false
+            })
+        } 
     }
 
     render() {
@@ -155,7 +192,7 @@ class ButtonSettings extends React.Component{
                     >Настройки
                     </button>
                 </div>
-                <Modal className="modal fade" tabIndex="-1" role="dialog" show={isShownSettingsModal} onHide={this.props.hideSettingsModal}>
+                <Modal className="modal fade" tabIndex="-1" role="dialog" show={isShownSettingsModal} onHide={this.closeModal}>
                     <div role="document">
                         <Modal.Header>
                             <Modal.Title className="modal-title-settings">
@@ -181,32 +218,32 @@ class ButtonSettings extends React.Component{
                                 role="link" 
                                 id="link-change-email" 
                                 className="link-change-info"
-                                name="passwordInputShow"  
+                                name="passwordInputShown"  
                                 onClick={this.showInput}
                             >Изменить пароль
                             </div>
-                            { this.state.passwordInputShow ? InputPassword : null }
+                            { this.state.passwordInputShown ? InputPassword : null }
                             <h3>Текущий адрес</h3>
                             <p id="user-current-adress">{userData.addresses.length > 0 ? userData.addresses[0].address : ''}</p>
                             <div 
                                 role="link" 
                                 id="link-change-email" 
                                 className="link-change-info"
-                                name="currentAddressInputShow"  
+                                name="currentAddressInputShown"  
                                 onClick={this.showInput}
                             >Изменить адрес
                             </div>
-                            { this.state.currentAddressInputShow ? InputCurrentAddress : null }
+                            { this.state.currentAddressInputShown ? InputCurrentAddress : null }
                             <h3>Дополнительный адрес</h3>
                             <div 
                                 role="link" 
                                 id="link-change-email"
                                 className="link-change-info"
-                                name="addAddressInputShow" 
+                                name="addAddressInputShown" 
                                 onClick={this.showInput}
                             >Добавить адрес
                             </div>
-                            { this.state.addAddressInputShow ? InputAddAddress : null }
+                            { this.state.addAddressInputShown ? InputAddAddress : null }
                             <h3 id="settings-type-notification">Тип уведомления</h3>
                             <ul className="type-of-notifications">
                                 <li className="list-group-item">
@@ -248,7 +285,8 @@ ButtonSettings.propTypes = {
     userReducer: React.PropTypes.object.isRequired,
     showSettingsModal: React.PropTypes.func.isRequired,
     hideSettingsModal: React.PropTypes.func.isRequired,
-    authorization: React.PropTypes.object.isRequired
+    authorization: React.PropTypes.object.isRequired,
+    updateUserRequest: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps (state) {
@@ -258,4 +296,4 @@ function mapStateToProps (state) {
     }
 }
 
-export default connect(mapStateToProps, { showSettingsModal, hideSettingsModal })(ButtonSettings);
+export default connect(mapStateToProps, { showSettingsModal, hideSettingsModal, updateUserRequest })(ButtonSettings);

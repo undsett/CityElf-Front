@@ -22,6 +22,20 @@ export function feedBackRequest(userName, email, theme, message) {
     }    
 }
 
+export function updateUserRequest(userId, newEmail, newPassword, addressId, addressUa, notifSms, notifEmail) {
+    console.log("request update user", userId, newEmail, newPassword, addressId, addressUa, notifSms, notifEmail);
+    const updatedUserData = {
+
+    }
+    return dispatch => {
+        // return Request
+        //     .put('/services/users/updateuser')
+        //     .auth('', '')
+        //     .send(updatedUserData)        
+    }
+    
+}
+
 export function showEnterAddressModal() {
     return {
         type: 'SHOW_ENTERADDRESS_MODAL'
