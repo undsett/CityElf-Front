@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import reducer from './reducers'
+import reducer from './reducers';
 import App from './components/App';
 import MainPage from './components/mainPage/MainPage';
 import Profile from './components/profilePage/Profile';

@@ -16,7 +16,7 @@ export default class AddAddressButton extends React.Component{
     }
 
     open() {
-        this.setState({showModal: true});
+        this.setState({showModal: false});
     }
 
     render() {
