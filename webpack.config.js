@@ -33,8 +33,8 @@ module.exports = {
                     'image-webpack-loader'
                 ]
             },
-            { test: /\.(woff2?|svg)$/, loader: 'url-loader?limit=10000&name=fonts/[name].[ext]' },
-            { test: /\.(ttf|eot)$/, loader: 'file-loader?name=fonts/[name].[ext]' },
+            { test: /\.(woff2?|svg)$/, loader: 'url-loader?url=false?limit=10000&name=fonts/[name].[ext]' },
+            { test: /\.(ttf|eot)$/, loader: 'file-loader?url=false?name=fonts/[name].[ext]' },
             { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports-loader?jQuery=jquery' },
             {
                 test: /\.js$/,

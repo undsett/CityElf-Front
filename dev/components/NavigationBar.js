@@ -1,87 +1,113 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Navbar } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+import { NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import SignInFormGroup from './mainPage/SignInFormGroup';
 import RegistrationFormGroup from './mainPage/RegistrationFormGroup';
+import { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal } from '../actions/authActions';
+import { showEnterAddressModal } from '../actions/userActions';
+import ScrollUpButton from "./mainPage/ScrollUpButton";
 
-export default class NavigationBar extends React.Component{
-    constructor() {
-        super();
-        
-        this.state = {
-            showModal: false
-        }
-        this.open = this.open.bind(this);
-        this.close = this.close.bind(this);
-    }
-
-    close() {
-        this.setState({ showModal: false });
-    }
-
-    open() {
-        this.setState({ showModal: true });
-    }
-
+class NavigationBar extends React.Component{
     render() {
+        const { isAuthenticated, isShownSignUpModal } = this.props.authorization;
+        const userLinks = (
+            <Nav>
+                <LinkContainer to="/map" id="profile-link">
+                    <NavItem>Главная</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/profile">
+                    <NavItem>Профиль</NavItem>
+                </LinkContainer>
+            </Nav>
+        );
+        const guestLinks = (
+            <Nav>
+
+                <li>
+                    <Navbar.Link href="#map" id="profile-link">Главная</Navbar.Link>
+                </li>
+                <li>
+                    <Navbar.Link href="#link-about-us">О нас</Navbar.Link>
+                </li>
+                <li>
+                    <Navbar.Link href="#android">Мобильный доступ</Navbar.Link>
+                </li>
+                <li>
+                    <Navbar.Link onClick={this.props.showSignUpModal} id="modalpopuplogin">Вход</Navbar.Link>
+                </li>
+
+            </Nav>
+        );
         return (
             <div>
-                <nav id="top-menu-main">  
-                    <div className="navbar navbar-fixed-top navbar-inverse" role="navigation">
-                        <div className="container">
-                            <div className="navbar-header">
-                                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#b-menu-1">
-                                    <span className="sr-only">Toggle navigation</span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                </button>
-                                <Link to="/" className="navbar-brand">CityElf</Link>
-                            </div>
-                            <div className="collapse navbar-collapse" id="b-menu-1">
-                                <ul className="nav navbar-nav navbar-left">
-                                    <li><Link to="/" id="profile-link">Главная</Link></li>
-                                    <li><a href="#link-about-us">О нас</a></li>
-                                    <li><a href="#android">Мобильный доступ</a></li>
-                                    <li onClick={this.open}><a href="#" id="modalpopuplogin">Вход</a></li>
-                                    <li><Link to="/profile">Профиль</Link></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+
+                <Navbar fixedTop={true} inverse collapseOnSelect>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <a href="#map">CityElf</a>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        { isAuthenticated ? userLinks : guestLinks }
+                    </Navbar.Collapse>
+                </Navbar>
 
                 <Modal id="modal-login-form"  bsSize="large" className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog"
-                aria-labelledby="myLargeModalLabel" aria-hidden="true" show={this.state.showModal} onHide={this.close}>                   
+                       aria-labelledby="myLargeModalLabel" aria-hidden="true" show={isShownSignUpModal} onHide={this.props.hideSignUpModal}>
                     <Modal.Body>
+                        <Modal.Header closeButton></Modal.Header>
                         <div className="container-fluid">
                             <div className="row">
                                 <div className="col-md-5 col-sm-5 img-form-login">
                                     <h1>CityElf</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, at atque blanditiis
-                                        consequuntur distinctio dolorem doloremque error eum excepturi iste laudantium minima
-                                        odio omnis
-                                        praesentium quasi repellendus rerum similique voluptatum!Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. Asperiores, at atque blanditiis consequuntur distinctio
-                                        dolorem doloremque error eum excepturi iste laudantium minima odio omnis
-                                        praesentium quasi repellendus rerum similique voluptatum!</p>
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-login-form">
-                                    <RegistrationFormGroup userSignupRequest = {this.props.userSignupRequest} closeModal = {this.close} />
+                                    <RegistrationFormGroup
+                                        userSignupRequest = {this.props.userSignupRequest}
+                                        setCurrentUser = {this.props.setCurrentUser}
+                                        closeModal = {this.props.hideSignUpModal}
+                                        showEnterAddressModal = {this.props.showEnterAddressModal}
+                                    />
                                 </div>
                                 <div className="col-md-3 col-sm-3 container-for-register-user">
-                                    <SignInFormGroup/>
+                                    <SignInFormGroup
+                                        checkLoginPasswordRequest = {this.props.checkLoginPasswordRequest}
+                                        setCurrentUser = {this.props.setCurrentUser}
+                                        closeModal = {this.props.hideSignUpModal}
+                                    />
                                 </div>
                             </div>
                         </div>
-                    </Modal.Body>                 
+                    </Modal.Body>
                 </Modal>
             </div>
         )
     }
-} 
-
-NavigationBar.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
 }
+NavigationBar.propTypes = {
+    userSignupRequest: React.PropTypes.func.isRequired,
+    checkLoginPasswordRequest: React.PropTypes.func.isRequired,
+    setCurrentUser: React.PropTypes.func.isRequired,
+    authorization: React.PropTypes.object.isRequired,
+    showSignUpModal: React.PropTypes.func.isRequired,
+    hideSignUpModal: React.PropTypes.func.isRequired,
+    showEnterAddressModal: React.PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+    return {
+        authorization: state.authorization
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    { userSignupRequest, checkLoginPasswordRequest, setCurrentUser, showSignUpModal, hideSignUpModal, showEnterAddressModal }
+)(NavigationBar);

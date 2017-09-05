@@ -8,9 +8,11 @@ export default class RegistrationFormGroup extends React.Component{
         this.state = {
             email: '',
             password: '',
-            formErrors: {email: '', password: ''},
+            passwordRepeat: '',
+            formErrors: {email: '', password: '', passwordRepeat: ''},
             emailValid: false,
             passwordValid: false,
+            passwordRepeatValid: false,
             formValid: false,
             errorUserExist: ''
         }
@@ -30,6 +32,7 @@ export default class RegistrationFormGroup extends React.Component{
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
+        let passwordRepeatValid = this.state.passwordRepeatValid;
 
         switch(fieldName) {
             case 'email':
@@ -40,39 +43,49 @@ export default class RegistrationFormGroup extends React.Component{
                 passwordValid = value.length >= 6;
                 fieldValidationErrors.password = passwordValid ? '': 'Пароль должен быть не менее 6 символов';
                 break;
+            case 'passwordRepeat':
+                passwordRepeatValid = value.length >= 6 && this.state.password == this.state.passwordRepeat;
+                fieldValidationErrors.passwordRepeat = passwordRepeatValid ? '': this.state.password == this.state.passwordRepeat ? 'Пароль должен быть не менее 6 символов' : 'Пароли не совпадают';
+                break;
             default:
                 break;
         }
         this.setState({formErrors: fieldValidationErrors,
                         emailValid: emailValid,
-                        passwordValid: passwordValid
+                        passwordValid: passwordValid,
+                        passwordRepeatValid: passwordRepeatValid
                       }, this.validateForm);
     }
 
     validateForm() {
         this.setState({
-            formValid: this.state.emailValid && this.state.passwordValid
+            formValid: this.state.emailValid && this.state.passwordValid && this.state.passwordRepeatValid
         });
     }
 
     submitForm(e) {
         e.preventDefault();
-        this.setState({
-            errorUserExist: ''
-        })
-        this.props.userSignupRequest(this.state.email, this.state.password).then(
-            (response) => {
-                if(JSON.parse(response.text).code == 11) {
-                    console.log("Зарегился новый юзер, надо сохранить его данные в редакс и сделать редирект на профиль");
-                    this.props.closeModal();
-                    this.context.router.push('/profile');                    
-                } else if(JSON.parse(response.text).code == 12){
-                    this.setState({
-                        errorUserExist: JSON.parse(response.text).message
-                    })
-                }
-            }        
-        );
+        if (this.state.formValid) {
+            this.setState({
+                errorUserExist: ''
+            })
+            this.props.userSignupRequest(this.state.email, this.state.password).then(
+                (response) => {
+                    const responseData = JSON.parse(response.text);
+                    if(responseData.status.code == 11) {
+                        localStorage.setItem('currentUser', JSON.stringify(responseData.user));
+                        this.props.setCurrentUser(responseData.user);
+                        this.props.closeModal();
+                        this.context.router.push('/profile');
+                        this.props.showEnterAddressModal();                   
+                    } else if(responseData.status.code == 12){
+                        this.setState({
+                            errorUserExist: responseData.status.message
+                        })
+                    }
+                }        
+            );
+        }         
     }
 
     render() {
@@ -103,14 +116,26 @@ export default class RegistrationFormGroup extends React.Component{
                         className="form-control" 
                         placeholder="Пароль*"
                     />
+
                     {formErrors.password && <span className="help-block">{formErrors.password}</span>}
+                </div>
+                <div className={classnames("form-group", { 'has-error': formErrors.passwordRepeat })}>
+                    <input
+                        type="password"
+                        name="passwordRepeat"
+                        value={this.state.passwordRepeat}
+                        onChange={this.changeValue}
+                        className="form-control"
+                        placeholder="Повторите пароль*"
+                    />
+
+                    {formErrors.passwordRepeat && <span className="help-block">{formErrors.passwordRepeat}</span>}
                 </div>
                 <div className="form-group">    
                     <button 
                         id="sign-up" 
                         className="btn btn-default form-control"
-                        type="submit"
-                        disabled={!this.state.formValid}                        
+                        type="submit"                     
                         >Регистрация
                     </button>
                     <div><strong>*-Обязательные для заполнения поля</strong></div>
@@ -121,7 +146,9 @@ export default class RegistrationFormGroup extends React.Component{
 }
 
 RegistrationFormGroup.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
+    userSignupRequest: React.PropTypes.func.isRequired,
+    setCurrentUser: React.PropTypes.func.isRequired,
+    showEnterAddressModal: React.PropTypes.func.isRequired
 }
 
 RegistrationFormGroup.contextTypes = {

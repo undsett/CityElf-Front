@@ -1,9 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
-import {userResources} from '../../resources/userResources.js';
 
 
-export default class LoginFormGroup extends React.Component{
+export default class SignInFormGroup extends React.Component{
     constructor(props) {
         super(props);
         
@@ -13,7 +12,8 @@ export default class LoginFormGroup extends React.Component{
             formErrors: {email: '', password: ''},
             emailValid: false,
             passwordValid: false,
-            formValid: false
+            formValid: false,
+            errorLoginPassword: ''
         }
         this.changeValue = this.changeValue.bind(this);
         this.submitForm = this.submitForm.bind(this);
@@ -58,17 +58,37 @@ export default class LoginFormGroup extends React.Component{
 
     submitForm(e) {
         e.preventDefault();
-        userResources.checkLoginPassword(this.state.email, this.state.password);
+        if (this.state.formValid) {
+            this.setState({
+                errorLoginPassword: ''
+            })
+            this.props.checkLoginPasswordRequest(this.state.email, this.state.password).then(
+                (response) => {
+                    const responseData = JSON.parse(response.text);
+                    if(responseData.status.code == 31) {
+                        this.setState({
+                            errorLoginPassword: responseData.status.message
+                        })
+                    }
+                    if(responseData.status.code == 33) {
+                        localStorage.setItem('currentUser', JSON.stringify(responseData.user));
+                        this.props.setCurrentUser(responseData.user);
+                        this.props.closeModal();
+                        this.context.router.push('/profile');
+                    }
+                }   
+            ); 
+        }
     }
 
     render() {
-        const {formErrors} = this.state;
+        const {formErrors, errorLoginPassword} = this.state;
         return(
             <form onSubmit={this.submitForm}>
                 <h2>
                     Вход
                 </h2>
-                 <div className={classnames("form-group", { 'has-error': formErrors.email })}>
+                 <div className={classnames("form-group", { 'has-error': formErrors.email || this.state.errorLoginPassword })}>
                     <input 
                         type="email"
                         name="email"
@@ -78,6 +98,7 @@ export default class LoginFormGroup extends React.Component{
                         placeholder="Email"
                     />
                     {formErrors.email && <span className="help-block">{formErrors.email}</span>}
+                    {errorLoginPassword && <span className="help-block">Email или пароль неверный</span>}
                 </div>    
                 <div className={classnames("form-group", { 'has-error': formErrors.password })}>    
                     <input 
@@ -95,7 +116,6 @@ export default class LoginFormGroup extends React.Component{
                         id="sign-in" 
                         type="submit" 
                         className="btn btn-default sign-in-btn form-control"
-                        disabled={!this.state.formValid}
                         >Войти
                     </button>
                     <div className="checkbox">
@@ -106,4 +126,13 @@ export default class LoginFormGroup extends React.Component{
             </form>
         )
     } 
+}
+
+SignInFormGroup.propTypes = {
+    checkLoginPasswordRequest: React.PropTypes.func.isRequired,
+    setCurrentUser: React.PropTypes.func.isRequired
+}
+
+SignInFormGroup.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }

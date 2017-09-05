@@ -19,7 +19,10 @@ body {
 .Site-content {
   flex: 1;
 }
-
+.spinner{
+  height: 20px;
+  margin-left: 10px;
+}
 .navbar-inverse {
   background-color: #f2f2f2;
   border: none;
@@ -91,13 +94,27 @@ body {
 .navbar-inverse .navbar-nav > .open > a:focus {
   background-color: transparent;
 }
-
-#shut-note-for-adress {
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus{
+  color:#4F4F4F;;
+  background-color: transparent;
+}
+#shut-note-for-adress,#request-in-progress {
   .hanling-request {
     color: #8492A6;
   }
+  color: #fff;
   .modal-title {
     color: #8492A6;
+  }
+  .btn{
+    font:14px 'Ubuntu', sans-serif;
+    height: 33px;
+    width: 50px;
+    background-color: #1485CC;
+    display: inline;
+    color: #F2F2F2;
   }
 }
 
@@ -180,6 +197,12 @@ body {
 }
 
 .user-notifacations {
+  margin-top: 20px;
+  p {
+    margin-top: 20px;
+    margin-left: 5px;
+    color: #8492A6;
+  }
   .tab-pane {
     height: 50vh;
     overflow: auto;
@@ -212,28 +235,24 @@ body {
     background-color: transparent;
     border: none;
   }
-  .nav > li > a {
-    padding: 12px 52px;
-
+  .user-notifacations .nav > li > a {
+    padding: 10px 30px;
   }
   .icon-water {
-    width: 10px;
-    height: 15px;
-    background: #b3b3b3;
+    width: 30px;
+    height: 25px;
     border-radius: 2%;
   }
 
   .icon-lamp {
-    width: 10px;
-    height: 15px;
-    background: #ffb366;
+    width: 30px;
+    height: 25px;
     border-radius: 2%;
   }
 
   .icon-gas {
-    width: 10px;
-    height: 15px;
-    background: #cca300;
+    width: 30px;
+    height: 25px;
     border-radius: 2%;
   }
   .table > tbody > tr > th {
@@ -252,32 +271,57 @@ body {
 }
 
 .user-profile {
+  li {
+    list-style-type: none;
+    font: 14px 'Ubuntu', sans-serif;
+    color: #8492A6;
+  }
+  li:first-child{
+    color: #8492A6;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  li:nth-child(n+2)::before{
+    content: "\2013";
+    margin-right:5px ;
+  }
+
+  ul{
+    margin-top: 10px;
+    padding: 0;
+  }
   overflow: hidden;
   h3 {
     font-style: normal;
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 20px;
-    color: #8492A6;
+    color: #1485CC;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
+
   }
   h2 {
     font-style: normal;
-    font-size: 14px;
+    font-size: 16px;
     color: #8492A6;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
+    margin: 10px;
   }
   p {
     font: 14px 'Ubuntu', sans-serif;
     color: #8492A6;
+
   }
   #add-additional-adress {
-    color: #8492A6;
+    color: #337ab7;
   }
   #settings-profile, #exit-profile {
-    margin-top: 20px;
+    margin-bottom: 20px;
     width: 261px;
+  }
+  #settings-profile{
+    margin-top: 20px;
   }
   #settings-profile:hover {
     border: 1px solid #1485CC;
@@ -301,14 +345,15 @@ body {
   }
 }
 
-
+.settings-header{
+  border:none;
+}
 #settings-change-info {
+
   .choose-language{
     margin-bottom: 20px;
   }
-  .modal-header .close{
-    margin: 15px -8px;
-  }
+
   label{
     font:14px 'Ubuntu', sans-serif;
     color:#8492A6;
@@ -364,13 +409,16 @@ body {
     margin-bottom: 9px;
   }
   .btn{
-    width: 138px;
     font:14px 'Ubuntu', sans-serif;
-    color:#4F4F4F;
+    height: 33px;
+    width: 166px;
+    background-color: #1485CC;
+    display: inline;
+    color: #F2F2F2;
+    margin: 10px 0;
   }
 
   .btn-default:hover{
-    background-color: transparent;
     border: 1px solid #1485CC;
   }
   #settings-type-notification{
@@ -446,14 +494,26 @@ body {
 }
 
 
-#payment-method {
+#payment-method,#administrator-role {
+  .btn{
+    height: 33px;
+    width: 166px;
+    font: 12px 'Ubuntu', sans-serif;
+    background-color: #1485CC;
+    color: #F2F2F2;
+    margin: 10px 0;
+  }
+  .modal-dialog{
+    margin-top: 0;
+  }
   .modal-header {
     border-bottom: none;
     padding: 0;
     margin: 0 33px;
   }
   .modal-body {
-    margin: 0 20px
+    margin: 0 20px;
+
   }
   h4 {
     margin-top: 20px;
@@ -593,4 +653,15 @@ footer {
 .interview:hover {
   background-color: transparent;
   border: 1px solid #1485CC;
+}
+.services-chose{
+  label{
+    vertical-align: text-bottom;
+  }
+
+}
+.administration-headline{
+  margin-top: 30px;
+  font: 15px 'Ubuntu', sans-serif;
+  color:#8492A6;
 }

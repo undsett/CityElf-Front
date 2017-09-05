@@ -17,20 +17,21 @@ const INPUT_STYLE = {
     boxSizing: `border-box`,
     MozBoxSizing: `border-box`,
     border: `1px solid #1485CC`,
-    marginTop: `27px`,
     padding: `0 12px`,
     borderRadius: `5px`,
     boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
     fontSize: `14px`,
     outline: `none`,
     textOverflow: `ellipses`,
-    width: `420px`,
-    height: `40px`,
+    width: `350px`,
+    height: `30px`,
     zindex:'0',
     position:'absolute',
     top:'32%',
-    left:'33%'
+    left:'33%',
+    marginLeft:'30px'
 };
+
 
 
 const SearchBoxExampleGoogleMap = withGoogleMap(props => (
@@ -47,9 +48,9 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
         <SearchBox
             ref={props.onSearchBoxMounted}
             bounds={props.bounds}
-            controlPosition={google.maps.ControlPosition.TOP_RIGHT}
+            controlPosition={google.maps.ControlPosition.LEFT_TOP}
             onPlacesChanged={props.onPlacesChanged}
-            inputPlaceholder="Введите свой адрес или выберите на карте"
+            inputPlaceholder="Введите свой адрес"
             inputClassname="pac-input"
             inputStyle={INPUT_STYLE}
             value = "sdfsdf"
@@ -99,7 +100,6 @@ export default class GoogleMapReact extends React.Component {
 
     handlePlacesChanged() {
         const places = this._searchBox.getPlaces();
-        console.log(places[0]["formatted_address"]);
 
         this.setState({
             address: places[0]["formatted_address"]
@@ -128,14 +128,20 @@ export default class GoogleMapReact extends React.Component {
     }
     render() {
         return (
-            <div className="container-search">
-            <CheckAdress address={this.state.address} />
+            <div className="container-search" >
+                <CheckAdress
+                    address={this.state.address} 
+                    getAllForecastsRequest={this.props.getAllForecastsRequest} 
+                    authorization={this.props.authorization} 
+                    showSignUpModal = {this.props.showSignUpModal}
+                />
+
                 <SearchBoxExampleGoogleMap
                     containerElement={
-                        <div className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />
+                        <div  className="mainpagemap" style={{ height: `100vh`,margin:`50px 0 0`,width:`100%` }} />
                     }
                     mapElement={
-                        <div style={{ height: `100%` }}/>
+                        <div  style={{ height: `100%` }}/>
                     }
                     center={this.state.center}
                     onMapMounted={this.handleMapMounted}
@@ -146,7 +152,14 @@ export default class GoogleMapReact extends React.Component {
                     onPlacesChanged={this.handlePlacesChanged}
                     markers={this.state.markers}
                 />
+
             </div>
         );
     }
+}
+
+GoogleMapReact.propTypes = {
+    getAllForecastsRequest: React.PropTypes.func.isRequired,
+    authorization: React.PropTypes.object.isRequired,
+    showSignUpModal: React.PropTypes.func.isRequired
 }
